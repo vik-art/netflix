@@ -1,0 +1,11 @@
+input {
+    border: solid grey 2px;
+    outline: none;
+}
+
+input.ng-dirty.ng-invalid {
+    border:solid red 2px;
+}
+input.ng-dirty.ng-valid {
+    border:solid green 2px;
+}

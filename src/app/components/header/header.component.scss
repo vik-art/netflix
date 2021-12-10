@@ -1,9 +1,12 @@
+@import '../../../styles/components/variables.scss';
+
+
 .homepage-header {
-width: 100%;
-position: fixed;
-margin: 0 auto;
-background: rgba(0,0,0,0.4);
-color: #fff;
+    width: 100%;
+    position: fixed;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
  nav {
 display: flex;
 justify-content: space-between;
@@ -29,7 +32,7 @@ justify-content: space-between;
     li {
 text-decoration: none;
 display: inline-block;
-color: #fff;
+color: $base-font-color;
 padding: 10px 20px;
 cursor: pointer;
 :hover{
