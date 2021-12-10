@@ -2,12 +2,9 @@
     <nav>
         <app-logo></app-logo>
         <app-menu-list [menuList]="menuListItems"></app-menu-list>
-    </nav>
-</header>
-
-<ng-template #navigation>             
     <ul class="homepage-nav" >
-        <app-button text='Sing Up' routerLink='/registration' routerLinkActive="activebutton"></app-button>
-        <app-button text='Log In' routerLink='/login' routerLinkActive="activebutton"></app-button>
+        <a class="header-btn">Sing Up</a>
+        <a class="header-btn">Log In</a>
     </ul>
-</ng-template>
+</nav>
+</header>
