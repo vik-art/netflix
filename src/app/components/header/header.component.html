@@ -1,0 +1,13 @@
+<header class="homepage-header">
+    <nav>
+        <app-logo></app-logo>
+        <app-menu-list [menuList]="menuListItems"></app-menu-list>
+    </nav>
+</header>
+
+<ng-template #navigation>             
+    <ul class="homepage-nav" >
+        <app-button text='Sing Up' routerLink='/registration' routerLinkActive="activebutton"></app-button>
+        <app-button text='Log In' routerLink='/login' routerLinkActive="activebutton"></app-button>
+    </ul>
+</ng-template>

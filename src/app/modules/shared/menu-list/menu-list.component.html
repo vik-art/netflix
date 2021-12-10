@@ -1,0 +1,5 @@
+<ul class="user-nav">
+    <li *ngFor="let item of menuList" routerLinkActive="active">
+        <a routerLink="{{item.link}}">{{item.label}}</a>
+    </li>
+</ul>  
