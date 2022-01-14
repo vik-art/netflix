@@ -17,6 +17,9 @@ import { RegistrationPageComponent } from './modules/pages/registration-page/reg
 import { UserPageComponent } from './modules/pages/user-page/user-page.component';
 import { FormComponent } from './components/form/form.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FavouriteComponent } from './modules/pages/favourite/favourite.component';
+import { SelectedComponent } from './modules/pages/selected/selected.component';
+import { FriendsComponent } from './modules/pages/friends/friends.component';
 
 
 @NgModule({
@@ -30,6 +33,9 @@ import { AuthGuard } from './guards/auth.guard';
     RegistrationPageComponent,
     UserPageComponent,
     FormComponent,
+    FavouriteComponent,
+    SelectedComponent,
+    FriendsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 <header class="homepage-header">
     <nav>
         <div class="logo-container">
-            <a href="#" class="logo-link">
+            <a href="/user" class="logo-link">
                 <img src="assets/movie-logo.png" alt="logo" width="70" height="70" />
                 Your Shows
             </a>
@@ -11,6 +11,6 @@
             <a class="header-btn" routerLink="/register">Sing Up</a>
             <a class="header-btn" routerLink="/login">Log In</a>
         </ul>
-        <button *ngIf="auth.isAuthenticated()" (click)="logOut()">Log Out</button>
+        <button class="header-btn" *ngIf="auth.isAuthenticated()" (click)="logOut()">Log Out</button>
     </nav>
 </header>
