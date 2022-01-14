@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/common/interfaces/menu.interface';
 import { AuthService } from 'src/app/services/auth.service';
 
-
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  selector: 'app-registration-page',
+  templateUrl: './registration-page.component.html',
+  styleUrls: ['./registration-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class RegistrationPageComponent implements OnInit {
+
   form!: FormGroup;
   submitted: boolean = false;
 
@@ -18,27 +18,30 @@ export class LoginPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auth: AuthService,
     private route: Router
-  ) {}
+  ) { }
+
   ngOnInit(): void {
     this.initForm();
-    
   }
-  initForm(): void {
+  initForm():void{
     this.form = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.pattern("(?=^.{6,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).*")]]
+      email:["", [Validators.required, Validators.email]],
+      password:["", [Validators.required, Validators.pattern("(?=^.{6,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).*")]]
     })
-    this.form.valueChanges.subscribe(() => {})
+    this.form.valueChanges.subscribe(() => {
+      
+    })
   }
-
-  
   submit() {
+    if (this.form.invalid) {
+      return
+    } 
     this.submitted = true;
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.password
     }
-    this.auth.login(user).subscribe(() => {
+    this.auth.singUp(user).subscribe(() => {
       this.form.reset();
       this.route.navigate(['/user']);
       this.submitted = false;
@@ -46,4 +49,5 @@ export class LoginPageComponent implements OnInit {
       this.submitted = false;
     }
   }
+
 }

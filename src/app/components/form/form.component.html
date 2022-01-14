@@ -1,5 +1,5 @@
 <div class="login-container">
-    <form [formGroup]="form" class="login-form" (ngSubmit)="submit()">
+    <form [formGroup]="form" class="login-form">
         <div class="form-control">
             <input type="email" formControlName="email" placeholder="Enter your email adress" [ngClass]="{
             invalid: form.get('email')?.invalid && form.get('email')?.touched

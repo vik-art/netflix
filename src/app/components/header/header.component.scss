@@ -1,65 +1,61 @@
-@import '../../../styles/components/variables.scss';
-
+@import "../../../styles/components/variables.scss";
 
 .homepage-header {
-    width: 100%;
-    position: fixed;
-    margin: 0 auto;
-    background: rgba(0,0,0,0.4);
-    color: #fff;
- nav {
-display: flex;
-justify-content: space-between;
-padding: 20px 80px;
-width: 90%;
-height: 100%;
-align-items: center;
- }
+  width: 100%;
+  position: fixed;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 80px;
+    width: 90%;
+    height: 100%;
+    align-items: center;
+  }
 }
 
 .homepage-nav {
-width: 30%;
-padding: 0;
-margin: 0;
-display: flex;
-justify-content: space-between;
+  width: 20%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .user-nav {
-    display: flex;
-width: 80%;
-justify-content: space-between;
-    li {
-text-decoration: none;
-display: inline-block;
-color: $base-font-color;
-padding: 10px 20px;
-cursor: pointer;
-:hover{
-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-}
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  li {
+    text-decoration: none;
+    display: inline-block;
+    color: $base-font-color;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
 }
 
 .header-btn {
-    background-color: #FFF44F;
-    color: #000;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 5px;
+  background-color: #fff44f;
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 30px;
+  border-radius: 5px;
 }
 .logo-container {
-    width: 120px;
-text-align: center;
-font-family: 'Dancing Script', cursive;
-font-size: 25px;
-color: #fff;
+  width: 120px;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 25px;
+  color: #fff;
 }
 .logo-link {
-    text-decoration: none;
-display: flex;
-align-items: center;
-flex-direction: column;
-color: #fff;
-
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
 }

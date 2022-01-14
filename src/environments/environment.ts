@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+  apiKey: "AIzaSyArN_mAfRNEdmBx4V0_dZ4rCbr3OQNVw4U",
+  authDomain: "netflix-bffb8.firebaseapp.com",
+  projectId: "netflix-bffb8",
+  storageBucket: "netflix-bffb8.appspot.com",
+  messagingSenderId: "59278338432",
+  appId: "1:59278338432:web:006e91365374b74958b965"
+}
+
 };
 
 /*
