@@ -45,3 +45,14 @@ input.ng-dirty.ng-valid {
   border: none;
   background-color: yellow;
 }
+.validation {
+  color: red;
+}
+
+.alert {
+  position: fixed;
+  top: 20%;
+  right: 20%;
+  background-color: rgba(209, 209, 65, 0.5);
+  color: rgb(0, 0, 0);
+}

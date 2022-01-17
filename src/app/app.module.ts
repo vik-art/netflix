@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +20,15 @@ import { AuthGuard } from './guards/auth.guard';
 import { FavouriteComponent } from './modules/pages/favourite/favourite.component';
 import { SelectedComponent } from './modules/pages/selected/selected.component';
 import { FriendsComponent } from './modules/pages/friends/friends.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor'
 
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+}
 
 @NgModule({
   declarations: [
@@ -36,6 +44,7 @@ import { FriendsComponent } from './modules/pages/friends/friends.component';
     FavouriteComponent,
     SelectedComponent,
     FriendsComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +55,10 @@ import { FriendsComponent } from './modules/pages/friends/friends.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    INTERCEPTOR_PROVIDER
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

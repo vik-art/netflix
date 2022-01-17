@@ -1,41 +1,49 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, tap } from "rxjs";
+import { catchError, Observable, Subject, tap, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 import { fbAuthResponse, User } from "../common/interfaces/menu.interface";
+import { AlertService } from "./alert.service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
+
+  public error$: Subject<string> = new Subject<string>()
+
   constructor(
     private http: HttpClient
   ) { }
 
-  get token(): string | null {
+  get token(): string {
     const expDate = new Date(localStorage.getItem('fb-exp-date')!) 
       if(new Date > expDate) {
       this.logout();
-        return null;
+        return "";
   }
-  return localStorage.getItem('fb-token')
+  return localStorage.getItem('fb-token')!
   }
 
  isAuthenticated(): boolean {
     return !!this.token
   }
   
-  singUp(user: User): Observable<any> {
+  signUp(user: User): Observable<any> {
+    user.returnSecureToken = true;
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`, user)
       .pipe(
-        tap(this.setToken)
+        tap(this.setToken),
+        catchError(this.handleError.bind(this))
     )
   }
   login(user: User): Observable<any> {
+     user.returnSecureToken = true;
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`, user)
       .pipe(
-      tap(this.setToken)
+        tap(this.setToken),
+        catchError(this.handleError.bind(this))
     )
   }
   logout() {
@@ -51,5 +59,22 @@ export class AuthService {
     } else {
       localStorage.clear()
     }
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    const { message } = error.error.error;
+
+    switch (message) {
+      case "EMAIL_NOT_FOUND":
+        this.error$.next("This email hasn't been found");
+        break;
+      case "INVALID_PASSWORD":
+        this.error$.next("This password is invalid");
+        break;
+      case "INVALID_EMAIL":
+        this.error$.next("This email is invalid");
+        break;
+    }
+    return throwError(error)
   }
   }

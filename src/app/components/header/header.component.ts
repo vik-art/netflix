@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HEADER_MENU_LIST } from 'src/app/common/constants/header-menu-list';
 import { ImenuItem } from 'src/app/common/interfaces/menu.interface';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,13 +16,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    private route: Router
+    private route: Router,
+    private alert: AlertService
   ) { }
 
   ngOnInit(): void {
   }
-  logOut() {
+  logOut(event: Event) {
+    event.preventDefault()
     this.auth.logout();
+    this.alert.success('You have log out!')
     this.route.navigate(['/'])
   }
 

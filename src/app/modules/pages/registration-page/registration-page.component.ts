@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/common/interfaces/menu.interface';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,8 +17,9 @@ export class RegistrationPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth: AuthService,
-    private route: Router
+    public auth: AuthService,
+    private route: Router,
+    private alert: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -41,8 +43,9 @@ export class RegistrationPageComponent implements OnInit {
       email: this.form.value.email,
       password: this.form.value.password
     }
-    this.auth.singUp(user).subscribe(() => {
+    this.auth.signUp(user).subscribe(() => {
       this.form.reset();
+      this.alert.success('You have signed up!')
       this.route.navigate(['/user']);
       this.submitted = false;
     }), () => {

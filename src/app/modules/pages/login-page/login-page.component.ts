@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/common/interfaces/menu.interface';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -16,8 +17,9 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth: AuthService,
-    private route: Router
+    public auth: AuthService,
+    private route: Router,
+    private alert: AlertService
   ) {}
   ngOnInit(): void {
     this.initForm();
@@ -39,6 +41,7 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password
     }
     this.auth.login(user).subscribe(() => {
+      this.alert.success("You have logged in!")
       this.form.reset();
       this.route.navigate(['/user']);
       this.submitted = false;
