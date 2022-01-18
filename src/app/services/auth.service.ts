@@ -2,7 +2,8 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, Subject, tap, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
-import { fbAuthResponse, User } from "../common/interfaces/menu.interface";
+import { fbAuthResponse } from "../common/interfaces/auth.interface";
+import { User } from "../common/interfaces/user.interface";
 import { AlertService } from "./alert.service";
 
 @Injectable({
