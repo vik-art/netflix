@@ -25,6 +25,9 @@
                     <button class="movie-btn">
                         <img src="../../../../assets/selected-icon.svg" alt="Selected" srcset="">
                         Mark as selected</button>
+                    <button class="movie-btn" [routerLink]="['/movie', movie.id]">
+                        <img src="../../../../assets/check-mark.svg" alt="details" width="25" height="25">
+                        Show details</button>
                 </div>
             </div>
         </div>

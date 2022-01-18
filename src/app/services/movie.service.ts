@@ -21,5 +21,15 @@ export class MovieService {
           return movies
         }))
   }
+  getById(id: number): Observable<any> {
+    return this.http.get(`${environment.movieDetailsURL}/${id}?api_key=${environment.movieApiKey}`)
+      .pipe(map(result => {
+        return {
+          ...result,
+          id
+        }
+      })      
+    )
+  }
 }
  

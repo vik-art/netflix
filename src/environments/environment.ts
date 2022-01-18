@@ -13,7 +13,8 @@ export const environment = {
   appId: "1:59278338432:web:006e91365374b74958b965"
 },
   movieApiKey: "5b7f91e1ba15c45e5ffb71864f48d30d",
-  movieURL: "https://api.themoviedb.org/3/search/movie"
+  movieURL: "https://api.themoviedb.org/3/search/movie",
+  movieDetailsURL: "https://api.themoviedb.org/3/movie"
 };
 
 /*
