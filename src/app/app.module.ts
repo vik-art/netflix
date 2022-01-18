@@ -21,7 +21,8 @@ import { FavouriteComponent } from './modules/pages/favourite/favourite.componen
 import { SelectedComponent } from './modules/pages/selected/selected.component';
 import { FriendsComponent } from './modules/pages/friends/friends.component';
 import { AlertComponent } from './components/alert/alert.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor'
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MoviePageComponent } from './modules/pages/movie-page/movie-page.component'
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -45,6 +46,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     SelectedComponent,
     FriendsComponent,
     AlertComponent,
+    MoviePageComponent,
   ],
   imports: [
     BrowserModule,
