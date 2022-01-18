@@ -36,5 +36,8 @@ export class UserPageComponent implements OnInit {
         this.page = movies.page;
         console.log(this.movies, this.page)
     })
-}
+  }
+  loadMoreMovies() {
+    
+  }
 }

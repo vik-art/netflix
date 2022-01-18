@@ -7,8 +7,20 @@
     </form>
 </div>
 <div class="search-results" *ngIf="movies.length">
-    <div class="card-container" *ngFor="let movie of movies">
-        <h2>{{movie.title}}</h2>
-        <img src="{{movie.poster_path}}" alt="{{movie.title}}">
+    <div class="result-container">
+        <div class="card-container" *ngFor="let movie of movies">
+            <div class="movie-pic">
+                <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}" alt="{{movie.title}}">
+            </div>
+            <div class="movie-info">
+                <h2 class="movie-info-title">{{movie.title}}</h2>
+                <p class="movie-info-details">Release Date: {{movie.release_date | date}}</p>
+                <p class="movie-info-details">Vote Average: {{movie.vote_average}}</p>
+                <p class="movie-info-details">Original Language: {{movie.original_language | uppercase}}</p>
+                <button class="movie-btn">Add to favourite</button>
+                <button class="movie-btn">Mark as selected</button>
+            </div>
+        </div>
     </div>
+    <button (click)="loadMoreMovies()">Load More</button>
 </div>
