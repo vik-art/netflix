@@ -4,7 +4,6 @@ import { catchError, Observable, Subject, tap, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 import { fbAuthResponse } from "../common/interfaces/auth.interface";
 import { User } from "../common/interfaces/user.interface";
-import { AlertService } from "./alert.service";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +32,7 @@ export class AuthService {
   
   signUp(user: User): Observable<any> {
     user.returnSecureToken = true;
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`, user)
+    return this.http.post<fbAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`, user)
       .pipe(
         tap(this.setToken),
         catchError(this.handleError.bind(this))
@@ -54,6 +53,7 @@ export class AuthService {
 
   private setToken(response: fbAuthResponse | null) {
     if (response) {
+      console.log(response)
       const expDate = new Date(new Date().getTime() + Number(response.expiresIn) * 1000);
       localStorage.setItem('fb-token', response.idToken!);
       localStorage.setItem('fb-exp-date', expDate.toString());

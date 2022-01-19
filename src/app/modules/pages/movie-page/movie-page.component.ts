@@ -23,7 +23,11 @@ export class MoviePageComponent implements OnInit {
       return this.movieService.getById(params['id'])
       }))
       .subscribe((movie: Movie) => {
-        this.movie = movie;
+        this.movie = {
+          ...movie,
+          favourite: false,
+          selected: false
+        };
         console.log(this.movie)
     })
   }

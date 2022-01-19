@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { concat } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -16,7 +17,7 @@ export class UserPageComponent implements OnInit {
     private movie: MovieService
   ) { }
 
-  page!: number;
+  page: number = 1;
   movies: Array<Movie> = [];
 
   ngOnInit(): void {
@@ -30,14 +31,22 @@ export class UserPageComponent implements OnInit {
     this.form.valueChanges.subscribe(() => {})
   }
   submit() {
-    this.movie.getMovie(this.form.value.query)
-      .subscribe((movies) => {
-        this.movies = movies.results;
-        this.page = movies.page;
-        console.log(this.movies, this.page)
-    })
+   this.loadMovies()
   }
   loadMoreMovies() {
+    this.loadMovies();
     
+  }
+  loadMovies() {
+    this.movie.getMovie(this.form.value.query, this.page)
+      .subscribe((movies) => {
+        if (this.movies) {
+          this.movies = [...this.movies, ...movies.results as Array<Movie>];
+        } else {
+          this.movies = movies.results as Array<Movie>;
+        }
+        this.page++;
+        console.log(movies)
+      })
   }
 }

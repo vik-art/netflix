@@ -7,18 +7,19 @@
             <input type="email" formControlName="email" placeholder="Enter your email adress" [ngClass]="{
             invalid: form.get('email')?.invalid && form.get('email')?.touched
         }" />
-            <div class="validation" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">The field cannot be
-                empty!
+            <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                <div class="validation" *ngIf="form.get('email')?.hasError('required')">The field cannot be empty!</div>
+                <div class="validation" *ngIf="form.get('email')?.hasError('email')">Email is invalid</div>
             </div>
-            <div class="validation" *ngIf="form.get('email')?.hasError('required')">The field cannot be empty!</div>
-            <div class="validation" *ngIf="form.get('email')?.hasError('email')">Email is invalid</div>
         </div>
         <div class="form-control">
             <input type="password" formControlName="password"
                 placeholder="Enter your password (at least 6 characters - letters and digits)" />
-            <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">The field cannot be empty!</div>
-            <div class="validation" *ngIf="form.get('password')?.hasError('required')">The field cannot be empty!</div>
-            <div class="validation" *ngIf="form.get('password')?.hasError('pattern')">Password is invalid</div>
+            <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+                <div class="validation" *ngIf="form.get('password')?.hasError('required')">The field cannot be empty!
+                </div>
+                <div class="validation" *ngIf="form.get('password')?.hasError('pattern')">Password is invalid</div>
+            </div>
         </div>
         <button type="submit" [disabled]="form.invalid" class="btn">Submit</button>
     </form>

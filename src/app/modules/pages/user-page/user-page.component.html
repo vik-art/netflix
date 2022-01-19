@@ -19,20 +19,16 @@
                 <p class="movie-info-details">Vote Average: {{movie.vote_average}}</p>
                 <p class="movie-info-details">Original Language: {{movie.original_language | uppercase}}</p>
                 <div class="button-container">
-                    <button class="movie-btn">
-                        <img src="../../../../assets/liked-icon.svg" alt="Like" srcset="">
-                        Add to favourite</button>
-                    <button class="movie-btn">
-                        <img src="../../../../assets/selected-icon.svg" alt="Selected" srcset="">
-                        Mark as selected</button>
-                    <button class="movie-btn" [routerLink]="['/movie', movie.id]">
+                    <a class="movie-btn" [routerLink]="['/movie', movie.id]" target="_blank">
                         <img src="../../../../assets/check-mark.svg" alt="details" width="25" height="25">
-                        Show details</button>
+                        Show details</a>
                 </div>
             </div>
         </div>
     </div>
-    <button (click)="loadMoreMovies()">Load More</button>
+    <div class="loadmore-btn-container">
+        <button class="movie-btn" (click)="loadMoreMovies()">Load More</button>
+    </div>
 </div>
 
 <ng-template #defaultImage>

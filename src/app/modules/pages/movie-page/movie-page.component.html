@@ -1,4 +1,82 @@
-<div class="movie-page-container" *ngIf="movie"
-    style="background-image:url(https://image.tmdb.org/t/p/original{{movie.backdrop_path}})">
-    <h1>{{movie.title}}</h1>
+<div class="movie-page-container" *ngIf="movie" style="background-image:linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ), url(https://image.tmdb.org/t/p/original{{movie.backdrop_path}})">
+    <div class="movie-page-info">
+        <div class="movie-title">
+            <h1>{{movie.title}}</h1>
+            <div class="adult-block" *ngIf="movie.adult">
+                <img src="../../../../assets/adult-sign.svg" alt="adult" width="30" height="30">
+            </div>
+            <small>{{movie.tagline}}</small>
+        </div>
+        <div class="movie-details-info">
+            <div>
+                <p>
+                    <strong>
+                        Release Date: </strong>
+                    <span>{{movie.release_date | date}}</span>
+                </p>
+                <p>
+                    <strong>
+                        Vote Average: </strong>
+                    <span>{{movie.vote_average}}</span>
+                </p>
+                <p>
+                    <strong>
+                        Vote Count: </strong>
+                    <span>{{movie.vote_count}}</span>
+                </p>
+                <p>
+                    <strong>
+                        Genre:
+                    </strong>
+                    <span *ngFor="let genre of movie.genres">
+                        {{genre.name}}&nbsp;
+                    </span>
+                </p>
+                <p>
+                    <strong>
+                        Spoken languages: </strong>
+                    <span *ngFor="let language of movie.spoken_languages">
+                        {{language.name}}&nbsp;
+                    </span>
+                </p>
+                <p>
+                    <strong>
+                        Production Countries: </strong>
+                    <span *ngFor="let country of movie.production_countries">
+                        {{country.name}}&nbsp;
+                    </span>
+                </p>
+                <p *ngIf="movie.budget">
+                    <strong>
+                        Budget: </strong>
+                    <span>{{movie.budget}}</span>
+                </p>
+                <p>
+                    <strong>
+                        Status: </strong>
+                    <span>{{movie.status}}</span>
+                </p>
+                <p>
+                    <strong>
+                        Runtime: </strong>
+                    <span>{{movie.runtime}} min</span>
+                </p>
+            </div>
+            <div class="movie-overview">
+                <p>{{movie.overview}}</p>
+                <div class="button-container">
+                    <button class="movie-btn">
+                        <img src="../../../../assets/liked-icon.svg" alt="Like" srcset="">
+                        Add to favourite</button>
+                    <button class="movie-btn">
+                        <img src="../../../../assets/selected-icon.svg" alt="Selected" srcset="">
+                        Mark as selected</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
