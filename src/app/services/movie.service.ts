@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Movie, SearchMovieresponse } from '../common/interfaces/movie.interface';
+import { Params } from '../common/interfaces/params.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,12 @@ export class MovieService {
     private http: HttpClient
   ) { }
 
-  getMovie(query: string, page: number): Observable<SearchMovieresponse> {
-    return this.http.get<SearchMovieresponse>(`${environment.movieURL}?api_key=${environment.movieApiKey}&query=${query}&page=${page}`)
+  getMovie(query: Params): Observable<SearchMovieresponse> {
+  const params = new HttpParams()
+    .set('page', query.page)
+    .set('query', query.searchQuery)
+    .set('api_key', environment.movieApiKey);
+    return this.http.get<SearchMovieresponse>(environment.movieURL, {params: params})
       .pipe(
         tap((response: SearchMovieresponse) => {
           const movies = response.results;
@@ -22,7 +27,9 @@ export class MovieService {
         }))
   }
   getById(id: number): Observable<Movie> {
-    return this.http.get<Movie>(`${environment.movieDetailsURL}/${id}?api_key=${environment.movieApiKey}`)
+    const params = new HttpParams()
+    .set('api_key', environment.movieApiKey)
+    return this.http.get<Movie>(`${environment.movieDetailsURL}/${id}`, {params: params})
       .pipe(map(result => {
         return {
           ...result,

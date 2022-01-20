@@ -1,7 +1,9 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, Subject, tap, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
+import { Error } from "../common/enums/errors.enum";
+import { Message } from "../common/enums/message.enums";
 import { fbAuthResponse } from "../common/interfaces/auth.interface";
 import { User } from "../common/interfaces/user.interface";
 
@@ -30,17 +32,21 @@ export class AuthService {
     return !!this.token
   }
   
-  signUp(user: User): Observable<any> {
+  signUp(user: User): Observable<fbAuthResponse | null> {
     user.returnSecureToken = true;
-    return this.http.post<fbAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`, user)
+    const params = new HttpParams()
+    .set('key', environment.firebaseConfig.apiKey)
+    return this.http.post<fbAuthResponse | null>(`${environment.firebaseConfig.url}:signUp`, user, {params: params})
       .pipe(
         tap(this.setToken),
         catchError(this.handleError.bind(this))
     )
   }
-  login(user: User): Observable<any> {
+  login(user: User): Observable<fbAuthResponse | null> {
+    const params = new HttpParams()
+    .set('key', environment.firebaseConfig.apiKey)
      user.returnSecureToken = true;
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`, user)
+    return this.http.post<fbAuthResponse | null>(`${environment.firebaseConfig.url}:signInWithPassword`, user, {params: params})
       .pipe(
         tap(this.setToken),
         catchError(this.handleError.bind(this))
@@ -48,8 +54,7 @@ export class AuthService {
   }
   logout() {
    this.setToken(null)
-    
-  }
+}
 
   private setToken(response: fbAuthResponse | null) {
     if (response) {
@@ -65,14 +70,14 @@ export class AuthService {
     const { message } = error.error.error;
 
     switch (message) {
-      case "EMAIL_NOT_FOUND":
-        this.error$.next("This email hasn't been found");
+      case Error.email:
+        this.error$.next(Message.emailNotFound);
         break;
-      case "INVALID_PASSWORD":
-        this.error$.next("This password is invalid");
+      case Error.password:
+        this.error$.next(Message.invalidPassword);
         break;
-      case "INVALID_EMAIL":
-        this.error$.next("This email is invalid");
+      case Error.invalidEmail:
+        this.error$.next(Message.invalidEmail);
         break;
     }
     return throwError(error)

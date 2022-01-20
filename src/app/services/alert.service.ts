@@ -7,6 +7,7 @@ import { Alert } from '../common/interfaces/alert.interface';
 })
 export class AlertService {
   public alert$ = new Subject<Alert>()
+  //різниця між Observable і Subject і Behavior Subject
   constructor() { }
   success(text: string) {
     this.alert$.next({type: 'success', text})

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -13,6 +14,9 @@ export class UserPageComponent implements OnInit {
   searchQuery!: string;
   page: number = 1;
   movies: Array<Movie> = [];
+  zeroResult: boolean = false;
+  movieSub!: Subscription;
+  moreSub!: Subscription;
 
   constructor(
     private movie: MovieService
@@ -29,18 +33,30 @@ export class UserPageComponent implements OnInit {
     this.form.valueChanges.subscribe(() => {
       if (this.searchQuery !== this.form.value.query) {
       this.movies = [];
+        this.page = 1;
     }
       this.searchQuery = this.form.value.query;
     })
   }
   submit() {
-   this.movie.getMovie( this.searchQuery, this.page)
+    const queryParams = {
+     searchQuery: this.searchQuery,
+     page: this.page
+    }
+    const mSub = this.movie.getMovie(queryParams)
      .subscribe((movies) => {
-       if (this.movies) {
-          this.movies = [...this.movies, ...movies.results as Array<Movie>];
-        } else {
-          this.movies = movies.results as Array<Movie>;
-        }
+      this.movies = movies.results as Array<Movie>;
+       this.page++;
+     })
+  }
+  loadMoreMovies() {
+    const queryParams = {
+     searchQuery: this.searchQuery,
+     page: this.page
+    }
+    const mSub = this.movie.getMovie(queryParams)
+     .subscribe((movies) => {
+        this.movies = [...this.movies, ...movies.results as Array<Movie>];
        this.page++;
      })
   }

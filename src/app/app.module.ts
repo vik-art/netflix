@@ -10,12 +10,8 @@ import { LoginPageComponent } from './modules/pages/login-page/login-page.compon
 import { MenuListComponent } from './modules/shared/menu-list/menu-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { RegistrationPageComponent } from './modules/pages/registration-page/registration-page.component';
 import { UserPageComponent } from './modules/pages/user-page/user-page.component';
-import { FormComponent } from './components/form/form.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FavouriteComponent } from './modules/pages/favourite/favourite.component';
 import { SelectedComponent } from './modules/pages/selected/selected.component';
@@ -41,7 +37,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     FooterComponent,
     RegistrationPageComponent,
     UserPageComponent,
-    FormComponent,
     FavouriteComponent,
     SelectedComponent,
     FriendsComponent,
@@ -54,8 +49,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
   ],
   providers: [
     AuthGuard,

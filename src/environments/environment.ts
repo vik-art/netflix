@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig: {
+    url: "https://identitytoolkit.googleapis.com/v1/accounts",
   apiKey: "AIzaSyArN_mAfRNEdmBx4V0_dZ4rCbr3OQNVw4U",
   authDomain: "netflix-bffb8.firebaseapp.com",
   projectId: "netflix-bffb8",
