@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -9,8 +9,9 @@ import { MovieService } from 'src/app/services/movie.service';
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.scss']
 })
-export class MoviePageComponent implements OnInit {
+export class MoviePageComponent implements OnInit, OnDestroy {
   movie!: Movie;
+  movieSub!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,7 +19,7 @@ export class MoviePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params
+    const movieSub = this.route.params
       .pipe(switchMap((params: Params) => {
       return this.movieService.getById(params['id'])
       }))
@@ -28,8 +29,13 @@ export class MoviePageComponent implements OnInit {
           favourite: false,
           selected: false
         };
-        console.log(this.movie)
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.movieSub) {
+      this.movieSub.unsubscribe()
+    }
   }
 
 }

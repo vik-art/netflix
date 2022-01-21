@@ -7,9 +7,7 @@ import { Message } from "../common/enums/message.enums";
 import { fbAuthResponse } from "../common/interfaces/auth.interface";
 import { User } from "../common/interfaces/user.interface";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class AuthService {
 

@@ -5,9 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Movie, SearchMovieresponse } from '../common/interfaces/movie.interface';
 import { Params } from '../common/interfaces/params.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MovieService {
 
   constructor(

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
@@ -9,7 +9,7 @@ import { MovieService } from 'src/app/services/movie.service';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   searchQuery!: string;
   page: number = 1;
@@ -24,6 +24,15 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm()
+  }
+
+  ngOnDestroy(): void {
+    if (this.movieSub) {
+      this.movieSub.unsubscribe()
+    }
+    if (this.moreSub) {
+      this.moreSub.unsubscribe()
+    }
   }
 
   initForm() {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/common/interfaces/user.interface';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,10 +11,11 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss']
 })
-export class RegistrationPageComponent implements OnInit {
+export class RegistrationPageComponent implements OnInit, OnDestroy {
 
   form!: FormGroup;
   submitted: boolean = false;
+  logSub!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +27,13 @@ export class RegistrationPageComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
   }
+
+   ngOnDestroy(): void {
+     if (this.logSub) {
+     this.logSub.unsubscribe()
+   }
+   }
+  
   initForm():void{
     this.form = this.formBuilder.group({
       email:["", [Validators.required, Validators.email]],
@@ -43,7 +52,7 @@ export class RegistrationPageComponent implements OnInit {
       email: this.form.value.email,
       password: this.form.value.password
     }
-    this.auth.signUp(user).subscribe(() => {
+   this.logSub = this.auth.signUp(user).subscribe(() => {
       this.form.reset();
       this.alert.success('You have signed up!')
       this.route.navigate(['/user']);

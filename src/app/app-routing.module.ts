@@ -13,14 +13,23 @@ import { UserPageComponent } from './modules/pages/user-page/user-page.component
 
 
 const routes: Routes = [ 
-  { path: "", component: HomepageComponent, pathMatch: "full" },
-  { path: "register", component: RegistrationPageComponent },
-  { path: "login", component: LoginPageComponent },
-  { path: "user", component: UserPageComponent, canActivate: [AuthGuard] },
-  { path: "favourite", component: FavouriteComponent, canActivate: [AuthGuard] },
-  { path: "friends", component: FriendsComponent, canActivate: [AuthGuard] },
-  { path: "selected", component: SelectedComponent, canActivate: [AuthGuard] },
-  {path: "movie/:id", component: MoviePageComponent, canActivate: [AuthGuard]}
+  {
+    path: "",
+    component: HomepageComponent,
+    pathMatch: "full"
+  },
+  {
+    path: "register",
+    component: RegistrationPageComponent
+  },
+  {
+    path: "login",
+    component: LoginPageComponent
+  },
+  {
+    path: "user",
+    loadChildren: ()=> import("./user.module").then(m => m.UserModule)
+  }
 ];
 
 @NgModule({

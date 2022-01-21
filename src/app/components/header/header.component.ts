@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   logOut(event: Event) {
     event.preventDefault()
     this.auth.logout();
-    this.alert.success('You have log out!')
+    this.alert.success('You have logged out!')
     this.route.navigate(['/'])
   }
 
