@@ -24,8 +24,8 @@ import { SharedModule } from "./shared.module";
                 path: '',
                 component: UserPageComponent,
                 canActivate: [AuthGuard],
-                children: [
-                    {
+            },
+            {
                 path: "favourite",
                 component: FavouriteComponent,
                 canActivate: [AuthGuard]
@@ -39,8 +39,6 @@ import { SharedModule } from "./shared.module";
                 path: "selected",
                 component: SelectedComponent,
                 canActivate: [AuthGuard]
-            },
-                ]
             },
         ])
     ],

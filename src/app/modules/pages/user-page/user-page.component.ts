@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
@@ -15,8 +15,11 @@ export class UserPageComponent implements OnInit, OnDestroy {
   page: number = 1;
   movies: Array<Movie> = [];
   zeroResult: boolean = false;
+  loader: boolean = false;
   movieSub!: Subscription;
   moreSub!: Subscription;
+
+ // @ViewChild("resultsOfSearch") Results!: ElementRef;
 
   constructor(
     private movie: MovieService
@@ -52,10 +55,12 @@ export class UserPageComponent implements OnInit, OnDestroy {
      searchQuery: this.searchQuery,
      page: this.page
     }
-    const mSub = this.movie.getMovie(queryParams)
+    this.loader = true;
+    this.movieSub = this.movie.getMovie(queryParams)
      .subscribe((movies) => {
-      this.movies = movies.results as Array<Movie>;
+       this.movies = movies.results as Array<Movie>;
        this.page++;
+       this.loader = false;
      })
   }
   loadMoreMovies() {
@@ -63,10 +68,12 @@ export class UserPageComponent implements OnInit, OnDestroy {
      searchQuery: this.searchQuery,
      page: this.page
     }
-    const mSub = this.movie.getMovie(queryParams)
+    this.loader = true;
+    this.moreSub = this.movie.getMovie(queryParams)
      .subscribe((movies) => {
         this.movies = [...this.movies, ...movies.results as Array<Movie>];
        this.page++;
+       this.loader = false;
      })
   }
 }

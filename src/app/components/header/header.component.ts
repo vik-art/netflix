@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   
-  menuListItems:Array<ImenuItem> = HEADER_MENU_LIST;
+  menuListItems: Array<ImenuItem> = HEADER_MENU_LIST;
 
   constructor(
     public auth: AuthService,
@@ -30,3 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
 }
+function Input() {
+  throw new Error('Function not implemented.');
+}
+

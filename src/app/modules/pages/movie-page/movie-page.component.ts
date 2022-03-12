@@ -15,7 +15,7 @@ export class MoviePageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieService,
   ) { }
 
   ngOnInit(): void {
@@ -37,5 +37,6 @@ export class MoviePageComponent implements OnInit, OnDestroy {
       this.movieSub.unsubscribe()
     }
   }
-
+  addToFavourite() {
+}
 }

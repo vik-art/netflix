@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/common/interfaces/user.interface';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { DatabaseService } from 'src/app/services/database.service';
 
 
 @Component({
@@ -11,42 +12,36 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
-  form!: FormGroup;
+export class LoginPageComponent implements OnDestroy {
   submitted: boolean = false;
+  unSubscriber = new Subscription();
 
   constructor(
-    private formBuilder: FormBuilder,
     public auth: AuthService,
     private route: Router,
-    private alert: AlertService
+    private alert: AlertService,
+    private database: DatabaseService
   ) {}
-  ngOnInit(): void {
-    this.initForm();
-    
-  }
-  initForm(): void {
-    this.form = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.pattern("(?=^.{6,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).*")]]
-    })
-    this.form.valueChanges.subscribe(() => {})
+  
+  
+  ngOnDestroy(): void {
+      this.unSubscriber.unsubscribe()
   }
 
-  
-  submit() {
+  onLoginUser(event: User) {
     this.submitted = true;
-    const user: User = {
-      email: this.form.value.email,
-      password: this.form.value.password
-    }
-    this.auth.login(user).subscribe(() => {
+    this.unSubscriber.add(
+      this.auth.login(event).subscribe(
+        () => {
       this.alert.success("You have logged in!")
-      this.form.reset();
-      this.route.navigate(['/user']);
       this.submitted = false;
-    }), () => {
-      this.submitted = false;
-    }
+      this.route.navigate(["/user"]);
+    }))
+    this.unSubscriber.add(
+      this.database.getUsers(event.email).subscribe((response) => {
+        console.log(response)
+      })
+    )
   }
+  
 }

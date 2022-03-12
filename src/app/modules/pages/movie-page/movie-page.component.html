@@ -69,11 +69,11 @@
             <div class="movie-overview">
                 <p>{{movie.overview}}</p>
                 <div class="button-container">
-                    <button class="movie-btn">
-                        <img src="assets/liked-icon.svg" alt="Like" srcset="">
+                    <button class="movie-btn" (click)="addToFavourite()">
+                        <img src="assets/liked-icon.svg" alt="Like">
                         Add to favourite</button>
                     <button class="movie-btn">
-                        <img src="assets/selected-icon.svg" alt="Selected" srcset="">
+                        <img src="assets/selected-icon.svg" alt="Selected">
                         Mark as selected</button>
                 </div>
             </div>

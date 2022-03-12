@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "selected.component.scss"
+        "fonts.scss"
     ],
     "names": [],
-    "file": "selected.component.css"
+    "file": "fonts.css"
 }

@@ -5,6 +5,9 @@
             <img src="assets/search-icon.svg" alt="Search" width="40" height="40">
         </button>
     </form>
+    <div class="loading-container" *ngIf="loader">
+        <p>Loading...</p>
+    </div>
 </div>
 <div class="search-results" *ngIf="movies.length">
     <div class="result-container">
@@ -19,13 +22,14 @@
                 <p class="movie-info-details">Vote Average: {{movie.vote_average}}</p>
                 <p class="movie-info-details">Original Language: {{movie.original_language | uppercase}}</p>
                 <div class="button-container">
-                    <a class="movie-btn" [routerLink]="['/movie', movie.id]" target="_blank">
+                    <a class="movie-btn" [routerLink]="['/movie', movie.id]" target="blank">
                         <img src="assets/check-mark.svg" alt="details" width="25" height="25">
                         Show details</a>
                 </div>
             </div>
         </div>
     </div>
+    <div #resultsOfSearch></div>
     <div class="loadmore-btn-container">
         <button class="movie-btn" (click)="loadMoreMovies()">Load More</button>
     </div>
@@ -33,6 +37,7 @@
         <h3>There are no results on your search query</h3>
     </div>
 </div>
+
 
 <ng-template #defaultImage>
     <img src="assets/default-movie.jpg" alt="" srcset="">
