@@ -1,13 +1,16 @@
 <header class="homepage-header">
     <nav>
-        <app-logo></app-logo>
-        <app-menu-list [menuList]="menuListItems"></app-menu-list>
+        <div class="logo-container">
+            <a routerLink="/user" class="logo-link">
+                <img src="assets/movie-logo.png" alt="logo" width="70" height="70" />
+                Your Shows
+            </a>
+        </div>
+        <app-menu-list *ngIf="auth.isAuthenticated()" [menuList]="menuListItems"></app-menu-list>
+        <ul *ngIf="!auth.isAuthenticated()" class="homepage-nav">
+            <a class="header-btn" routerLink="/register">Sign Up</a>
+            <a class="header-btn" routerLink="/login">Log In</a>
+        </ul>
+        <button class="header-btn" *ngIf="auth.isAuthenticated()" (click)="logOut($event)">Log Out</button>
     </nav>
 </header>
-
-<ng-template #navigation>             
-    <ul class="homepage-nav" >
-        <app-button text='Sing Up' routerLink='/registration' routerLinkActive="activebutton"></app-button>
-        <app-button text='Log In' routerLink='/login' routerLinkActive="activebutton"></app-button>
-    </ul>
-</ng-template>
