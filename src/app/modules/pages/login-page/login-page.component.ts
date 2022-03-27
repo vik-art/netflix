@@ -31,17 +31,12 @@ export class LoginPageComponent implements OnDestroy {
   onLoginUser(event: User) {
     this.submitted = true;
     this.unSubscriber.add(
-      this.auth.login(event).subscribe(
-        () => {
+      this.auth.login(event).subscribe(() => {
+        localStorage.setItem('email', event.email)
       this.alert.success("You have logged in!")
       this.submitted = false;
       this.route.navigate(["/user"]);
     }))
-    this.unSubscriber.add(
-      this.database.getUsers(event.email).subscribe((response) => {
-        console.log(response)
-      })
-    )
   }
   
 }
