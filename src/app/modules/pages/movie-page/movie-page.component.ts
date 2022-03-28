@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription, switchMap } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
+import { DatabaseService } from 'src/app/services/database.service';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -9,34 +9,21 @@ import { MovieService } from 'src/app/services/movie.service';
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.scss']
 })
-export class MoviePageComponent implements OnInit, OnDestroy {
-  movie!: Movie;
-  movieSub!: Subscription;
+export class MoviePageComponent {
+  @Input() item!: Movie;
+  marked: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private movieService: MovieService,
+    private dbService: DatabaseService,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
-    const movieSub = this.route.params
-      .pipe(switchMap((params: Params) => {
-      return this.movieService.getById(params['id'])
-      }))
-      .subscribe((movie: Movie) => {
-        this.movie = {
-          ...movie,
-          favourite: false,
-          selected: false
-        };
+
+  addToFavourite(movie: Movie) {
+    this.marked = true;
+    const userId = localStorage.getItem('id')
+    this.dbService.updateData(movie, userId!).subscribe(() => {
     })
   }
+}
 
-  ngOnDestroy(): void {
-    if (this.movieSub) {
-      this.movieSub.unsubscribe()
-    }
-  }
-  addToFavourite() {
-}
-}

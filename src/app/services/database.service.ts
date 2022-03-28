@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DbUser } from '../common/interfaces/user.interface';
+import { Movie } from '../common/interfaces/movie.interface';
+import { DbUser, User } from '../common/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +14,25 @@ export class DatabaseService {
     private http: HttpClient
   ) { }
 
-  createUser(user: DbUser): Observable<DbUser> {
-    return this.http.post<DbUser>(`${environment.firebaseConfig.DBurl}/users.json`, user)
+  createUser(user: DbUser): Observable<any> {
+   return this.http.post(`${environment.firebaseConfig.DBurl}/users.json`, user)
   }
   
-  getUsers(email: string): Observable<any> {
+  getUsers(): Observable<any> {
     return this.http.get(`${environment.firebaseConfig.DBurl}/users.json`)
       .pipe(
-        map(res => {
-         return Object
-           .values(res)
-           .filter(res => {
-           return res.email === email
-          })
-        })
-       )
+        map((response: { [key: string]: any }) => {
+          return Object
+            .keys(response)
+            .map((key) => ({
+            id: key
+          }))
+       })
+        )
+       
+  }
+
+  updateData(movie: Movie, id: string): Observable<any> {
+   return this.http.post(`${environment.firebaseConfig.DBurl}/users/${id}/favourite.json`, movie)
   }
   }

@@ -22,9 +22,9 @@
                 <p class="movie-info-details">Vote Average: {{movie.vote_average}}</p>
                 <p class="movie-info-details">Original Language: {{movie.original_language | uppercase}}</p>
                 <div class="button-container">
-                    <a class="movie-btn" [routerLink]="['/movie', movie.id]" target="blank">
+                    <button class="movie-btn" (click)="openMoviePage(movie.id)">
                         <img src="assets/check-mark.svg" alt="details" width="25" height="25">
-                        Show details</a>
+                        Show details</button>
                 </div>
             </div>
         </div>
@@ -37,6 +37,8 @@
         <h3>There are no results on your search query</h3>
     </div>
 </div>
+
+<app-movie-page *ngIf="openPage" [item]="movie"></app-movie-page>
 
 
 <ng-template #defaultImage>

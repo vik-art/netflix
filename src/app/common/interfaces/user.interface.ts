@@ -6,8 +6,6 @@ export interface User {
 }
 
 export interface DbUser {
-    id?: string,
-    email: string,
-    favourite: Array<any>;
-    selected: Array<any>
+    name?: string,
+    email?: string,
 }

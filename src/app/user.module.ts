@@ -16,11 +16,6 @@ import { SharedModule } from "./shared.module";
         SharedModule,
         RouterModule.forChild([
             {
-                path: "movie/:id",
-                component: MoviePageComponent,
-                canActivate: [AuthGuard]
-            },
-            {
                 path: '',
                 component: UserPageComponent,
                 canActivate: [AuthGuard],
@@ -50,7 +45,7 @@ import { SharedModule } from "./shared.module";
         FavouriteComponent,
         SelectedComponent,
         FriendsComponent,
-        MoviePageComponent
+        MoviePageComponent,
     ],
     providers: [
         AuthGuard,

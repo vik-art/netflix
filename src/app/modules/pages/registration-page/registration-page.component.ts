@@ -27,17 +27,15 @@ export class RegistrationPageComponent implements OnDestroy {
    }
   
   onCreateNewUser(event: User) {
-    this.unSubscriber.add(this.auth.signUp(event).subscribe(() => {
+    this.unSubscriber.add(this.auth.signUp(event).subscribe((name) => {
       this.submitted = true;
       this.alert.success('You have signed up!')
       this.route.navigate(['/user']);
       const user = {
         email: event.email,
-        favourite: [],
-        selected: []
       }
-      this.database.createUser(user).subscribe(() => { 
-       localStorage.setItem('email', user.email)
+      this.database.createUser(user).subscribe((res) => { 
+        localStorage.setItem('id', res.name)
       })
     }))
     }
