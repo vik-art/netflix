@@ -12,18 +12,22 @@ import { MovieService } from 'src/app/services/movie.service';
 export class MoviePageComponent {
   @Input() item!: Movie;
   marked: boolean = false;
+  userId: string | null = localStorage.getItem('id')
 
   constructor(
     private dbService: DatabaseService,
-    private router: Router
   ) { }
 
 
   addToFavourite(movie: Movie) {
     this.marked = true;
-    const userId = localStorage.getItem('id')
-    this.dbService.updateData(movie, userId!).subscribe(() => {
+    this.dbService.updateData(movie, this.userId!, 'favourite').subscribe(() => {
     })
+  }
+
+  addToLiked(movie: Movie) {
+    this.marked = true;
+this.dbService.updateData(movie, this.userId!, 'liked').subscribe(() => {})
   }
 }
 

@@ -72,7 +72,7 @@
                     <button class="movie-btn" (click)="addToFavourite(item)" [disabled]="marked">
                         <img src="assets/liked-icon.svg" alt="Like">
                         Add to favourite</button>
-                    <button class="movie-btn">
+                    <button class="movie-btn" (click)="addToLiked(item)" [disabled]="marked">
                         <img src="assets/selected-icon.svg" alt="Selected">
                         Mark as selected</button>
                 </div>

@@ -32,7 +32,7 @@ export class DatabaseService {
        
   }
 
-  updateData(movie: Movie, id: string): Observable<any> {
-   return this.http.post(`${environment.firebaseConfig.DBurl}/users/${id}/favourite.json`, movie)
+  updateData(movie: Movie, id: string, type: string): Observable<any> {
+   return this.http.post(`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`, movie)
   }
   }
