@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
+import { AlertService } from 'src/app/services/alert.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
 
@@ -11,23 +12,28 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class MoviePageComponent {
   @Input() item!: Movie;
   @Output() closeWindow = new EventEmitter();
-  marked: boolean = false;
-  userId: string | null = localStorage.getItem('id')
+  userId: string | null = localStorage.getItem('id');
+  favouriteBtnText: string = "Favourite";
+  selectedBtnText: string = "Selected"
 
   constructor(
     private dbService: DatabaseService,
+    private alertService: AlertService
   ) { }
 
 
   addToFavourite(movie: Movie) {
     this.dbService.getMovies(this.userId!, 'favourite').subscribe((response) => {
       if (!response) {
-        this.addItem(movie, 'favourite')
+        this.addItem(movie, 'favourite');
+        this.favouriteBtnText = "Marked as favourite"
       } else {
         const unique = response.filter((el: number) => el === movie.id)
         if (unique.length === 0) {
+          this.favouriteBtnText = "Marked as favourite"
           return this.addItem(movie, 'favourite')
         } else {
+          this.alertService.danger("You have already marked this film as favourite before")
           return null;
         }
       }
@@ -37,12 +43,15 @@ export class MoviePageComponent {
   addToLiked(movie: Movie) {
     this.dbService.getMovies(this.userId!, 'selected').subscribe((response) => {
       if (!response) {
-        this.addItem(movie, 'selected')
+        this.addItem(movie, 'selected');
+        this.selectedBtnText = "Marked as selected"
       } else {
         const unique = response.filter((el: number) => el === movie.id)
         if (unique.length === 0) {
+          this.selectedBtnText = "Marked as selected"
           return this.addItem(movie, 'selected')
         } else {
+          this.alertService.danger("You have already marked this film as selected before")
           return null;
         }
       }

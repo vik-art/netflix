@@ -86,10 +86,13 @@
     border-radius: 5px;
     cursor: pointer;
     &:last-child {
-      margin-left: 20px;
+      margin-left: 40px;
     }
     img {
       margin-right: 15px;
+    }
+    &:hover {
+      opacity: 0.6;
     }
   }
 }
