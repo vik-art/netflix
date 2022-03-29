@@ -18,21 +18,42 @@ export class DatabaseService {
    return this.http.post(`${environment.firebaseConfig.DBurl}/users.json`, user)
   }
   
-  getUsers(): Observable<any> {
+ getUsers(): Observable<{id: string}[] | null> {
     return this.http.get(`${environment.firebaseConfig.DBurl}/users.json`)
       .pipe(
         map((response: { [key: string]: any }) => {
-          return Object
-            .keys(response)
-            .map((key) => ({
-            id: key
-          }))
-       })
+          if (response) {
+            return Object
+              .keys(response)
+              .map((key) => ({
+                id: key
+              }))
+          } else {
+            return null;
+          }
+        })
         )
        
   }
 
-  updateData(movie: Movie, id: string, type: string): Observable<any> {
-   return this.http.post(`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`, movie)
+  getMovies(id: string, type: string):Observable<number[] | null> {
+    return this.http.get<Movie>((`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`))
+      .pipe(
+        map((response ) => {
+          if (response) {
+            return Object
+              .values(response)
+            .map((key) => key.id)
+          } else {
+            return null
+          }
+        }
+      )
+    )
+  }
+
+
+  updateData(movie: Movie, id: string, type: string): Observable<Movie> {
+    return this.http.post<Movie>(`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`, movie)
   }
   }

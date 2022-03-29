@@ -20,14 +20,38 @@ export class MoviePageComponent {
 
 
   addToFavourite(movie: Movie) {
-    this.marked = true;
-    this.dbService.updateData(movie, this.userId!, 'favourite').subscribe(() => {
+    this.dbService.getMovies(this.userId!, 'favourite').subscribe((response) => {
+      if (!response) {
+        this.addItem(movie, 'favourite')
+      } else {
+        const unique = response.filter((el: number) => el === movie.id)
+        if (unique.length === 0) {
+          return this.addItem(movie, 'favourite')
+        } else {
+          return null;
+        }
+      }
     })
   }
 
   addToLiked(movie: Movie) {
-    this.marked = true;
-this.dbService.updateData(movie, this.userId!, 'liked').subscribe(() => {})
+    this.dbService.getMovies(this.userId!, 'selected').subscribe((response) => {
+      if (!response) {
+        this.addItem(movie, 'selected')
+      } else {
+        const unique = response.filter((el: number) => el === movie.id)
+        if (unique.length === 0) {
+          return this.addItem(movie, 'selected')
+        } else {
+          return null;
+        }
+      }
+    })
+  }
+
+  addItem(movie: Movie, type: string) {
+    this.dbService.updateData(movie, this.userId!, type).subscribe(() => {
+    })
   }
 }
 
