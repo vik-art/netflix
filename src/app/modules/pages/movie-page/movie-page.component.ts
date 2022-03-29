@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { DatabaseService } from 'src/app/services/database.service';
-import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-movie-page',
@@ -11,6 +9,7 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class MoviePageComponent {
   @Input() item!: Movie;
+  
   marked: boolean = false;
   userId: string | null = localStorage.getItem('id')
 
@@ -52,6 +51,10 @@ export class MoviePageComponent {
   addItem(movie: Movie, type: string) {
     this.dbService.updateData(movie, this.userId!, type).subscribe(() => {
     })
+  }
+
+  onCloseInfo() {
+
   }
 }
 

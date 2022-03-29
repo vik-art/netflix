@@ -10,6 +10,9 @@
                 <img src="assets/adult-sign.svg" alt="adult" width="30" height="30">
             </div>
             <small>{{item.tagline}}</small>
+            <button class="close-icon-container" (click)="onCloseInfo()">
+                <img src="assets/close-icon.svg" alt="" width="60" height="60">
+            </button>
         </div>
         <div class="movie-details-info">
             <div>
@@ -69,10 +72,10 @@
             <div class="movie-overview">
                 <p>{{item.overview}}</p>
                 <div class="button-container">
-                    <button class="movie-btn" (click)="addToFavourite(item)" [disabled]="marked">
+                    <button class="movie-btn" (click)="addToFavourite(item)">
                         <img src="assets/liked-icon.svg" alt="Like">
                         Add to favourite</button>
-                    <button class="movie-btn" (click)="addToLiked(item)" [disabled]="marked">
+                    <button class="movie-btn" (click)="addToLiked(item)">
                         <img src="assets/selected-icon.svg" alt="Selected">
                         Mark as selected</button>
                 </div>

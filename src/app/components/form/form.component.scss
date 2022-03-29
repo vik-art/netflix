@@ -16,7 +16,6 @@ input.ng-dirty.ng-valid {
   right: 0;
   bottom: 0;
   left: 0;
-  padding-top: 10%;
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.6),
@@ -25,7 +24,11 @@ input.ng-dirty.ng-valid {
     url(../../../assets/registration-background.jpg);
 }
 .login-form {
-  max-width: 500px;
+  width: 480px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 200px;
   background-color: #fff;
   border-radius: 5px;
@@ -33,12 +36,13 @@ input.ng-dirty.ng-valid {
   padding: 50px 50px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   .form-control {
     width: 100%;
-    margin-bottom: 20px;
     input {
       width: 100%;
-      height: 30px;
+      height: 50px;
+      font-size: 18px;
       background-color: transparent;
       color: #000;
     }
