@@ -6,6 +6,6 @@ export interface User {
 }
 
 export interface DbUser {
-    name?: string,
+    id?: string,
     email?: string,
 }

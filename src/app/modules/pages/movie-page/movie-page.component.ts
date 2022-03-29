@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { DatabaseService } from 'src/app/services/database.service';
+
 
 @Component({
   selector: 'app-movie-page',
@@ -9,7 +10,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class MoviePageComponent {
   @Input() item!: Movie;
-  
+  @Output() closeWindow = new EventEmitter();
   marked: boolean = false;
   userId: string | null = localStorage.getItem('id')
 
@@ -54,7 +55,7 @@ export class MoviePageComponent {
   }
 
   onCloseInfo() {
-
+   this.closeWindow.emit()
   }
 }
 

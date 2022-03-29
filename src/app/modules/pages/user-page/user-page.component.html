@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<app-movie-page *ngIf="openPage" [item]="movie"></app-movie-page>
+<app-movie-page *ngIf="openPage" [item]="movie" (closeWindow)="onClose()"></app-movie-page>
 
 
 <ng-template #defaultImage>

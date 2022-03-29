@@ -85,4 +85,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
     })
     
   }
+
+  onClose() {
+    this.openPage = false;
+  }
 }
