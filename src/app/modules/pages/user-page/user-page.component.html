@@ -9,11 +9,12 @@
         <p>Loading...</p>
     </div>
 </div>
-<app-movie-list *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)"></app-movie-list>
-<div #resultsOfSearch></div>
+<app-movie-list *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)">
+</app-movie-list>
 <div *ngIf="movies.length" class="loadmore-btn-container">
-    <button class="movie-btn" (click)="loadMoreMovies()">Load More</button>
+    <button class="movie-btn load-more-btn" (click)="loadMoreMovies()">Load More</button>
 </div>
+<div #resultsOfSearch></div>
 <div *ngIf="zeroResult" class="noResBlock">
     <h3>There are no results on your search query</h3>
 </div>

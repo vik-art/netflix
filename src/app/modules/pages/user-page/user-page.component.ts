@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -22,11 +23,14 @@ export class UserPageComponent implements OnInit, OnDestroy {
   openPage: boolean = false;
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
+    this.router.navigate(['/user'])
   }
 
   ngOnDestroy(): void {
@@ -59,11 +63,15 @@ export class UserPageComponent implements OnInit, OnDestroy {
     this.movieSub = this.movieService.getMovie(queryParams)
      .subscribe((movies) => {
        this.movies = movies.results as Array<Movie>;
+       this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
        this.page++;
        this.loader = false;
      })
   }
   loadMoreMovies() {
+    this.route.queryParams.subscribe((params) => {
+      this.searchQuery = params['query'];
+    })
     const queryParams = {
      searchQuery: this.searchQuery,
      page: this.page
@@ -82,10 +90,12 @@ export class UserPageComponent implements OnInit, OnDestroy {
        .subscribe((movie: Movie) => {
         this.openPage = true;
          this.movie = movie;
+         this.router.navigate(['/user'], {queryParams: {query: this.searchQuery, movie: event}})
        })    
   }
 
   onClose() {
     this.openPage = false;
+    this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } })
   }
 }
