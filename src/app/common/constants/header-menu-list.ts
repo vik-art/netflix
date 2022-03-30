@@ -8,9 +8,9 @@ export const HEADER_MENU_LIST:Array<ImenuItem> = [
     {
         label: 'Selected',
         link: '/selected'
-     },
-     {
-        label: 'Friends',
-        link: '/friends'
-     }
+   },
+   {
+      label: 'Popular',
+      link: '/popular'
+    }
 ]

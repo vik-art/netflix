@@ -29,10 +29,10 @@ const routes: Routes = [
     path: "404-page",
     component: NotFoundPageComponent
   },
- // {
- //   path: "**",
- //   redirectTo: "/404-page"
- // }
+  {
+      path: "**",
+      redirectTo: "/404-page"
+ }
 ];
 
 @NgModule({

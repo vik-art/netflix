@@ -6,8 +6,8 @@ import { MovieListComponent } from "./components/movie-list/movie-list.component
 import { AuthGuard } from "./guards/auth.guard";
 import { ngxLoadingXConfig } from "./libs/loading-config";
 import { FavouriteComponent } from "./modules/pages/favourite/favourite.component";
-import { FriendsComponent } from "./modules/pages/friends/friends.component";
 import { MoviePageComponent } from "./modules/pages/movie-page/movie-page.component";
+import { PopularComponent } from "./modules/pages/popular/popular.component";
 import { SelectedComponent } from "./modules/pages/selected/selected.component";
 import { UserPageComponent } from "./modules/pages/user-page/user-page.component";
 import { MovieService } from "./services/movie.service";
@@ -29,15 +29,15 @@ import { SharedModule } from "./shared.module";
                 canActivate: [AuthGuard]
             },
             {
-                path: "friends",
-                component: FriendsComponent,
-                canActivate: [AuthGuard]
-            },
-            {
                 path: "selected",
                 component: SelectedComponent,
                 canActivate: [AuthGuard]
-            },
+            }, 
+            {
+                path: "popular",
+                component: PopularComponent,
+                canActivate: [AuthGuard]
+            }
         ]),
         NgxLoadingXModule.forRoot(ngxLoadingXConfig),
     ],
@@ -48,9 +48,9 @@ import { SharedModule } from "./shared.module";
         UserPageComponent,
         FavouriteComponent,
         SelectedComponent,
-        FriendsComponent,
         MoviePageComponent,
-        MovieListComponent
+        MovieListComponent,
+        PopularComponent,
     ],
     providers: [
         AuthGuard,
