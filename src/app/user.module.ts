@@ -7,6 +7,7 @@ import { AuthGuard } from "./guards/auth.guard";
 import { ngxLoadingXConfig } from "./libs/loading-config";
 import { FavouriteComponent } from "./modules/pages/favourite/favourite.component";
 import { MoviePageComponent } from "./modules/pages/movie-page/movie-page.component";
+import { NotFoundPageComponent } from "./modules/pages/not-found-page/not-found-page.component";
 import { PopularComponent } from "./modules/pages/popular/popular.component";
 import { SelectedComponent } from "./modules/pages/selected/selected.component";
 import { UserPageComponent } from "./modules/pages/user-page/user-page.component";
@@ -37,6 +38,14 @@ import { SharedModule } from "./shared.module";
                 path: "popular",
                 component: PopularComponent,
                 canActivate: [AuthGuard]
+            },
+            {
+                path: "404-page",
+                component: NotFoundPageComponent
+            },
+            {
+                path: "**",
+                redirectTo: "/404-page"
             }
         ]),
         NgxLoadingXModule.forRoot(ngxLoadingXConfig),

@@ -1,10 +1,11 @@
 .user-nav {
   display: flex;
-  font-size: 20px;
+  font-size: 22px;
   li:not(:last-child) {
     margin-right: 40px;
   }
 }
 .active a {
+  font-weight: 700;
   color: #fff44f;
 }

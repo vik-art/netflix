@@ -1,9 +1,9 @@
-import { ViewportScroller } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
+import { AlertService } from 'src/app/services/alert.service';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -27,6 +27,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
     private movieService: MovieService,
     private router: Router,
     private route: ActivatedRoute,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -62,10 +63,15 @@ export class UserPageComponent implements OnInit, OnDestroy {
     }
     this.movieSub = this.movieService.getMovie(queryParams)
       .subscribe((movies) => {
-        this.showLoading();
-       this.movies = movies.results as Array<Movie>;
-        this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
-        this.page++;
+        if (movies.results?.length) {
+          this.showLoading();
+          this.movies = movies.results as Array<Movie>;
+          this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
+          this.page++;
+        } else {
+          this.alertService.danger("There are no results on your search query");
+          this.form.reset()
+        }
       })
   }
   loadMoreMovies() {

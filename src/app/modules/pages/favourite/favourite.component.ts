@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { DatabaseService } from 'src/app/services/database.service';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-favourite',
@@ -11,9 +13,13 @@ export class FavouriteComponent implements OnInit {
 
   movies!: Movie[];
   user = localStorage.getItem("id");
+  showModal: boolean = false;
+  movie!: Movie;
 
   constructor(
-    private dataBase: DatabaseService
+    private dataBase: DatabaseService,
+    private movieService: MovieService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,4 +35,15 @@ export class FavouriteComponent implements OnInit {
     })
   }
 
+  openModal(event: number) {
+    this.movieService.getById(event).subscribe((movie: Movie) => {
+      this.showModal = true;
+      this.movie = movie;
+      this.router.navigate(["/favourite"], {queryParams: {movie: event}})
+    })
+  }
+  onClose() {
+    this.showModal = false;
+    this.router.navigate(["/favourite"])
+}
 }

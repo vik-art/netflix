@@ -36,5 +36,20 @@ export class MovieService {
       })      
     )
   }
+
+  getPopularMovies(page: number): Observable<SearchMovieresponse> {
+    const params = new HttpParams()
+      .set('api_key', environment.movieApiKey)
+      .set('language', 'en-US')
+      .set('page', page)
+    return this.http.get<SearchMovieresponse>(`${environment.movieDetailsURL}/popular`, { params: params })
+      .pipe(
+        tap((response: SearchMovieresponse) => {
+          const movies = response.results;
+          return movies
+      })
+    )
+    
+  }
 }
  
