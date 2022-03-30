@@ -1,1 +1,5 @@
-<p>favourite works!</p>
+<div class="container">
+    <app-movie-list [movies]="movies" (openMoviePage)="openModal($event)"></app-movie-list>
+</div>
+
+<app-movie-page *ngIf="showModal" [item]="movie" (closeWindow)="onClose()"></app-movie-page>

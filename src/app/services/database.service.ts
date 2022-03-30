@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DbUser } from '../common/interfaces/user.interface';
+import { Movie } from '../common/interfaces/movie.interface';
+import { DbUser, User } from '../common/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +14,53 @@ export class DatabaseService {
     private http: HttpClient
   ) { }
 
-  createUser(user: DbUser): Observable<DbUser> {
-    return this.http.post<DbUser>(`${environment.firebaseConfig.DBurl}/users.json`, user)
+  createUser(user: DbUser): Observable<any> {
+    return this.http.post(`${environment.firebaseConfig.DBurl}/users.json`, user)
   }
   
-  getUsers(email: string): Observable<any> {
+  getUser(): Observable<any> {
     return this.http.get(`${environment.firebaseConfig.DBurl}/users.json`)
       .pipe(
-        map(res => {
-         return Object
-           .values(res)
-           .filter(res => {
-           return res.email === email
-          })
-        })
-       )
+        map((response: { [key: string]: any }) => {
+          if (response) {
+            return Object.entries(response)
+          } else {
+            return null;
+          }
+        }))
+  }
+
+  getMovies(id: string, type: string):Observable<number[] | null> {
+    return this.http.get<Movie>((`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`))
+      .pipe(
+        map((response ) => {
+          if (response) {
+            return Object
+            .values(response)
+            .map((key) => key.id)
+          } else {
+            return null
+          }
+        }
+      )
+    )
+  }
+
+  getUserMovies(id: string, type: string): Observable<Movie[] | null> {
+    return this.http.get<Movie[]>((`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`))
+      .pipe(
+        map((response) => {
+          if (response) {
+          return Object.values(response)
+          } else {
+            return null;
+        }
+      })
+    )
+  }
+
+
+  updateData(movie: Movie, id: string, type: string): Observable<Movie> {
+    return this.http.post<Movie>(`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`, movie)
   }
   }

@@ -1,6 +1,10 @@
 import { ImenuItem } from "../interfaces/menu.interface";
 
-export const HEADER_MENU_LIST:Array<ImenuItem> = [
+export const HEADER_MENU_LIST: Array<ImenuItem> = [
+    {
+        label: 'Home',
+        link: '/user',
+    },
     {
        label: 'Favourite',
        link: '/favourite'
@@ -8,9 +12,9 @@ export const HEADER_MENU_LIST:Array<ImenuItem> = [
     {
         label: 'Selected',
         link: '/selected'
-     },
-     {
-        label: 'Friends',
-        link: '/friends'
-     }
+   },
+   {
+      label: 'Popular',
+      link: '/popular'
+    }
 ]

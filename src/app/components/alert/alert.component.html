@@ -1,4 +1,8 @@
-<div class="alert-container" *ngIf="text">
+<div class="alert-container" *ngIf="text" [ngClass]="{
+    'alert-success': type === 'success',
+    'alert-warning': type === 'warning',
+    'alert-danger': type === 'danger'
+}">
     <div class="alert">
         <h3>{{text}}</h3>
     </div>

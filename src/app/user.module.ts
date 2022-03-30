@@ -1,10 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { NgxLoadingXModule } from "ngx-loading-x";
+import { MovieListComponent } from "./components/movie-list/movie-list.component";
 import { AuthGuard } from "./guards/auth.guard";
+import { ngxLoadingXConfig } from "./libs/loading-config";
 import { FavouriteComponent } from "./modules/pages/favourite/favourite.component";
-import { FriendsComponent } from "./modules/pages/friends/friends.component";
 import { MoviePageComponent } from "./modules/pages/movie-page/movie-page.component";
+import { NotFoundPageComponent } from "./modules/pages/not-found-page/not-found-page.component";
+import { PopularComponent } from "./modules/pages/popular/popular.component";
 import { SelectedComponent } from "./modules/pages/selected/selected.component";
 import { UserPageComponent } from "./modules/pages/user-page/user-page.component";
 import { MovieService } from "./services/movie.service";
@@ -16,11 +20,6 @@ import { SharedModule } from "./shared.module";
         SharedModule,
         RouterModule.forChild([
             {
-                path: "movie/:id",
-                component: MoviePageComponent,
-                canActivate: [AuthGuard]
-            },
-            {
                 path: '',
                 component: UserPageComponent,
                 canActivate: [AuthGuard],
@@ -31,16 +30,25 @@ import { SharedModule } from "./shared.module";
                 canActivate: [AuthGuard]
             },
             {
-                path: "friends",
-                component: FriendsComponent,
-                canActivate: [AuthGuard]
-            },
-            {
                 path: "selected",
                 component: SelectedComponent,
                 canActivate: [AuthGuard]
+            }, 
+            {
+                path: "popular",
+                component: PopularComponent,
+                canActivate: [AuthGuard]
             },
-        ])
+            {
+                path: "404-page",
+                component: NotFoundPageComponent
+            },
+            {
+                path: "**",
+                redirectTo: "/404-page"
+            }
+        ]),
+        NgxLoadingXModule.forRoot(ngxLoadingXConfig),
     ],
     exports: [
         RouterModule
@@ -49,8 +57,9 @@ import { SharedModule } from "./shared.module";
         UserPageComponent,
         FavouriteComponent,
         SelectedComponent,
-        FriendsComponent,
-        MoviePageComponent
+        MoviePageComponent,
+        MovieListComponent,
+        PopularComponent,
     ],
     providers: [
         AuthGuard,

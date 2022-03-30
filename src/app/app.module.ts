@@ -21,6 +21,7 @@ import { FormComponent } from './components/form/form.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
+
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
@@ -45,7 +46,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    UserModule
+    UserModule,
   ],
   providers: [
     AuthService,

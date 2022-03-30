@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
+import { AlertService } from 'src/app/services/alert.service';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -14,19 +16,23 @@ export class UserPageComponent implements OnInit, OnDestroy {
   searchQuery!: string;
   page: number = 1;
   movies: Array<Movie> = [];
-  zeroResult: boolean = false;
-  loader: boolean = false;
+  movie!: Movie;
   movieSub!: Subscription;
   moreSub!: Subscription;
+  openPage: boolean = false;
 
- // @ViewChild("resultsOfSearch") Results!: ElementRef;
+  public load: boolean = false;
 
   constructor(
-    private movie: MovieService
+    private movieService: MovieService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
+    this.router.navigate(['/user'])
   }
 
   ngOnDestroy(): void {
@@ -53,27 +59,58 @@ export class UserPageComponent implements OnInit, OnDestroy {
   submit() {
     const queryParams = {
      searchQuery: this.searchQuery,
-     page: this.page
+      page: this.page,
     }
-    this.loader = true;
-    this.movieSub = this.movie.getMovie(queryParams)
-     .subscribe((movies) => {
-       this.movies = movies.results as Array<Movie>;
-       this.page++;
-       this.loader = false;
-     })
+    this.movieSub = this.movieService.getMovie(queryParams)
+      .subscribe((movies) => {
+        if (movies.results?.length) {
+          this.showLoading();
+          this.movies = movies.results as Array<Movie>;
+          this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
+          this.page++;
+        } else {
+          this.alertService.danger("There are no results on your search query");
+          this.form.reset()
+        }
+      })
   }
   loadMoreMovies() {
+    this.route.queryParams.subscribe((params) => {
+      this.searchQuery = params['query'];
+    })
     const queryParams = {
      searchQuery: this.searchQuery,
      page: this.page
     }
-    this.loader = true;
-    this.moreSub = this.movie.getMovie(queryParams)
-     .subscribe((movies) => {
+    this.moreSub = this.movieService.getMovie(queryParams)
+      .subscribe((movies) => {
+       this.showLoading();
         this.movies = [...this.movies, ...movies.results as Array<Movie>];
        this.page++;
-       this.loader = false;
      })
   }
+
+  openMoviePage(event: number) {
+    return this.movieService.getById(event)
+       .subscribe((movie: Movie) => {
+        this.openPage = true;
+         this.movie = movie;
+         this.router.navigate(['/user'], {queryParams: {query: this.searchQuery, movie: event}})
+       })    
+  }
+
+  onClose() {
+    this.openPage = false;
+    this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } })
+  }
+
+  showLoading() {
+    this.load = true;
+
+    setTimeout(() => {
+      this.load = false
+    }, 3000)
+  }
+
+ 
 }

@@ -1,80 +1,83 @@
-<div class="movie-page-container" *ngIf="movie" style="background-image:linear-gradient(
+<div class="movie-page-container">
+    <div class="movie-page-info" style="background-image:linear-gradient(
       to right,
       rgba(0, 0, 0, 0.6),
       rgba(0, 0, 0, 0.6)
-    ), url(https://image.tmdb.org/t/p/original{{movie.backdrop_path}})">
-    <div class="movie-page-info">
+    ), url(https://image.tmdb.org/t/p/original{{item.backdrop_path}})">
         <div class="movie-title">
-            <h1>{{movie.title}}</h1>
-            <div class="adult-block" *ngIf="movie.adult">
+            <h1>{{item.title}}</h1>
+            <div class="adult-block" *ngIf="item.adult">
                 <img src="assets/adult-sign.svg" alt="adult" width="30" height="30">
             </div>
-            <small>{{movie.tagline}}</small>
+            <small>{{item.tagline}}</small>
+            <button class="close-icon-container" (click)="onCloseInfo()">
+                <img src="assets/close-icon.svg" alt="" width="60" height="60">
+            </button>
         </div>
         <div class="movie-details-info">
             <div>
                 <p>
                     <strong>
                         Release Date: </strong>
-                    <span>{{movie.release_date | date}}</span>
+                    <span>{{item.release_date | date}}</span>
                 </p>
                 <p>
                     <strong>
                         Vote Average: </strong>
-                    <span>{{movie.vote_average}}</span>
+                    <span>{{item.vote_average}}</span>
                 </p>
                 <p>
                     <strong>
                         Vote Count: </strong>
-                    <span>{{movie.vote_count}}</span>
+                    <span>{{item.vote_count}}</span>
                 </p>
                 <p>
                     <strong>
                         Genre:
                     </strong>
-                    <span *ngFor="let genre of movie.genres">
+                    <span *ngFor="let genre of item.genres">
                         {{genre.name}}&nbsp;
                     </span>
                 </p>
                 <p>
                     <strong>
                         Spoken languages: </strong>
-                    <span *ngFor="let language of movie.spoken_languages">
+                    <span *ngFor="let language of item.spoken_languages">
                         {{language.name}}&nbsp;
                     </span>
                 </p>
                 <p>
                     <strong>
                         Production Countries: </strong>
-                    <span *ngFor="let country of movie.production_countries">
+                    <span *ngFor="let country of item.production_countries">
                         {{country.name}}&nbsp;
                     </span>
                 </p>
-                <p *ngIf="movie.budget">
+                <p *ngIf="item.budget">
                     <strong>
                         Budget: </strong>
-                    <span>{{movie.budget}}</span>
+                    <span>{{item.budget}}</span>
                 </p>
                 <p>
                     <strong>
                         Status: </strong>
-                    <span>{{movie.status}}</span>
+                    <span>{{item.status}}</span>
                 </p>
                 <p>
                     <strong>
                         Runtime: </strong>
-                    <span>{{movie.runtime}} min</span>
+                    <span>{{item.runtime}} min</span>
                 </p>
             </div>
             <div class="movie-overview">
-                <p>{{movie.overview}}</p>
+                <p>{{item.overview}}</p>
                 <div class="button-container">
-                    <button class="movie-btn" (click)="addToFavourite()">
+                    <button class="movie-btn" (click)="addToFavourite(item)">
                         <img src="assets/liked-icon.svg" alt="Like">
-                        Add to favourite</button>
-                    <button class="movie-btn">
+                        {{favouriteBtnText}}</button>
+                    <button class="movie-btn" (click)="addToLiked(item)">
                         <img src="assets/selected-icon.svg" alt="Selected">
-                        Mark as selected</button>
+                        {{selectedBtnText}}</button>
                 </div>
             </div>
         </div>
