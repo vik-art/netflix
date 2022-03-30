@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { MovieListComponent } from "./components/movie-list/movie-list.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { FavouriteComponent } from "./modules/pages/favourite/favourite.component";
 import { FriendsComponent } from "./modules/pages/friends/friends.component";
@@ -46,6 +47,7 @@ import { SharedModule } from "./shared.module";
         SelectedComponent,
         FriendsComponent,
         MoviePageComponent,
+        MovieListComponent
     ],
     providers: [
         AuthGuard,

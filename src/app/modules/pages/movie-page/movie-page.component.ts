@@ -26,12 +26,15 @@ export class MoviePageComponent {
     this.dbService.getMovies(this.userId!, 'favourite').subscribe((response) => {
       if (!response) {
         this.addItem(movie, 'favourite');
-        this.favouriteBtnText = "Marked as favourite"
+        this.favouriteBtnText = "Marked as favourite";
+        this.alertService.success("You have marked this film as favourite")
       } else {
         const unique = response.filter((el: number) => el === movie.id)
         if (unique.length === 0) {
-          this.favouriteBtnText = "Marked as favourite"
-          return this.addItem(movie, 'favourite')
+          this.favouriteBtnText = "Marked as favourite";
+          this.alertService.success("You have marked this film as favourite")
+          return this.addItem(movie, 'favourite');
+          
         } else {
           this.alertService.danger("You have already marked this film as favourite before")
           return null;
@@ -44,11 +47,13 @@ export class MoviePageComponent {
     this.dbService.getMovies(this.userId!, 'selected').subscribe((response) => {
       if (!response) {
         this.addItem(movie, 'selected');
+        this.alertService.success("You have marked this film as selected")
         this.selectedBtnText = "Marked as selected"
       } else {
         const unique = response.filter((el: number) => el === movie.id)
         if (unique.length === 0) {
           this.selectedBtnText = "Marked as selected"
+          this.alertService.success("You have marked this film as selected")
           return this.addItem(movie, 'selected')
         } else {
           this.alertService.danger("You have already marked this film as selected before")

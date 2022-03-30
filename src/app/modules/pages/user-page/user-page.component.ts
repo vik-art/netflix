@@ -77,13 +77,12 @@ export class UserPageComponent implements OnInit, OnDestroy {
      })
   }
 
-  openMoviePage(id: number) {
-    return this.movieService.getById(id)
+  openMoviePage(event: number) {
+    return this.movieService.getById(event)
        .subscribe((movie: Movie) => {
         this.openPage = true;
          this.movie = movie;
-    })
-    
+       })    
   }
 
   onClose() {

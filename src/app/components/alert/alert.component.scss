@@ -9,9 +9,17 @@
   justify-content: center;
   border-radius: 5px;
   position: fixed;
-  top: 15%;
-  right: 15%;
-  background-color: rgb(223, 226, 32);
-  color: #000;
+  top: 10%;
+  right: 10%;
   z-index: 100;
+  color: #fff;
+}
+.alert-danger {
+  background-color: rgba(107, 7, 7, 0.8);
+}
+.alert-success {
+  background-color: rgba(9, 88, 26, 0.8);
+}
+.alert-warning {
+  background-color: rgba(129, 100, 4, 0.8);
 }

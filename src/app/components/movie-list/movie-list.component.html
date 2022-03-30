@@ -1,0 +1,24 @@
+<div class="search-results">
+    <div class="result-container">
+        <div class="card-container" *ngFor="let movie of movies">
+            <div class="movie-pic">
+                <img *ngIf="movie.poster_path; else defaultImage"
+                    src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}" alt="{{movie.title}}">
+            </div>
+            <div class="movie-info">
+                <h2 class="movie-info-title">{{movie.title}}</h2>
+                <p class="movie-info-details">Release Date: {{movie.release_date | date}}</p>
+                <p class="movie-info-details">Vote Average: {{movie.vote_average}}</p>
+                <p class="movie-info-details">Original Language: {{movie.original_language | uppercase}}</p>
+                <div class="button-container">
+                    <button class="movie-btn" (click)="openModal(movie.id)">
+                        <img src="assets/check-mark.svg" alt="details" width="25" height="25">
+                        Show details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #defaultImage>
+        <img src="assets/default-movie.jpg" alt="" srcset="">
+    </ng-template>
