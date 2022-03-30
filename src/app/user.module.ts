@@ -1,8 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { NgxLoadingXModule } from "ngx-loading-x";
 import { MovieListComponent } from "./components/movie-list/movie-list.component";
 import { AuthGuard } from "./guards/auth.guard";
+import { ngxLoadingXConfig } from "./libs/loading-config";
 import { FavouriteComponent } from "./modules/pages/favourite/favourite.component";
 import { FriendsComponent } from "./modules/pages/friends/friends.component";
 import { MoviePageComponent } from "./modules/pages/movie-page/movie-page.component";
@@ -36,7 +38,8 @@ import { SharedModule } from "./shared.module";
                 component: SelectedComponent,
                 canActivate: [AuthGuard]
             },
-        ])
+        ]),
+        NgxLoadingXModule.forRoot(ngxLoadingXConfig),
     ],
     exports: [
         RouterModule

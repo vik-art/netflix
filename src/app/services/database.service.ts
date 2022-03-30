@@ -36,13 +36,26 @@ export class DatabaseService {
         map((response ) => {
           if (response) {
             return Object
-              .values(response)
+            .values(response)
             .map((key) => key.id)
           } else {
             return null
           }
         }
       )
+    )
+  }
+
+  getUserMovies(id: string, type: string): Observable<Movie[] | null> {
+    return this.http.get<Movie[]>((`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`))
+      .pipe(
+        map((response) => {
+          if (response) {
+          return Object.values(response)
+          } else {
+            return null;
+        }
+      })
     )
   }
 

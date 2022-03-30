@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
@@ -16,16 +17,16 @@ export class UserPageComponent implements OnInit, OnDestroy {
   page: number = 1;
   movies: Array<Movie> = [];
   movie!: Movie;
-  zeroResult: boolean = false;
-  loader: boolean = false;
   movieSub!: Subscription;
   moreSub!: Subscription;
   openPage: boolean = false;
 
+  public load: boolean = false;
+
   constructor(
     private movieService: MovieService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -59,14 +60,13 @@ export class UserPageComponent implements OnInit, OnDestroy {
      searchQuery: this.searchQuery,
       page: this.page,
     }
-    this.loader = true;
     this.movieSub = this.movieService.getMovie(queryParams)
-     .subscribe((movies) => {
+      .subscribe((movies) => {
+        this.showLoading();
        this.movies = movies.results as Array<Movie>;
-       this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
-       this.page++;
-       this.loader = false;
-     })
+        this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
+        this.page++;
+      })
   }
   loadMoreMovies() {
     this.route.queryParams.subscribe((params) => {
@@ -76,12 +76,11 @@ export class UserPageComponent implements OnInit, OnDestroy {
      searchQuery: this.searchQuery,
      page: this.page
     }
-    this.loader = true;
     this.moreSub = this.movieService.getMovie(queryParams)
-     .subscribe((movies) => {
+      .subscribe((movies) => {
+       this.showLoading();
         this.movies = [...this.movies, ...movies.results as Array<Movie>];
        this.page++;
-       this.loader = false;
      })
   }
 
@@ -98,4 +97,14 @@ export class UserPageComponent implements OnInit, OnDestroy {
     this.openPage = false;
     this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } })
   }
+
+  showLoading() {
+    this.load = true;
+
+    setTimeout(() => {
+      this.load = false
+    }, 3000)
+  }
+
+ 
 }
