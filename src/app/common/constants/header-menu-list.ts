@@ -14,7 +14,7 @@ export const HEADER_MENU_LIST: Array<ImenuItem> = [
         link: '/selected'
    },
    {
-      label: 'Popular',
-      link: '/popular'
+      label: 'Movies',
+      link: '/movies'
     }
 ]

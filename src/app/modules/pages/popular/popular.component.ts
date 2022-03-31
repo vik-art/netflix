@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MOVIE_MENU_LIST } from 'src/app/common/constants/movie-menu-list';
+import { MovieMenu } from 'src/app/common/interfaces/menu.interface';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MovieService } from 'src/app/services/movie.service';
@@ -15,6 +17,9 @@ export class PopularComponent implements OnInit {
   movies!: Movie[];
   showModal: boolean = false;
   movie!: Movie;
+  showMovie: boolean = false;
+
+  movieMenuList: Array<MovieMenu> = MOVIE_MENU_LIST;
 
   constructor(
     private movieService: MovieService,
@@ -22,12 +27,13 @@ export class PopularComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initPopularMovies()
   }
 
-  initPopularMovies() {
-    this.movieService.getPopularMovies(this.page).subscribe((movies) => {
-      this.movies = movies.results as Array<Movie>
+  openMovies(type: string) {
+    this.movieService.getPopularMovies(type).subscribe((movies) => {
+      this.movies = movies.results as Array<Movie>;
+      console.log(this.movies)
+      this.showMovie = true;
   })
   }
   
@@ -35,12 +41,12 @@ export class PopularComponent implements OnInit {
     this.movieService.getById(event).subscribe((movie: Movie) => {
       this.showModal = true;
       this.movie = movie;
-      this.router.navigate(["/popular"], {queryParams: {movie: event}})
+      this.router.navigate(["/movies"], {queryParams: {movie: event}})
    })
   }
 
   onClose() {
     this.showModal = false;
-    this.router.navigate(["/popular"])
+    this.router.navigate(["/movies"])
   }
 }
