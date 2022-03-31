@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/common/interfaces/user.interface';
@@ -14,7 +14,8 @@ export class FormComponent implements OnInit {
   form!: FormGroup;
   submitted: boolean = false;
   user!: User;
-  @Output() submitForm = new EventEmitter<User>()
+  @Output() submitForm = new EventEmitter<User>();
+  @Input() title!: string;
 
   constructor(
     private formBuilder: FormBuilder,

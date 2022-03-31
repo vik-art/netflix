@@ -35,7 +35,7 @@ import { SharedModule } from "./shared.module";
                 canActivate: [AuthGuard]
             }, 
             {
-                path: "popular",
+                path: "movies",
                 component: PopularComponent,
                 canActivate: [AuthGuard]
             },

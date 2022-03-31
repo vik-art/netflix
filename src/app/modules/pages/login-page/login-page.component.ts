@@ -15,6 +15,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class LoginPageComponent implements OnDestroy {
   submitted: boolean = false;
   unSubscriber = new Subscription();
+  title: string = "Please, log in to enter the system!";
 
   constructor(
     public auth: AuthService,

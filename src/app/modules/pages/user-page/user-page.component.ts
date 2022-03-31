@@ -92,7 +92,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   openMoviePage(event: number) {
     return this.movieService.getById(event)
-       .subscribe((movie: Movie) => {
+      .subscribe((movie: Movie) => {
+        this.showLoading();
         this.openPage = true;
          this.movie = movie;
          this.router.navigate(['/user'], {queryParams: {query: this.searchQuery, movie: event}})

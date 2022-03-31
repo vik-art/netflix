@@ -37,12 +37,12 @@ export class MovieService {
     )
   }
 
-  getPopularMovies(page: number): Observable<SearchMovieresponse> {
+  getPopularMovies(type: string): Observable<SearchMovieresponse> {
     const params = new HttpParams()
       .set('api_key', environment.movieApiKey)
       .set('language', 'en-US')
-      .set('page', page)
-    return this.http.get<SearchMovieresponse>(`${environment.movieDetailsURL}/popular`, { params: params })
+      .set('page', 1)
+    return this.http.get<SearchMovieresponse>(`${environment.movieDetailsURL}${type}`, { params: params })
       .pipe(
         tap((response: SearchMovieresponse) => {
           const movies = response.results;

@@ -3,6 +3,7 @@
         {{error}}
     </div>
     <form [formGroup]="form" class="login-form" (ngSubmit)="takeData()">
+        <h2 class="form-title">{{title}}</h2>
         <div class="form-control">
             <input type="email" formControlName="email" placeholder="Enter your email adress" [ngClass]="{
             invalid: form.get('email')?.invalid && form.get('email')?.touched
