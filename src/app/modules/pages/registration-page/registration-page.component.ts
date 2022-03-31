@@ -14,6 +14,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class RegistrationPageComponent implements OnDestroy {
   submitted: boolean = false;
   unSubscriber = new Subscription();
+  title: string = "Please, sing up to enter the system!";
 
   constructor(
     public auth: AuthService,

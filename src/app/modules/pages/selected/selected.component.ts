@@ -22,6 +22,8 @@ export class SelectedComponent implements OnInit {
   showModal: boolean = false;
   movie!: Movie;
 
+    public load: boolean = false;
+
   ngOnInit(): void {
     this.initSelectedMovies();
   }
@@ -38,6 +40,7 @@ export class SelectedComponent implements OnInit {
 
   openModalWindow(event: number) {
     this.movieService.getById(event).subscribe((movie: Movie) => {
+      this.showLoading();
       this.showModal = true;
       this.movie = movie;
          this.router.navigate(['/selected'], {queryParams: {movie: event}})
@@ -47,5 +50,12 @@ export class SelectedComponent implements OnInit {
   onClose() {
     this.showModal = false;
     this.router.navigate(['/selected'])
+  }
+   showLoading() {
+    this.load = true;
+
+    setTimeout(() => {
+      this.load = false
+    }, 3000)
   }
 }

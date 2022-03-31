@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s ease-out;
+  z-index: 111;
   .close-icon-container {
     width: 70px;
     height: 70px;
@@ -22,12 +24,15 @@
     z-index: 10;
     background-color: #000;
     cursor: pointer;
+    transition: all 0.5s ease-out;
     &:hover {
+      transition: all 0.5s ease-out;
       opacity: 0.6;
     }
   }
   .movie-page-info {
     background-size: 100%;
+    transition: all 0.5s ease-out;
     background-position: center;
     background-repeat: no-repeat;
     font-size: 22px;
@@ -35,7 +40,7 @@
     border-radius: 5px;
     height: auto;
     position: relative;
-    box-shadow: 0px 5px 10px 2px rgba(250, 250, 250, 0.6) inset;
+    box-shadow: 0px 5px 10px 2px rgba(168, 144, 9, 0.5) inset;
     padding: 80px 40px;
     .movie-title {
       text-align: center;
@@ -88,6 +93,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.5s ease-out;
     &:last-child {
       margin-left: 40px;
     }
@@ -95,6 +101,7 @@
       margin-right: 15px;
     }
     &:hover {
+      transition: all 0.5s ease-out;
       opacity: 0.6;
     }
   }

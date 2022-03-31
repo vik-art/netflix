@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MOVIE_MENU_LIST } from 'src/app/common/constants/movie-menu-list';
 import { MovieMenu } from 'src/app/common/interfaces/menu.interface';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
-import { DatabaseService } from 'src/app/services/database.service';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -19,6 +18,9 @@ export class PopularComponent implements OnInit {
   movie!: Movie;
   showMovie: boolean = false;
 
+  public activeItem!: string;
+    public load: boolean = false;
+
   movieMenuList: Array<MovieMenu> = MOVIE_MENU_LIST;
 
   constructor(
@@ -27,18 +29,24 @@ export class PopularComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.openMovies("/popular", "Popular")
   }
 
-  openMovies(type: string) {
+  openMovies(type: string, item: string) {
     this.movieService.getPopularMovies(type).subscribe((movies) => {
       this.movies = movies.results as Array<Movie>;
-      console.log(this.movies)
       this.showMovie = true;
+      this.onSelectItem(item);
   })
+  }
+
+ public onSelectItem(item: string): void {
+    this.activeItem = item;
   }
   
   openMoviePage(event: number) {
     this.movieService.getById(event).subscribe((movie: Movie) => {
+      this.showLoading();
       this.showModal = true;
       this.movie = movie;
       this.router.navigate(["/movies"], {queryParams: {movie: event}})
@@ -48,5 +56,13 @@ export class PopularComponent implements OnInit {
   onClose() {
     this.showModal = false;
     this.router.navigate(["/movies"])
+  }
+
+   showLoading() {
+    this.load = true;
+
+    setTimeout(() => {
+      this.load = false
+    }, 3000)
   }
 }

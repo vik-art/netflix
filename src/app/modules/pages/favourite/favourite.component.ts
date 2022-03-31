@@ -15,6 +15,7 @@ export class FavouriteComponent implements OnInit {
   user = localStorage.getItem("id");
   showModal: boolean = false;
   movie!: Movie;
+    public load: boolean = false;
 
   constructor(
     private dataBase: DatabaseService,
@@ -37,6 +38,7 @@ export class FavouriteComponent implements OnInit {
 
   openModal(event: number) {
     this.movieService.getById(event).subscribe((movie: Movie) => {
+      this.showLoading();
       this.showModal = true;
       this.movie = movie;
       this.router.navigate(["/favourite"], {queryParams: {movie: event}})
@@ -45,5 +47,12 @@ export class FavouriteComponent implements OnInit {
   onClose() {
     this.showModal = false;
     this.router.navigate(["/favourite"])
-}
+  }
+   showLoading() {
+    this.load = true;
+
+    setTimeout(() => {
+      this.load = false
+    }, 3000)
+  }
 }

@@ -17,14 +17,17 @@
       color: #000;
       cursor: pointer;
       padding: 20px 40px;
-      transition: color 250ms cubic-bezier(0.4,
-      0,
-      0.2,
-      1);
-      &:hover {
+      transition: all 0.5s ease-out;
+      &:hover,
+      &:focus {
+        transition: all 0.5s ease-out;
         color: #fff;
         font-weight: 700;
       }
+    }
+    .active {
+      color: #fff;
+      font-weight: 700;
     }
     
   }

@@ -1,9 +1,11 @@
 input {
   border: none;
   outline: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #fff;
 }
-
+.form-title {
+  color: yellow;
+}
 input.ng-dirty.ng-invalid {
   border-bottom: solid #ff0000 2px;
 }
@@ -30,7 +32,7 @@ input.ng-dirty.ng-valid {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 200px;
-  background-color: #fff;
+  background-color: #000;
   border-radius: 5px;
   margin: 0 auto;
   padding: 50px 50px;
@@ -44,7 +46,7 @@ input.ng-dirty.ng-valid {
       height: 50px;
       font-size: 18px;
       background-color: transparent;
-      color: #000;
+      color: #fff;
     }
   }
 }
