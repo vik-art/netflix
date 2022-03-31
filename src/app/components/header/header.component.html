@@ -6,11 +6,23 @@
                 Your Shows
             </a>
         </div>
+        <div class="mobile-icon" *ngIf="!mobileMenu" (click)="toggleMenu()">
+            <div class="mobile-icon-line"></div>
+            <div class="mobile-icon-line"></div>
+            <div class="mobile-icon-line"></div>
+        </div>
+        <div class="mobile-icon-close-menu" *ngIf="closeMenu" (click)="toggleMenu()">
+        </div>
         <app-menu-list *ngIf="auth.isAuthenticated()" [menuList]="menuListItems"></app-menu-list>
-        <ul *ngIf="!auth.isAuthenticated()" class="homepage-nav">
+        <div *ngIf="!auth.isAuthenticated()" class="homepage-nav">
             <a class="header-btn" routerLink="/register">Sign Up</a>
             <a class="header-btn" routerLink="/login">Log In</a>
-        </ul>
+        </div>
         <button class="header-btn" *ngIf="auth.isAuthenticated()" (click)="logOut($event)">Log Out</button>
     </nav>
 </header>
+
+<div class="mobile-menu" *ngIf="mobileMenu">
+    <a class="mobile-menu-item" routerLink="/register">Sign Up</a>
+    <a class="mobile-menu-item" routerLink="/login">Log In</a>
+</div>

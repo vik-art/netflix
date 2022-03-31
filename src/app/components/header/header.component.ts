@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit {
   
   menuListItems: Array<ImenuItem> = HEADER_MENU_LIST;
+  mobileMenu: boolean = false;
+  closeMenu: boolean = false;
 
   constructor(
     public auth: AuthService,
@@ -29,8 +31,11 @@ export class HeaderComponent implements OnInit {
     this.route.navigate(['/'])
   }
 
+
+  toggleMenu() {
+    this.mobileMenu = !this.mobileMenu;
+    this.closeMenu = !this.closeMenu;
+  }
 }
-function Input() {
-  throw new Error('Function not implemented.');
-}
+
 
