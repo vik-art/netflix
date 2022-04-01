@@ -1,5 +1,9 @@
 <div class="container">
     <app-movie-list [movies]="movies" (openMoviePage)="openModal($event)"></app-movie-list>
+    <div class="no-results-container" *ngIf="noResults">
+        <p>You haven't added movies here yet.<br> You can find intresting movies in <a routerLink="/movies">Movies
+                page</a>.</p>
+    </div>
 </div>
 
 <app-movie-page *ngIf="showModal" [item]="movie" (closeWindow)="onClose()"></app-movie-page>

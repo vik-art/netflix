@@ -21,6 +21,7 @@ export class SelectedComponent implements OnInit {
   user = localStorage.getItem('id');
   showModal: boolean = false;
   movie!: Movie;
+  noResults: boolean = false;
 
     public load: boolean = false;
 
@@ -34,7 +35,9 @@ export class SelectedComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.movies = res;
-        } 
+        } else {
+          this.noResults = true;
+        }
     })
   }
 

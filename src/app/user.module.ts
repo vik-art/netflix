@@ -59,7 +59,7 @@ import { SharedModule } from "./shared.module";
         SelectedComponent,
         MoviePageComponent,
         MovieListComponent,
-        PopularComponent,
+        PopularComponent
     ],
     providers: [
         AuthGuard,

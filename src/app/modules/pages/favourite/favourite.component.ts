@@ -15,7 +15,8 @@ export class FavouriteComponent implements OnInit {
   user = localStorage.getItem("id");
   showModal: boolean = false;
   movie!: Movie;
-    public load: boolean = false;
+  public load: boolean = false;
+  noResults: boolean = false;
 
   constructor(
     private dataBase: DatabaseService,
@@ -32,6 +33,8 @@ export class FavouriteComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.movies = res;
+        } else {
+          this.noResults = true;
       }
     })
   }
