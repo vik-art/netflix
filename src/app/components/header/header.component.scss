@@ -7,14 +7,30 @@
   background: rgba(0, 0, 0, 0.4);
   z-index: 100;
   color: #fff;
-  nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 80px;
-    height: 100%;
-    align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 80px;
+  height: 100%;
+  align-items: center;
+}
+
+.user-nav {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+
+  li {
+    text-decoration: none;
+    display: inline-block;
+    color: $base-font-color;
+    padding: 10px 20px;
+    cursor: pointer;
   }
 }
+
 
 .homepage-nav {
   width: 30%;
@@ -30,102 +46,68 @@
 .mobile-icon {
   display: none;
 }
-@media screen and (max-width: 849px) {
-  .homepage-nav {
-    display: none;
-  }
-.mobile-icon {
+.user-menu {
   display: flex;
-  flex-direction: column;
+  width: 80%;
   align-items: center;
-  opacity:0;
-  transition: 1s;
-  animation: show 3s 1;
-  animation-fill-mode: forwards;
-  animation-delay: 1s;
-  }
-  .mobile-icon-line {
-    display: block;
-    width: 70px;
-    height: 7px;
-    background-color: #fff44f;
-    border-radius: 3px;
-    &:not(:last-child) {
-      margin-bottom: 15px;
-    }
-    &:first-child, 
-    &:last-child {
-      width: 50px;
-    }
-  }
+  justify-content: space-around;
 }
+
 .mobile-icon-close-menu {
   position: absolute;
   right: 80px;
   top: 30px;
   width: 32px;
-  height: 32px;  
-  opacity:0;
+  height: 32px;
+  opacity: 0;
   transition: 1s;
   animation: show 3s 1;
   animation-fill-mode: forwards;
   animation-delay: 1s;
-  }
-  .mobile-icon-close-menu:before,
-  .mobile-icon-close-menu:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 75px;
-    width: 7px;
-    border-radius: 3px;
-    background-color: #fff44f;
-  }
-  
-  .mobile-icon-close-menu:before {
-    transform: rotate(45deg);
-  }
-  
-  .mobile-icon-close-menu:after {
-    transform: rotate(-45deg);
-  }
+}
+.mobile-icon-close-menu:before,
+.mobile-icon-close-menu:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 75px;
+  width: 7px;
+  border-radius: 3px;
+  background-color: #fff44f;
+}
+
+.mobile-icon-close-menu:before {
+  transform: rotate(45deg);
+}
+
+.mobile-icon-close-menu:after {
+  transform: rotate(-45deg);
+}
 
 .mobile-menu {
   position: absolute;
   width: 100%;
   top: 140px;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
-  a {
-    display: block;
-    text-align: center;
-    width: 100%;
-    font-size: 25px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-  opacity:0;
+  opacity: 0;
   transition: 1s;
   animation: show 3s 1;
   animation-fill-mode: forwards;
   animation-delay: 1s;
-  }
-  
-
-.user-nav {
-  display: flex;
-  width: 80%;
-  justify-content: space-between;
-  li {
-    text-decoration: none;
-    display: inline-block;
-    color: $base-font-color;
-    padding: 10px 20px;
-    cursor: pointer;
+  a {
+    display: block;
+    color: #fff44f;
+    font-size: 28px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
   }
 }
+
 
 .header-btn {
   background-color: #fff44f;
@@ -159,5 +141,60 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 849px) {
+  .homepage-nav {
+    display: none;
+  }
+
+  .mobile-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: 1s;
+    animation: show 3s 1;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+  }
+
+  .mobile-icon-line {
+    display: block;
+    width: 70px;
+    height: 7px;
+    background-color: #fff44f;
+    border-radius: 3px;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+
+    &:first-child,
+    &:last-child {
+      width: 50px;
+    }
+  }
+
+  .user-menu {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .logout-btn {
+    margin-top: 40px;
+  }
+}
+
+
+@media screen and (max-width: 679px) {
+  nav {
+    flex-direction: column;  
+    padding: 10px; 
+  }
+
+  .logo-container {
+    margin-bottom: 30px;
   }
 }
