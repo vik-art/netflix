@@ -35,8 +35,7 @@ export class HeaderComponent implements OnInit {
   toggleMenu() {
     this.mobileMenu = !this.mobileMenu;
     this.closeMenu = !this.closeMenu;
-    
-  }
+    }
 }
 
 

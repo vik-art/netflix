@@ -26,12 +26,12 @@ input.ng-dirty.ng-valid {
     url(../../../assets/registration-background.jpg);
 }
 .login-form {
-  width: 480px;
+  max-width: 480px;
+  width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 200px;
   background-color: #000;
   border-radius: 5px;
   margin: 0 auto;
@@ -51,6 +51,8 @@ input.ng-dirty.ng-valid {
   }
 }
 .btn {
+  display: inline-block;
+  margin-top: 20px;
   width: 100px;
   height: 40px;
   border: none;
@@ -70,4 +72,17 @@ input.ng-dirty.ng-valid {
   right: 15%;
   background-color: rgba(209, 209, 65, 0.5);
   color: rgb(0, 0, 0);
+}
+.login-page-link {
+  margin-bottom: 20px;
+  border-bottom: 1px solid yellow;
+  .login-page-link-home {
+    font-size: 24px;
+    transition: all 0.5s ease-out;
+    &:hover,
+    &:focus {
+      transition: all 0.5s ease-out;
+      color: yellow;
+    }
+  }
 }

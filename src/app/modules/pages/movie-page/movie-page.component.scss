@@ -107,3 +107,16 @@
     }
   }
 }
+@media screen and (max-width: 480px) {
+  .movie-overview p {
+    display: none;
+  }
+  .button-container {
+    flex-direction: column;
+    margin-top: 20px;
+    .movie-btn:last-child {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
+}
