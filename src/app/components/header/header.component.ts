@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { HEADER_MENU_LIST } from 'src/app/common/constants/header-menu-list';
 import { ImenuItem } from 'src/app/common/interfaces/menu.interface';
 import { AlertService } from 'src/app/services/alert.service';
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   logOut(event: Event) {
     event.preventDefault()
     this.auth.logout();
@@ -35,7 +37,17 @@ export class HeaderComponent implements OnInit {
   toggleMenu() {
     this.mobileMenu = !this.mobileMenu;
     this.closeMenu = !this.closeMenu;
-    }
+  }
+  onRegister() {
+    this.route.navigate(["/register"]);
+    this.mobileMenu = false;
+    this.closeMenu = false;
+  }
+  onLogin() {
+    this.route.navigate(["/login"]);
+    this.mobileMenu = false;
+    this.closeMenu = false;
+  }
 }
 
 

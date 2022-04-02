@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { User } from 'src/app/common/interfaces/user.interface';
-import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,35 +10,40 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
+
   form!: FormGroup;
   submitted: boolean = false;
   user!: User;
+
+  unSubscriber = new Subscription();
+
   @Output() submitForm = new EventEmitter<User>();
   @Input() title!: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    public auth: AuthService,
-
+    public auth: AuthService
   ) {}
+  
   ngOnInit(): void {
-    this.initForm();
-    
+    this.initForm();    
   }
+
+  ngOnDestroy(): void {
+    this.unSubscriber.unsubscribe();
+  }
+
   initForm(): void {
     this.form = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.pattern("(?=^.{6,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).*")]]
     })
-    this.form.valueChanges.subscribe(() => {})
+   this.unSubscriber.add(this.form.valueChanges.subscribe(() => {}))
   }
 
   takeData() {
     this.submitForm.emit(this.form.value);
     this.form.reset();
   }
-
-  
-  
-  }
+}
