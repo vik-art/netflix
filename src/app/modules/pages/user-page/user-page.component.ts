@@ -17,11 +17,11 @@ export class UserPageComponent implements OnInit, OnDestroy {
   page: number = 1;
   movies: Array<Movie> = [];
   movie!: Movie;
-  movieSub!: Subscription;
-  moreSub!: Subscription;
   openPage: boolean = false;
 
   public load: boolean = false;
+
+  unSubscriber = new Subscription();
 
   constructor(
     private movieService: MovieService,
@@ -36,12 +36,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.movieSub) {
-      this.movieSub.unsubscribe()
-    }
-    if (this.moreSub) {
-      this.moreSub.unsubscribe()
-    }
+    this.unSubscriber.unsubscribe()
   }
 
   initForm() {
@@ -61,7 +56,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
      searchQuery: this.searchQuery,
       page: this.page,
     }
-    this.movieSub = this.movieService.getMovie(queryParams)
+    this.unSubscriber.add(this.movieService.getMovie(queryParams)
       .subscribe((movies) => {
         if (movies.results?.length) {
           this.showLoading();
@@ -72,7 +67,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
           this.alertService.danger("There are no results on your search query");
           this.form.reset()
         }
-      })
+      }))
   }
   loadMoreMovies() {
     this.route.queryParams.subscribe((params) => {
@@ -82,22 +77,22 @@ export class UserPageComponent implements OnInit, OnDestroy {
      searchQuery: this.searchQuery,
      page: this.page
     }
-    this.moreSub = this.movieService.getMovie(queryParams)
+    this.unSubscriber.add(this.movieService.getMovie(queryParams)
       .subscribe((movies) => {
        this.showLoading();
         this.movies = [...this.movies, ...movies.results as Array<Movie>];
        this.page++;
-     })
+     }))
   }
 
   openMoviePage(event: number) {
-    return this.movieService.getById(event)
+    this.unSubscriber.add(this.movieService.getById(event)
       .subscribe((movie: Movie) => {
         this.showLoading();
         this.openPage = true;
          this.movie = movie;
          this.router.navigate(['/user'], {queryParams: {query: this.searchQuery, movie: event}})
-       })    
+       }))    
   }
 
   onClose() {
@@ -111,7 +106,5 @@ export class UserPageComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.load = false
     }, 3000)
-  }
-
- 
+  } 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MovieService } from 'src/app/services/movie.service';
@@ -9,7 +10,7 @@ import { MovieService } from 'src/app/services/movie.service';
   templateUrl: './selected.component.html',
   styleUrls: ['./selected.component.scss']
 })
-export class SelectedComponent implements OnInit {
+export class SelectedComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataBase: DatabaseService,
@@ -23,31 +24,34 @@ export class SelectedComponent implements OnInit {
   movie!: Movie;
   noResults: boolean = false;
 
-    public load: boolean = false;
+  public load: boolean = false;
+
+  unSubscriber = new Subscription();
 
   ngOnInit(): void {
     this.initSelectedMovies();
   }
 
+   ngOnDestroy(): void {
+     this.unSubscriber.unsubscribe();
+   }
+  
   initSelectedMovies() {
-    
-    this.dataBase.getUserMovies(this.user!, "selected")
+    this.unSubscriber.add(
+      this.dataBase.getUserMovies(this.user!, "selected")
       .subscribe((res) => {
-        if (res) {
-          this.movies = res;
-        } else {
-          this.noResults = true;
-        }
-    })
+        res ? this.movies = res : this.noResults = true;
+        }))
   }
 
   openModalWindow(event: number) {
+    this.unSubscriber.add(
     this.movieService.getById(event).subscribe((movie: Movie) => {
       this.showLoading();
       this.showModal = true;
       this.movie = movie;
          this.router.navigate(['/selected'], {queryParams: {movie: event}})
-    })
+    }))
   }
   
   onClose() {

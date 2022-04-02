@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MOVIE_MENU_LIST } from 'src/app/common/constants/movie-menu-list';
 import { MovieMenu } from 'src/app/common/interfaces/menu.interface';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
@@ -10,7 +11,7 @@ import { MovieService } from 'src/app/services/movie.service';
   templateUrl: './popular.component.html',
   styleUrls: ['./popular.component.scss']
 })
-export class PopularComponent implements OnInit {
+export class PopularComponent implements OnInit, OnDestroy {
 
   page: number = 1;
   movies!: Movie[];
@@ -19,9 +20,11 @@ export class PopularComponent implements OnInit {
   showMovie: boolean = false;
 
   public activeItem!: string;
-    public load: boolean = false;
+  public load: boolean = false;
 
   movieMenuList: Array<MovieMenu> = MOVIE_MENU_LIST;
+
+  unSubscriber = new Subscription();
 
   constructor(
     private movieService: MovieService,
@@ -32,12 +35,16 @@ export class PopularComponent implements OnInit {
     this.openMovies("/popular", "Popular")
   }
 
+   ngOnDestroy(): void {
+     this.unSubscriber.unsubscribe();
+  }
+
   openMovies(type: string, item: string) {
-    this.movieService.getPopularMovies(type).subscribe((movies) => {
+   this.unSubscriber.add(this.movieService.getPopularMovies(type).subscribe((movies) => {
       this.movies = movies.results as Array<Movie>;
       this.showMovie = true;
       this.onSelectItem(item);
-  })
+  }))
   }
 
  public onSelectItem(item: string): void {
@@ -45,12 +52,12 @@ export class PopularComponent implements OnInit {
   }
   
   openMoviePage(event: number) {
-    this.movieService.getById(event).subscribe((movie: Movie) => {
+  this.unSubscriber.add(this.movieService.getById(event).subscribe((movie: Movie) => {
       this.showLoading();
       this.showModal = true;
       this.movie = movie;
       this.router.navigate(["/movies"], {queryParams: {movie: event}})
-   })
+   }))
   }
 
   onClose() {
