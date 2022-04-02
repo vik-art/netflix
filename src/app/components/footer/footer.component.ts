@@ -4,30 +4,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FooterComponent {
-//  private _name = "";
-
-//  @Input() set name(data) {
-//    console.log(data)
-//    this._name = data;
- // }
- // get name() {
- //   return this._name;
- // }
+export class FooterComponent {  
   
-  //map, SwitchMap, concatMap, mergeMap, takeUntill, takeLast, takeWhile, take, filter
-  // combineLatest, forkJoin, fromEvent, of
 
   constructor() { }
-
- // ngOnChanges(changes: SimpleChanges): void {
-  //  console.log("Onchanges", changes)
- // }
-
- // ngOnInit(): void {
-//    console.log(this.name)
-//  }
 
 }

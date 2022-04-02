@@ -26,7 +26,7 @@
     <div class="mobile-icon-close-menu" *ngIf="closeMenu" (click)="toggleMenu()">
     </div>
     <div class="mobile-menu" *ngIf="mobileMenu">
-        <a class="mobile-menu-item" routerLink="/register">Sign Up</a>
-        <a class="mobile-menu-item" routerLink="/login">Log In</a>
+        <a class="mobile-menu-item" (click)="onRegister()">Sign Up</a>
+        <a class="mobile-menu-item" (click)="onLogin()">Log In</a>
     </div>
 </ng-template>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MovieService } from 'src/app/services/movie.service';
@@ -9,7 +11,7 @@ import { MovieService } from 'src/app/services/movie.service';
   templateUrl: './favourite.component.html',
   styleUrls: ['./favourite.component.scss']
 })
-export class FavouriteComponent implements OnInit {
+export class FavouriteComponent implements OnInit, OnDestroy {
 
   movies!: Movie[];
   user = localStorage.getItem("id");
@@ -17,6 +19,8 @@ export class FavouriteComponent implements OnInit {
   movie!: Movie;
   public load: boolean = false;
   noResults: boolean = false;
+  unSubscriber = new Subscription();
+  
 
   constructor(
     private dataBase: DatabaseService,
@@ -28,25 +32,26 @@ export class FavouriteComponent implements OnInit {
     this.initFavouritePage()
   }
 
+  ngOnDestroy(): void {
+    this.unSubscriber.unsubscribe();
+  }
+
   initFavouritePage() {
-    this.dataBase.getUserMovies(this.user!, "favourite")
+  this.unSubscriber.add(this.dataBase.getUserMovies(this.user!, "favourite")
       .subscribe((res) => {
-        if (res) {
-          this.movies = res;
-        } else {
-          this.noResults = true;
-      }
-    })
+        res ? this.movies = res :  this.noResults = true;
+      }))
   }
 
   openModal(event: number) {
-    this.movieService.getById(event).subscribe((movie: Movie) => {
+  this.unSubscriber.add(this.movieService.getById(event).subscribe((movie: Movie) => {
       this.showLoading();
       this.showModal = true;
       this.movie = movie;
       this.router.navigate(["/favourite"], {queryParams: {movie: event}})
-    })
+    }))
   }
+  
   onClose() {
     this.showModal = false;
     this.router.navigate(["/favourite"])
