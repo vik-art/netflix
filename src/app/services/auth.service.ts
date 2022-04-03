@@ -65,19 +65,21 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    const { message } = error.error.error;
-
+    const {message} = error.error.error;
     switch (message) {
-      case Error.email:
-        this.error$.next(Message.emailNotFound);
+      case "INVALID_EMAIL":
+        this.error$.next('This email is invalid')
         break;
-      case Error.password:
-        this.error$.next(Message.invalidPassword);
+      case "INVALID_PASSWORD":
+        this.error$.next('This password is invalid')
         break;
-      case Error.invalidEmail:
-        this.error$.next(Message.invalidEmail);
+      case "EMAIL_NOT_FOUND":
+        this.error$.next("This email hasn't been found")
+        break;
+      case "EMAIL_EXISTS":
+        this.error$.next("This email was used for registration before");
         break;
     }
-    return throwError(error)
+    return throwError(error);
   }
   }
