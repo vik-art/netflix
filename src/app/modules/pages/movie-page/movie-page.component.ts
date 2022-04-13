@@ -16,6 +16,7 @@ export class MoviePageComponent {
   @Input() item!: Movie;
   @Input() favouriteBtnText!: string;
   @Input() selectedBtnText!: string;
+  @Input() deleteBtnText!: string;
   @Input() showDeleteBtn!: boolean;
   @Output() closeWindow = new EventEmitter();
 

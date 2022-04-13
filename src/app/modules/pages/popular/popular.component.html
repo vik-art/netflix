@@ -11,7 +11,13 @@
     </div>
     <app-movie-list *ngIf="showMovie" [movies]="movies" (openMoviePage)="openMoviePage($event)"></app-movie-list>
 </div>
-<app-movie-page *ngIf="showModal" [item]="movie" (closeWindow)="onClose()"></app-movie-page>
+<app-movie-page 
+    *ngIf="showModal" 
+    [item]="movie" 
+    [favouriteBtnText] = "favouriteBtnText"
+    [selectedBtnText] = "selectedBtnText"
+    [showDeleteBtn] = "false"
+    (closeWindow)="onClose()"></app-movie-page>
 
 <ngx-loading-x [show]="load">
 </ngx-loading-x>
