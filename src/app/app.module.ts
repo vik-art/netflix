@@ -1,6 +1,7 @@
 import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModule } from './shared.module';
 import { UserModule } from './user.module';
@@ -47,6 +48,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppRoutingModule,
     SharedModule,
     UserModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,

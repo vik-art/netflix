@@ -32,6 +32,7 @@
   }
   .movie-page-info {
     transition: all 0.5s ease-out;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     font-size: 22px;
@@ -82,30 +83,8 @@
  
 .button-container {
   display: flex;
-  .movie-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff44f;
-    color: #000;
-    font-weight: 700;
-    border: none;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.5s ease-out;
-    &:last-child {
-      margin-left: 40px;
-    }
-    img {
-      margin-right: 15px;
-    }
-    &:hover {
-      transition: all 0.5s ease-out;
-      opacity: 0.6;
-    }
-  }
+  justify-content: space-around;
+  width: 90%;
 }
 @media screen and (max-width: 480px) {
   .movie-overview p {
