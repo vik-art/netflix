@@ -20,6 +20,9 @@ export class FavouriteComponent implements OnInit, OnDestroy {
   public load: boolean = false;
   noResults: boolean = false;
   unSubscriber = new Subscription();
+  favouriteBtnText = "Already added to favourite"
+  selectedBtnText = "Mark as selected"
+  deleteBtnText = "Delete from favourite"
   
 
   constructor(

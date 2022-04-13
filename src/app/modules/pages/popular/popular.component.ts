@@ -18,6 +18,8 @@ export class PopularComponent implements OnInit, OnDestroy {
   showModal: boolean = false;
   movie!: Movie;
   showMovie: boolean = false;
+  favouriteBtnText = "Add to favourite";
+  selectedBtnText = "Mark as selected"
 
   public activeItem!: string;
   public load: boolean = false;

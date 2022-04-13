@@ -18,14 +18,14 @@
         <a class="header-btn" routerLink="/register">Sign Up</a>
         <a class="header-btn" routerLink="/login">Log In</a>
     </div>
-    <div class="mobile-icon" *ngIf="!mobileMenu" (click)="toggleMenu()">
+    <div class="mobile-icon" *ngIf="!mobileMenu" (click)="toggleMenu()" [@showMenu]="stateName">
         <div class="mobile-icon-line"></div>
         <div class="mobile-icon-line"></div>
         <div class="mobile-icon-line"></div>
     </div>
     <div class="mobile-icon-close-menu" *ngIf="closeMenu" (click)="toggleMenu()">
     </div>
-    <div class="mobile-menu" *ngIf="mobileMenu">
+    <div class="mobile-menu" *ngIf="mobileMenu" [ngClass]="{showMenu: mobileMenu, hideMenu: !mobileMenu}">
         <a class="mobile-menu-item" (click)="onRegister()">Sign Up</a>
         <a class="mobile-menu-item" (click)="onLogin()">Log In</a>
     </div>

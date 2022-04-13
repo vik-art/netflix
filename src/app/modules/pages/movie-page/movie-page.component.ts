@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/common/interfaces/movie.interface';
 import { AlertService } from 'src/app/services/alert.service';
@@ -14,11 +14,13 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class MoviePageComponent {
 
   @Input() item!: Movie;
+  @Input() favouriteBtnText!: string;
+  @Input() selectedBtnText!: string;
+  @Input() deleteBtnText!: string;
+  @Input() showDeleteBtn!: boolean;
   @Output() closeWindow = new EventEmitter();
 
   userId: string | null = localStorage.getItem('id');
-  favouriteBtnText: string = "Favourite"
-  selectedBtnText: string = "Selected";
   unSubscriber = new Subscription();
 
   constructor(

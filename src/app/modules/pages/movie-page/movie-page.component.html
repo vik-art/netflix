@@ -36,14 +36,14 @@
                         Genre:
                     </strong>
                     <span *ngFor="let genre of item.genres">
-                        {{genre.name}}&nbsp;
+                        &#10003; {{genre.name}}&nbsp;
                     </span>
                 </p>
                 <p>
                     <strong>
                         Spoken languages: </strong>
                     <span *ngFor="let language of item.spoken_languages">
-                        {{language.name}}&nbsp;
+                        &#10003; {{language.name}}&nbsp;
                     </span>
                 </p>
                 <p>
@@ -78,6 +78,9 @@
                     <button class="movie-btn" (click)="addToSelected(item)">
                         <img src="assets/selected-icon.svg" alt="Selected">
                         {{selectedBtnText}}</button>
+                        <button class="movie-btn" *ngIf="showDeleteBtn">
+                            <img src="assets/delete-icon.svg" alt="Deleted">
+                            {{deleteBtnText}}</button>
                 </div>
             </div>
         </div>

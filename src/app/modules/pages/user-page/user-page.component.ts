@@ -18,6 +18,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
   movies: Array<Movie> = [];
   movie!: Movie;
   openPage: boolean = false;
+  favouriteBtnText = "Add to favourite";
+  selectedBtnText = "Mark as selected"
 
   public load: boolean = false;
 

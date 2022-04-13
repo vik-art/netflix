@@ -74,7 +74,7 @@ export class AuthService {
         this.error$.next('This password is invalid')
         break;
       case "EMAIL_NOT_FOUND":
-        this.error$.next("This email hasn't been found")
+        this.error$.next(`This email hasn't been found. Maybe you should `)
         break;
       case "EMAIL_EXISTS":
         this.error$.next("This email was used for registration before");

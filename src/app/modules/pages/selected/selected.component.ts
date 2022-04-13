@@ -23,6 +23,9 @@ export class SelectedComponent implements OnInit, OnDestroy {
   showModal: boolean = false;
   movie!: Movie;
   noResults: boolean = false;
+  favouriteBtnText = "Add to favourite"
+  selectedBtnText = "Already marked as selected"
+  deleteBtnText = "Delete from selected"
 
   public load: boolean = false;
 
@@ -41,6 +44,7 @@ export class SelectedComponent implements OnInit, OnDestroy {
       this.dataBase.getUserMovies(this.user!, "selected")
       .subscribe((res) => {
         res ? this.movies = res : this.noResults = true;
+        console.log(this.movies)
         }))
   }
 
