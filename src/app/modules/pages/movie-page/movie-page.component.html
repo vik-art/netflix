@@ -72,13 +72,23 @@
             <div class="movie-overview">
                 <p>{{item.overview}}</p>
                 <div class="button-container">
-                    <button class="movie-btn" (click)="addToFavourite(item)">
+                    <button 
+                        class="movie-btn" 
+                        *ngIf="showFavouriteBtn"
+                        (click)="addToFavourite(item)"
+                        >
                         <img src="assets/liked-icon.svg" alt="Like">
                         {{favouriteBtnText}}</button>
-                    <button class="movie-btn" (click)="addToSelected(item)">
+                    <button 
+                        class="movie-btn" 
+                        *ngIf="showSelectedBtn"
+                        (click)="addToSelected(item)">
                         <img src="assets/selected-icon.svg" alt="Selected">
                         {{selectedBtnText}}</button>
-                        <button class="movie-btn" *ngIf="showDeleteBtn">
+                    <button 
+                        class="movie-btn" 
+                        *ngIf="showDeleteBtn"
+                        (click)="deleteMovie(item)">
                             <img src="assets/delete-icon.svg" alt="Deleted">
                             {{deleteBtnText}}</button>
                 </div>

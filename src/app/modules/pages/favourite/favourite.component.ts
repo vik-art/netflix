@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -20,7 +20,6 @@ export class FavouriteComponent implements OnInit, OnDestroy {
   public load: boolean = false;
   noResults: boolean = false;
   unSubscriber = new Subscription();
-  favouriteBtnText = "Already added to favourite"
   selectedBtnText = "Mark as selected"
   deleteBtnText = "Delete from favourite"
   
@@ -30,6 +29,7 @@ export class FavouriteComponent implements OnInit, OnDestroy {
     private movieService: MovieService,
     private router: Router
   ) { }
+ 
 
   ngOnInit(): void {
     this.initFavouritePage()
@@ -42,7 +42,8 @@ export class FavouriteComponent implements OnInit, OnDestroy {
   initFavouritePage() {
   this.unSubscriber.add(this.dataBase.getUserMovies(this.user!, "favourite")
       .subscribe((res) => {
-        res ? this.movies = res :  this.noResults = true;
+        const arr = Object.values(res!);
+        arr ? this.movies = arr :  this.noResults = true;
       }))
   }
 
@@ -66,4 +67,19 @@ export class FavouriteComponent implements OnInit, OnDestroy {
       this.load = false
     }, 3000)
   }
-}
+  onDelete(e: Movie) {
+    this.dataBase.getUserMovies(this.user!, "favourite").subscribe((res) => {
+      const arr = Object.entries(res!);
+      arr.map((el) => {
+        if(el[1].id === e.id){
+        this.dataBase.deleteData(el[0], this.user!, "favourite").subscribe(() => {
+          this.onClose();
+          this.initFavouritePage();
+        })
+        }
+      })
+    })
+
+    }
+  }
+

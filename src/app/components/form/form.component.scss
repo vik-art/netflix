@@ -24,6 +24,9 @@ input.ng-dirty.ng-valid {
       rgba(0, 0, 0, 0.6)
     ),
     url(../../../assets/registration-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .login-form {
   max-width: 480px;

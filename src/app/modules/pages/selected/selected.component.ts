@@ -24,7 +24,6 @@ export class SelectedComponent implements OnInit, OnDestroy {
   movie!: Movie;
   noResults: boolean = false;
   favouriteBtnText = "Add to favourite"
-  selectedBtnText = "Already marked as selected"
   deleteBtnText = "Delete from selected"
 
   public load: boolean = false;
@@ -43,8 +42,8 @@ export class SelectedComponent implements OnInit, OnDestroy {
     this.unSubscriber.add(
       this.dataBase.getUserMovies(this.user!, "selected")
       .subscribe((res) => {
-        res ? this.movies = res : this.noResults = true;
-        console.log(this.movies)
+        const arr = Object.values(res!)
+        arr ? this.movies = arr : this.noResults = true;
         }))
   }
 
@@ -69,4 +68,19 @@ export class SelectedComponent implements OnInit, OnDestroy {
       this.load = false
     }, 3000)
   }
+
+  onDelete(e: Movie) {
+    this.dataBase.getUserMovies(this.user!, "selected").subscribe((res) => {
+      const arr = Object.entries(res!);
+      arr.map((el) => {
+        if(el[1].id === e.id){
+        this.dataBase.deleteData(el[0], this.user!, "selected").subscribe(() => {
+          this.onClose();
+          this.initSelectedMovies()
+        })
+        }
+      })
+    })
+
+    }
 }
