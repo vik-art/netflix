@@ -44,6 +44,8 @@
   background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
     url(../../../../assets/user-background.jpg);
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,6 +58,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   .load-more-btn {
     font-size: 20px;
     padding: 15px 40px;
@@ -74,6 +77,10 @@
   cursor: pointer;
 }
 
+.results {
+  position: absolute;
+  bottom: 0;
+}
 .movie-btn {
   display: flex;
   align-items: center;

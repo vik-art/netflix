@@ -18,7 +18,11 @@ export class MoviePageComponent {
   @Input() selectedBtnText!: string;
   @Input() deleteBtnText!: string;
   @Input() showDeleteBtn!: boolean;
+  @Input() showFavouriteBtn!: boolean;
+  @Input() showSelectedBtn!: boolean;
+
   @Output() closeWindow = new EventEmitter();
+  @Output() deleteItem = new EventEmitter();
 
   userId: string | null = localStorage.getItem('id');
   unSubscriber = new Subscription();
@@ -64,6 +68,10 @@ export class MoviePageComponent {
 
   onCloseInfo() {
    this.closeWindow.emit()
+  }
+
+  deleteMovie(item: Movie) {
+    this.deleteItem.emit(item)
   }
 }
 

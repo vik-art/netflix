@@ -6,11 +6,12 @@
         </button>
     </form>
 </div>
-<app-movie-list *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)">
+    <app-movie-list *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)">
 </app-movie-list>
-<div *ngIf="movies.length" class="loadmore-btn-container">
+<div *ngIf="movies.length" class="loadmore-btn-container"  >
     <button class="movie-btn load-more-btn" (click)="loadMoreMovies()">Load More</button>
 </div>
+<div class="results" #results></div>
 
 <app-movie-page 
     *ngIf="openPage" 
@@ -18,6 +19,8 @@
     [favouriteBtnText] = "favouriteBtnText"
     [selectedBtnText] = "selectedBtnText"
     [showDeleteBtn] = "false"
+    [showSelectedBtn] = "true"
+    [showFavouriteBtn] = "true"
     (closeWindow)="onClose()" >
 </app-movie-page>
 

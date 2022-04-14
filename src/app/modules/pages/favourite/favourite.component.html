@@ -8,11 +8,13 @@
 
 <app-movie-page 
     *ngIf="showModal" 
-    [favouriteBtnText] = "favouriteBtnText"
     [selectedBtnText] = "selectedBtnText"
     [deleteBtnText] = "deleteBtnText"
     [showDeleteBtn] = "true"
+    [showSelectedBtn] = "true"
+    [showFavouriteBtn] = "false"
     [item]="movie"
+    (deleteItem)="onDelete($event)"
     (closeWindow)="onClose()"></app-movie-page>
 
 <ngx-loading-x [show]="load">

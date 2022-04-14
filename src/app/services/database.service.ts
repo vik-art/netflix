@@ -50,17 +50,18 @@ export class DatabaseService {
     return this.http.get<Movie[]>((`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`))
       .pipe(
         map((response) => {
-          if (response) {
-          return Object.values(response)
-          } else {
-            return null;
+          return response ? response : null;
         }
-      })
+      )
     )
   }
 
 
   updateData(movie: Movie, id: string, type: string): Observable<Movie> {
     return this.http.post<Movie>(`${environment.firebaseConfig.DBurl}/users/${id}/${type}.json`, movie)
+  }
+
+  deleteData(movie: string, id: string, type: string): Observable<void> {
+    return this.http.delete<void>(`${environment.firebaseConfig.DBurl}/users/${id}/${type}/${movie}.json`)
   }
   }
