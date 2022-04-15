@@ -1,5 +1,9 @@
+
 ul,
-li {
+li,
+p,
+h1,
+h2 {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -10,17 +14,10 @@ html, ::after, ::before {
 }
 body {
   padding: 0;
-  box-sizing: border-box;
   margin: 0;
   font-size: 14px;
   color: $base-font-color;
   font-family: "Lato", sans-serif;
-}
-p,
-h1,
-h2 {
-  padding: 0;
-  margin: 0;
 }
 
 a {
@@ -33,33 +30,37 @@ img {
 }
 ::-webkit-scrollbar {
   width: 7px;
-  background-color: #000;
+  background-color: $secondary-font-color;
   scroll-behavior: smooth;
 }
 button:disabled {
-  background-color: #000;
+  background-color: $primary-button-color;
+  color: rgb(107, 107, 107);
 }
 
-.movie-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff44f;
-  color: #000;
+.btn {
+  @include center-element; 
+  background-color: $primary-button-color;
+  color: $secondary-font-color;
   font-weight: 700;
   border: none;
   font-size: 16px;
-  padding: 10px 20px;
+  padding: 20px 40px;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.5s ease-out;
+  transition: $animation;
   &:hover, &:focus {
     opacity: 0.6;
-    transition: all 0.5s ease-out;
+    transition: $animation;
   }
   img {
     width: 30px;
       height: 30px;
     margin-right: 10px;
   }
+}
+input {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid $base-font-color;
 }

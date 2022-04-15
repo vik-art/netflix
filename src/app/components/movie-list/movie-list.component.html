@@ -11,7 +11,7 @@
                 <p class="movie-info-details">Vote Average: {{movie.vote_average}}</p>
                 <p class="movie-info-details">Original Language: {{movie.original_language | uppercase}}</p>
                 <div class="button-container">
-                    <button class="movie-btn" (click)="openModal(movie.id)">
+                    <button class="btn movie-btn" (click)="openModal(movie.id)">
                         <img src="assets/check-mark.svg" alt="details" width="25" height="25">
                         Show details</button>
                 </div>

@@ -6,22 +6,22 @@
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.4);
   z-index: 100;
-  color: #fff;
+  color: $base-font-color;
 }
-
-nav {
+nav, 
+.user-nav,
+.homepage-nav {
   display: flex;
   justify-content: space-between;
+}
+nav {
   padding: 20px 80px;
   height: 100%;
   align-items: center;
 }
 
 .user-nav {
-  display: flex;
   width: 80%;
-  justify-content: space-between;
-
   li {
     text-decoration: none;
     display: inline-block;
@@ -36,8 +36,6 @@ nav {
   width: 30%;
   padding: 0;
   margin: 0;
-  display: flex;
-  justify-content: space-between;
   a:first-child {
     margin-right: 10px;
   }
@@ -48,36 +46,11 @@ nav {
 }
 .user-menu {
   display: flex;
+  justify-content: space-around;
   width: 80%;
   align-items: center;
-  justify-content: space-around;
 }
 
-.mobile-icon-close-menu {
-  position: absolute;
-  right: 40px;
-  top: 50px;
-  width: 32px;
-  height: 32px;
-}
-.mobile-icon-close-menu:before,
-.mobile-icon-close-menu:after {
-  position: absolute;
-  left: 15px;
-  content: " ";
-  height: 75px;
-  width: 7px;
-  border-radius: 3px;
-  background-color: #fff44f;
-}
-
-.mobile-icon-close-menu:before {
-  transform: rotate(45deg);
-}
-
-.mobile-icon-close-menu:after {
-  transform: rotate(-45deg);
-}
 
 .mobile-menu {
   position: absolute;
@@ -88,42 +61,29 @@ nav {
   flex-direction: column;
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
-  transition: all 0.5s ease-out;
+  transition: $animation;
   a {
     display: block;
-    color: #fff44f;
+    color: $primary-button-color;
     font-size: 28px;
     padding-top: 30px;
     padding-bottom: 30px;
-    transition: all 0.5s ease-out;
+    transition: $animation;
   }
-}
-
-
-
-.header-btn {
-  background-color: #fff44f;
-  color: #000;
-  font-weight: 700;
-  border: none;
-  font-size: 16px;
-  padding: 15px 30px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 .logo-container {
   width: 120px;
   text-align: center;
   font-family: "Dancing Script", cursive;
   font-size: 25px;
-  color: #fff;
+  color: $base-font-color;
 }
 .logo-link {
   text-decoration: none;
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: #fff;
+  color: $base-font-color;
 }
 
 @media screen and (max-width: 849px) {
@@ -132,26 +92,7 @@ nav {
   }
 
   .mobile-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .mobile-icon-line {
     display: block;
-    width: 70px;
-    height: 7px;
-    background-color: #fff44f;
-    border-radius: 3px;
-
-    &:not(:last-child) {
-      margin-bottom: 15px;
-    }
-
-    &:first-child,
-    &:last-child {
-      width: 50px;
-    }
   }
 
   .user-menu {

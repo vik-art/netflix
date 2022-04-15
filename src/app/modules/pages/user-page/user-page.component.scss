@@ -1,3 +1,6 @@
+@import "../../../../styles/components/mixins.scss";
+@import "../../../../styles/components/variables.scss";
+
 .search-user-form {
   text-align: center;
   width: 80%;
@@ -8,13 +11,12 @@
   border: none;
   cursor: pointer;
   margin-top: 20px;
-  transition: all 0.5s ease-out;
+  transition: $animation;
   :hover {
-    transition: all 0.5s ease-out;
+    transition: $animation;
     opacity: 1.1;
   }
 }
-
 
 .search-form-input {
   width: 100%;
@@ -22,8 +24,8 @@
   text-align: center;
   border: none;
   outline: none;
-  color: #fff;
-  border-bottom: 1px solid #fff;
+  color: $base-font-color;
+  border-bottom: 1px solid $base-font-color;
   font-style: italic;
   font-size: 20px;
   letter-spacing: 2px;
@@ -39,25 +41,16 @@
 }
 
 .user-container {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
-    url(../../../../assets/user-background.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
+  @include bg-image(url(../../../../assets/user-background.jpg));
+  @include center-element;
+  @include container;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .loadmore-btn-container {
-  background-color: #000;
+  @include center-element;
+  background-color: $secondary-font-color;
   padding-bottom: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   .load-more-btn {
     font-size: 20px;
@@ -66,7 +59,7 @@
 }
 .loading-container {
   margin-top: 30px;
-  color: #fff44f;
+  color: $primary-button-color;
   font-size: 18px;
   letter-spacing: 2px;
 }
@@ -80,19 +73,6 @@
 .results {
   position: absolute;
   bottom: 0;
-}
-.movie-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff44f;
-  color: #000;
-  font-weight: 700;
-  border: none;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 .results {
   position: absolute;

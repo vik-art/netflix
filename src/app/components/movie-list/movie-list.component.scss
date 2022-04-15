@@ -1,6 +1,8 @@
+@import "../../../styles/components/variables.scss";
+
 .search-results {
   width: 100%;
-  background-color: rgb(0, 0, 0);
+  background-color: $secondary-font-color;
   padding-top: 50px;
   padding-bottom: 50px;
 
@@ -33,9 +35,9 @@
   flex-direction: column;
   flex-basis: 80%;
   margin-bottom: 50px;
-  background-color: #000;
+  background-color: $secondary-font-color;
   box-shadow: 0px 5px 10px 2px rgba(168, 144, 9, 0.5) inset;
-  transition: all 0.5s ease-out;
+  transition: $animation;
   cursor: pointer;
 
   .movie-pic {
@@ -47,9 +49,12 @@
   }
 
   &:hover {
-    transition: all 0.5s ease-out;
+    transition: $animation;
     transform: scale(1.1);
   }
+}
+.movie-btn {
+  padding: 10px;
 }
 
 @media screen and (min-width: 768px) {

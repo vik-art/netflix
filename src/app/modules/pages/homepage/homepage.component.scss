@@ -1,34 +1,26 @@
+@import "../../../../styles/components/mixins.scss";
+@import "../../../../styles/components/variables.scss";
+
 .homepage-container {
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: "Lato", sans-serif;
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.8),
-      rgba(0, 0, 0, 0.8)
-    ),
-    url(../../../../assets/homepage-background.jpg);
+  @include bg-image(url(../../../../assets/homepage-background.jpg));
+  @include container;
 }
 .homepage-content-container {
+  @include center-element;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
 }
 
 .homepage-title {
   margin: 0;
-  color: #fff;
+  color: $base-font-color;
   font-size: 46px;
   text-align: center;
 }
 
 .homepage-text {
-  color: #fff;
+  color: $base-font-color;
   text-align: center;
   line-height: 1.5;
 }

@@ -8,22 +8,21 @@
         </div>
         <div class="user-menu" *ngIf="auth.isAuthenticated() else homePage">
             <app-menu-list [menuList]="menuListItems"></app-menu-list>
-            <button class="header-btn logout-btn" (click)="logOut($event)">Log Out</button>
+            <button class="btn logout-btn" (click)="logOut($event)">Log Out</button>
         </div>
     </nav>
 </header>
 
 <ng-template #homePage>
     <div class="homepage-nav">
-        <a class="header-btn" routerLink="/register">Sign Up</a>
-        <a class="header-btn" routerLink="/login">Log In</a>
+        <a class="btn" routerLink="/register">Sign Up</a>
+        <a class="btn" routerLink="/login">Log In</a>
     </div>
     <div class="mobile-icon" *ngIf="!mobileMenu" (click)="toggleMenu()" [@showMenu]="stateName">
-        <div class="mobile-icon-line"></div>
-        <div class="mobile-icon-line"></div>
-        <div class="mobile-icon-line"></div>
+        <img src="assets/menu.png" alt="menu">
     </div>
     <div class="mobile-icon-close-menu" *ngIf="closeMenu" (click)="toggleMenu()">
+        <img src="assets/close.png" alt="close">
     </div>
     <div class="mobile-menu" *ngIf="mobileMenu" [ngClass]="{showMenu: mobileMenu, hideMenu: !mobileMenu}">
         <a class="mobile-menu-item" (click)="onRegister()">Sign Up</a>

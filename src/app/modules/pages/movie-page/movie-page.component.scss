@@ -1,37 +1,33 @@
+@import "../../../../styles/components/mixins.scss";
+@import "../../../../styles/components/variables.scss";
+
 .movie-page-container {
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  @include center-element;
+  @include container;
+  @include fixed-element;
   background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s ease-out;
+  transition: $animation;
   z-index: 111;
   .close-icon-container {
+    @include center-element;
     width: 70px;
     height: 70px;
-    border: 2px solid #fff;
+    border: 2px solid $base-font-color;
     border-radius: 50%;
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     top: -35px;
     right: -35px;
     z-index: 10;
-    background-color: #000;
+    background-color: $secondary-font-color;
     cursor: pointer;
-    transition: all 0.5s ease-out;
+    transition: $animation;
     &:hover {
-      transition: all 0.5s ease-out;
+      transition: $animation;
       opacity: 0.6;
     }
   }
   .movie-page-info {
-    transition: all 0.5s ease-out;
+    transition: $animation;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -54,11 +50,11 @@
       display: flex;
       font-size: 20px;
       line-height: 1.4;
-      color: #fff44f;
+      color: $primary-button-color;
       p {
         span {
           font-size: 20px;
-          color: #fff;
+          color: $base-font-color;
         }
         &:not(:last-child) {
           margin-bottom: 10px;
@@ -71,17 +67,20 @@
         text-align: justify;
         height: 200px;
         padding: 10px;
-        color: #fff;
+        color: $base-font-color;
         overflow-y: scroll;
         scrollbar-width: 5px;
         line-height: 1.5;
         &::-webkit-scrollbar {
           width: 7px;
-          background-color: #000;
+          background-color: $secondary-font-color;
         }
       }
     }
   }
+}
+.page-btn {
+  padding: 10px;
 }
 
  

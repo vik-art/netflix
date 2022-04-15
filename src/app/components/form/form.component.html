@@ -27,6 +27,8 @@
                 <div class="validation" *ngIf="form.get('password')?.hasError('pattern')">Password is invalid</div>
             </div>
         </div>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-success">Submit</button>
+        <div class="form-btn">
+        <button type="submit" [disabled]="form.invalid" class="btn">Submit</button>
+        </div>
     </form>
 </div>
