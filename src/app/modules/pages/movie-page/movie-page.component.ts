@@ -40,7 +40,7 @@ export class MoviePageComponent {
 
   addToSelected(movie: Movie) {
     this.addMovie(movie, "selected");
-    this.selectedBtnText = "Added ot selected";
+    this.selectedBtnText = "Marked as selected";
   }
 
   addItem(movie: Movie, type: string) {
