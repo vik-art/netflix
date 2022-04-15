@@ -1,10 +1,8 @@
-input {
-  border: none;
-  outline: none;
-  border-bottom: 2px solid #fff;
-}
+@import "../../../styles/components/variables.scss";
+@import "../../../styles/components/mixins.scss";
+
 .form-title {
-  color: yellow;
+  color: $primary-button-color;
 }
 input.ng-dirty.ng-invalid {
   border-bottom: solid #ff0000 2px;
@@ -13,20 +11,8 @@ input.ng-dirty.ng-valid {
   border-bottom: solid green 2px;
 }
 .login-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url(../../../assets/registration-background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  @include bg-image(url(../../../assets/registration-background.jpg));
+  @include fixed-element;
 }
 .login-form {
   max-width: 480px;
@@ -35,7 +21,7 @@ input.ng-dirty.ng-valid {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #000;
+  background-color: $secondary-font-color;
   border-radius: 5px;
   margin: 0 auto;
   padding: 50px 50px;
@@ -49,44 +35,38 @@ input.ng-dirty.ng-valid {
       height: 50px;
       font-size: 18px;
       background-color: transparent;
-      color: #fff;
+      color: $base-font-color;
     }
   }
 }
-.btn {
-  display: inline-block;
+.form-btn {
   margin-top: 20px;
-  width: 100px;
-  height: 40px;
-  border: none;
-  background-color: yellow;
+  width: 40%;
 }
 .validation {
   color: red;
 }
 .alert {
+  @include center-element;
   width: 300px;
   padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   top: 15%;
   right: 15%;
   background-color: rgba(252, 9, 9, 0.7);
-  color: #fff;
+  color: $base-font-color;
   z-index: 100;
 }
 .login-page-link {
   margin-bottom: 20px;
-  border-bottom: 1px solid yellow;
+  border-bottom: 1px solid $primary-button-color;
   .login-page-link-home {
     font-size: 24px;
-    transition: all 0.5s ease-out;
+    transition: $animation;
     &:hover,
     &:focus {
-      transition: all 0.5s ease-out;
-      color: yellow;
+      transition: $animation;
+      color: $primary-button-color;
     }
   }
 }

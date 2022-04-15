@@ -9,7 +9,7 @@
     <app-movie-list *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)">
 </app-movie-list>
 <div *ngIf="movies.length" class="loadmore-btn-container"  >
-    <button class="movie-btn load-more-btn" (click)="loadMoreMovies()">Load More</button>
+    <button class="btn load-more-btn" (click)="loadMoreMovies()">Load More</button>
 </div>
 <div class="results" #results></div>
 
