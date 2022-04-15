@@ -69,6 +69,7 @@
       flex-basis: 65%;
       p {
         text-align: justify;
+        height: 200px;
         padding: 10px;
         color: #fff;
         overflow-y: scroll;
@@ -88,6 +89,11 @@
   display: flex;
   justify-content: space-around;
   width: 90%;
+}
+@media screen and (max-width: 767px) {
+  .movie-details-info {
+    flex-direction: column;
+  }
 }
 @media screen and (max-width: 480px) {
   .movie-overview p {
