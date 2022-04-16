@@ -1,22 +1,49 @@
+<div id="form"></div>
 <div class="user-container">
-    <form [formGroup]="form" (ngSubmit)="submit()" class="search-user-form">
-        <input type="text" formControlName="query" placeholder="Find your favourite TV-show" class="search-form-input">
-        <button type="submit" class="search-form-button">
-            <img src="assets/search-icon.svg" alt="Search" width="40" height="40">
-        </button>
+    <form
+        [formGroup]="form" 
+        (ngSubmit)="submit()" 
+        class="search-user-form">
+            <input 
+                type="text" 
+                formControlName="query" 
+                placeholder="Find your favourite TV-show"
+                class="search-form-input">
+                    <button 
+                    type="submit" 
+                    class="search-form-button">
+                    <img src="assets/search-icon.svg" alt="Search" width="40" height="40">
+                    </button>
     </form>
-    <div class="results-notification" *ngIf="resultsNotification" (click)="scrollDown('#movies')">
-        <p>There are some results on your search query
-            <img src="assets/arrow-down.png" alt="Down">
-        </p>
+    <div 
+        class="results-notification" 
+        *ngIf="resultsNotification" 
+        (click)="onScroll('#movies')">
+            <p>There are some results on your search query "{{searchQuery | uppercase}}"
+                <img src="assets/arrow-down.png" alt="Down">
+            </p>
     </div>
 </div>
-    <app-movie-list id="movies" *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)">
-</app-movie-list>
-<div *ngIf="movies.length" class="loadmore-btn-container"  >
-    <button class="btn load-more-btn" (click)="loadMoreMovies()">Load More</button>
+<div class="results-container" *ngIf="movies.length">
+    <app-movie-list 
+        id="movies"  
+        [movies]="movies" 
+        (openMoviePage)="openMoviePage($event)">
+    </app-movie-list>
+    <div 
+        class="arrow-up"
+        (click)="onScroll('#form')">
+        <img src="assets/arrow-down.png" alt="up">
+    </div>
+    <div 
+        class="loadmore-btn-container">
+    <button 
+        class="btn load-more-btn" 
+        (click)="loadMoreMovies()">
+        Load More
+    </button>
 </div>
-<div class="results" #results></div>
+</div>
 
 <app-movie-page 
     *ngIf="openPage" 

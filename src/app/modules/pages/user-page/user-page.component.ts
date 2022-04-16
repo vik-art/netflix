@@ -69,7 +69,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
           this.page++;
         } else {
           this.alertService.danger("There are no results on your search query");
-          this.form.reset()
+          this.form.reset();
         }
       }))
   }
@@ -93,9 +93,9 @@ export class UserPageComponent implements OnInit, OnDestroy {
     this.unSubscriber.add(this.movieService.getById(event)
       .subscribe((movie: Movie) => {
         this.showLoading();
-        this.openPage = true;
          this.movie = movie;
          this.router.navigate(['/user'], {queryParams: {query: this.searchQuery, movie: event}})
+         this.openPage = true;
        }))    
   }
 
@@ -112,7 +112,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
     }, 3000)
   } 
 
-  scrollDown(el: string) {
+  onScroll(el: string) {
     document.querySelector(el)?.scrollIntoView({behavior: 'smooth', block: 'start'})
   }
 }
