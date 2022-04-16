@@ -19,7 +19,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
   movie!: Movie;
   openPage: boolean = false;
   favouriteBtnText = "Add to favourite";
-  selectedBtnText = "Mark as selected"
+  selectedBtnText = "Mark as selected";
+  resultsNotification: boolean = false;
 
   public load: boolean = false;
 
@@ -62,12 +63,13 @@ export class UserPageComponent implements OnInit, OnDestroy {
       .subscribe((movies) => {
         if (movies.results?.length) {
           this.showLoading();
+          this.resultsNotification = true;
           this.movies = movies.results as Array<Movie>;
           this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
           this.page++;
         } else {
           this.alertService.danger("There are no results on your search query");
-          this.form.reset()
+          this.form.reset();
         }
       }))
   }
@@ -91,9 +93,9 @@ export class UserPageComponent implements OnInit, OnDestroy {
     this.unSubscriber.add(this.movieService.getById(event)
       .subscribe((movie: Movie) => {
         this.showLoading();
-        this.openPage = true;
          this.movie = movie;
          this.router.navigate(['/user'], {queryParams: {query: this.searchQuery, movie: event}})
+         this.openPage = true;
        }))    
   }
 
@@ -109,4 +111,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
       this.load = false
     }, 3000)
   } 
+
+  onScroll(el: string) {
+    document.querySelector(el)?.scrollIntoView({behavior: 'smooth', block: 'start'})
+  }
 }
