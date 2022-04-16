@@ -19,7 +19,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
   movie!: Movie;
   openPage: boolean = false;
   favouriteBtnText = "Add to favourite";
-  selectedBtnText = "Mark as selected"
+  selectedBtnText = "Mark as selected";
+  resultsNotification: boolean = false;
 
   public load: boolean = false;
 
@@ -62,6 +63,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
       .subscribe((movies) => {
         if (movies.results?.length) {
           this.showLoading();
+          this.resultsNotification = true;
           this.movies = movies.results as Array<Movie>;
           this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
           this.page++;
@@ -109,4 +111,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
       this.load = false
     }, 3000)
   } 
+
+  scrollDown(el: string) {
+    document.querySelector(el)?.scrollIntoView({behavior: 'smooth', block: 'start'})
+  }
 }

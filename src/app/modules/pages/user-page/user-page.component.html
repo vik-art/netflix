@@ -5,8 +5,13 @@
             <img src="assets/search-icon.svg" alt="Search" width="40" height="40">
         </button>
     </form>
+    <div class="results-notification" *ngIf="resultsNotification" (click)="scrollDown('#movies')">
+        <p>There are some results on your search query
+            <img src="assets/arrow-down.png" alt="Down">
+        </p>
+    </div>
 </div>
-    <app-movie-list *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)">
+    <app-movie-list id="movies" *ngIf="movies.length" [movies]="movies" (openMoviePage)="openMoviePage($event)">
 </app-movie-list>
 <div *ngIf="movies.length" class="loadmore-btn-container"  >
     <button class="btn load-more-btn" (click)="loadMoreMovies()">Load More</button>

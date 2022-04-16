@@ -78,3 +78,20 @@
   position: absolute;
   bottom: 0;
 }
+.results-notification {
+  margin-top: 150px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  color: $primary-button-color;
+  transition: $animation;
+  img {
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+    transition: $animation;
+  }
+}
