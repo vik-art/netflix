@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 
 import { HEADER_MENU_LIST } from 'src/app/common/constants/header-menu-list';
 import { ImenuItem } from 'src/app/common/interfaces/menu.interface';
@@ -11,18 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  animations: [
-    trigger("showMenu", [
-      state('show', style({
-        opacity: 1
-      })),
-      state('hide', style({
-        opacity: 0
-      })),
-      transition("show => hide", animate('600ms ease-out')),
-      transition("hide => show", animate('1000ms ease-out'))
-    ])
-  ]
 })
 export class HeaderComponent implements OnInit {
   
