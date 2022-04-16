@@ -49,7 +49,7 @@
     .movie-details-info {
       display: flex;
       font-size: 20px;
-      line-height: 1.4;
+      line-height: 1.2;
       color: $primary-button-color;
       p {
         span {
@@ -64,17 +64,11 @@
     .movie-overview {
       flex-basis: 65%;
       p {
+        @include scroll;
         text-align: justify;
         height: 200px;
         padding: 10px;
         color: $base-font-color;
-        overflow-y: scroll;
-        scrollbar-width: 5px;
-        line-height: 1.5;
-        &::-webkit-scrollbar {
-          width: 7px;
-          background-color: $secondary-font-color;
-        }
       }
     }
   }
@@ -82,7 +76,6 @@
 .page-btn {
   padding: 10px;
 }
-
  
 .button-container {
   display: flex;
