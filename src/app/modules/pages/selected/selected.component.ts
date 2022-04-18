@@ -42,8 +42,12 @@ export class SelectedComponent implements OnInit, OnDestroy {
     this.unSubscriber.add(
       this.dataBase.getUserMovies(this.user!, "selected")
       .subscribe((res) => {
-        const arr = Object.values(res!)
-        arr ? this.movies = arr : this.noResults = true;
+        if(res) {
+        const arr = Object.values(res!);
+        this.movies = arr;
+        } else {
+          this.noResults = true;
+        }
         }))
   }
 

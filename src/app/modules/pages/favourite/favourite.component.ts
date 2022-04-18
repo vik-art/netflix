@@ -42,8 +42,12 @@ export class FavouriteComponent implements OnInit, OnDestroy {
   initFavouritePage() {
   this.unSubscriber.add(this.dataBase.getUserMovies(this.user!, "favourite")
       .subscribe((res) => {
+        if(res){
         const arr = Object.values(res!);
-        arr ? this.movies = arr :  this.noResults = true;
+        this.movies = arr;
+        } else {
+          this.noResults = true;
+        }
       }))
   }
 
