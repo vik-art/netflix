@@ -11,6 +11,7 @@ import { NotFoundPageComponent } from "./modules/pages/not-found-page/not-found-
 import { PopularComponent } from "./modules/pages/popular/popular.component";
 import { SelectedComponent } from "./modules/pages/selected/selected.component";
 import { UserPageComponent } from "./modules/pages/user-page/user-page.component";
+import { MovieBudgetPipe } from "./modules/pipes/movie-budget.pipe";
 import { MovieService } from "./services/movie.service";
 import { SharedModule } from "./shared.module";
 
@@ -59,7 +60,8 @@ import { SharedModule } from "./shared.module";
         SelectedComponent,
         MoviePageComponent,
         MovieListComponent,
-        PopularComponent
+        PopularComponent,
+        MovieBudgetPipe
     ],
     providers: [
         AuthGuard,
