@@ -12,6 +12,7 @@ import { PopularComponent } from "./modules/pages/popular/popular.component";
 import { SelectedComponent } from "./modules/pages/selected/selected.component";
 import { UserPageComponent } from "./modules/pages/user-page/user-page.component";
 import { MovieBudgetPipe } from "./modules/pipes/movie-budget.pipe";
+import { RuntimePipe } from "./modules/pipes/runtime.pipe";
 import { MovieService } from "./services/movie.service";
 import { SharedModule } from "./shared.module";
 
@@ -61,7 +62,8 @@ import { SharedModule } from "./shared.module";
         MoviePageComponent,
         MovieListComponent,
         PopularComponent,
-        MovieBudgetPipe
+        MovieBudgetPipe,
+        RuntimePipe
     ],
     providers: [
         AuthGuard,
