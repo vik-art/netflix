@@ -1,6 +1,7 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     exports: [
         HttpClientModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatIconModule
     ],
     providers: []
 })
