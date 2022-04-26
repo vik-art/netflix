@@ -1,106 +1,88 @@
 @import "../../../../styles/components/mixins.scss";
 @import "../../../../styles/components/variables.scss";
 
-.search-user-form {
-  text-align: center;
-  width: 80%;
-}
-
-.search-form-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: $animation;
-  :hover {
-    transition: $animation;
-    opacity: 1.1;
-  }
-}
-
-.search-form-input {
-  width: 100%;
-  background-color: transparent;
-  text-align: center;
-  border: none;
-  outline: none;
-  color: $base-font-color;
-  border-bottom: 1px solid $base-font-color;
-  font-style: italic;
-  font-size: 20px;
-  letter-spacing: 2px;
-}
-
-@media screen and (min-width: 768px) {
-  .search-form-input {
-    width: 400px;
-  }
-  .search-form-button {
-    margin-top: 0;
-  }
-}
 
 .user-container {
   @include bg-image(url(../../../../assets/user-background.jpg));
   @include center-element;
   @include container;
   flex-direction: column;
-}
-
-.loadmore-btn-container {
-  @include center-element;
-  background-color: $secondary-font-color;
-  padding-bottom: 100px;
-  position: relative;
-  .load-more-btn {
-    font-size: 20px;
-    padding: 15px 40px;
+  &-form {
+    @include center-element;
+    width: 100%;
+    &-input {
+      width: 80%;
+      font-size: 1.2rem;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      text-align: center;
+      border-bottom: 1px solid $base-font-color;
+      color: $base-font-color;
+      letter-spacing: 3px;
+    }
+    &-button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: $base-font-color;
+      cursor: pointer;
+      .mat-icon {
+        font-size: 2.5rem;
+        transition: $animation;
+        &:hover, &:focus {
+        transform: scale(1.2);
+        transition: $animation;
+        }
+      }
+    }
   }
 }
-.results-container {
-  background-color: $secondary-font-color;
-}
-.loading-container {
-  margin-top: 30px;
-  color: $primary-button-color;
-  font-size: 18px;
-  letter-spacing: 2px;
-}
-.arrow {
-  position: fixed;
-  right: 50px;
-  bottom: 80px;
-  cursor: pointer;
-}
-
 .results-notification {
- position: absolute;
- bottom: 15%;
-  cursor: pointer;
+  position: absolute;
+  bottom: 15%;
+}
+.notification-item {
   text-align: center;
-  font-size: 20px;
-  color: $primary-button-color;
-  transition: $animation;
-  img {
+  font-size: 1.3rem;
+  .mat-icon {
+    @include center-element;
+    width: 50px;
+    height: 50px;
+    border: 1px solid $base-font-color;
+    border-radius: 50%;
     margin: 0 auto;
-    margin-top: 10px;
   }
-  &:hover,
-  &:focus {
-    opacity: 0.5;
-    transition: $animation;
-  }
+}
+.icon {
+  margin-top: 20px;
+  transition: $animation;
+  cursor: pointer;
+    :hover {
+      opacity: 0.5;
+      transition: $animation;
+    }
 }
 .arrow-up {
-  transform: rotate(180deg);
-  display: inline-block;
-  background-color: transparent;
   position: sticky;
-  bottom: 30px;
-  z-index: 100;
-  left: 80%;
+  bottom: 15%;
+  left: 90%;
+  font-size: 2.5rem;
   cursor: pointer;
-   img {
-     display: inline-block;
-   }
+  @include center-element;
+  width: 50px;
+  height: 50px;
+  border: 2px solid $base-font-color;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+@media screen and(min-width: 768px) {
+  .user-container-form-input {
+    width: 50%;
+  }
+}
+@media screen and(min-width: 1200px) {
+  .user-container-form-input {
+    width: 30%;
+  }
 }
