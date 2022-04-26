@@ -1,31 +1,52 @@
 <header class="homepage-header">
-    <nav>
-        <div class="logo-container">
-            <a routerLink="/user" class="logo-link">
+    <nav class="homepage-nav">
+        <div class="homepage-logo">
+            <a routerLink="/user" class="homepage-logo-link">
                 <img src="assets/movie-logo.png" alt="logo" width="70" height="70" />
-                Your Shows
+               Your Shows
             </a>
         </div>
-        <div class="user-menu" *ngIf="auth.isAuthenticated() else homePage">
+        <div class="homepage-user-menu" *ngIf="auth.isAuthenticated() else homePage">
             <app-menu-list [menuList]="menuListItems"></app-menu-list>
-            <button class="btn logout-btn" (click)="logOut($event)">Log Out</button>
+            <button 
+                class="btn logout-btn" 
+                (click)="logOut($event)">
+                    <mat-icon>exit_to_app</mat-icon> 
+                        Log Out
+            </button>
+        
         </div>
     </nav>
 </header>
 
 <ng-template #homePage>
-    <div class="homepage-nav">
-        <a class="btn" routerLink="/register">Sign Up</a>
-        <a class="btn" routerLink="/login">Log In</a>
+    <div class="homepage-buttons">
+        <a 
+            class="btn" 
+            routerLink="/register">
+            Sign Up</a>
+        <a 
+            class="btn" 
+            routerLink="/login">
+            Log In</a>
     </div>
-    <div class="mobile-icon" *ngIf="!mobileMenu" (click)="toggleMenu()">
-        <img src="assets/menu.png" alt="menu">
-    </div>
-    <div class="mobile-icon close-menu" *ngIf="closeMenu" (click)="toggleMenu()">
-        <img src="assets/close.png" alt="close">
-    </div>
-    <div class="mobile-menu" *ngIf="mobileMenu" [ngClass]="{showMenu: mobileMenu, hideMenu: !mobileMenu}">
-        <a class="mobile-menu-item" (click)="onRegister()">Sign Up</a>
-        <a class="mobile-menu-item" (click)="onLogin()">Log In</a>
+        <mat-icon class="menu-mat-icon"
+            *ngIf="!mobileMenu" 
+            (click)="toggleMenu()">
+        menu</mat-icon>
+        <mat-icon class="menu-mat-icon"
+            *ngIf="closeMenu" 
+            (click)="toggleMenu()">
+        close</mat-icon>
+    <div class="homepage-mobile-menu" 
+            *ngIf="mobileMenu">
+        <a 
+            class="homepage-mobile-menu-item" 
+            (click)="onRegister()">
+            Sign Up</a>
+        <a 
+        class="homepage-mobile-menu-item" 
+            (click)="onLogin()">
+            Log In</a>
     </div>
 </ng-template>

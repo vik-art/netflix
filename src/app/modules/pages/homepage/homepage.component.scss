@@ -1,26 +1,27 @@
 @import "../../../../styles/components/mixins.scss";
 @import "../../../../styles/components/variables.scss";
 
-.homepage-container {
+.homepage {
+  &-container {
   @include bg-image(url(../../../../assets/homepage-background.jpg));
   @include container;
-}
-.homepage-content-container {
-  @include center-element;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-}
-
-.homepage-title {
-  margin: 0;
-  color: $base-font-color;
-  font-size: 46px;
-  text-align: center;
-}
-
-.homepage-text {
-  color: $base-font-color;
-  text-align: center;
-  line-height: 1.5;
+  }
+  &-content-container {
+    @include center-element;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+  &-title {
+    margin: 0;
+    color: $base-font-color;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  &-text {
+    color: $base-font-color;
+    text-align: center;
+    line-height: 1.2;
+    font-size: 1.2rem;
+  }
 }
