@@ -1,6 +1,7 @@
 @import "../../../styles/components/variables.scss";
 
-.homepage-header {
+.homepage {
+ &-header {
   width: 100%;
   position: fixed;
   margin: 0 auto;
@@ -8,6 +9,9 @@
   z-index: 100;
   color: $base-font-color;
 }
+}
+
+
 nav, 
 .user-nav,
 .homepage-nav {
@@ -50,12 +54,9 @@ nav {
   width: 80%;
   align-items: center;
 }
-
-
 .mobile-menu {
   position: absolute;
   width: 100%;
-  top: 140px;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -85,19 +86,21 @@ nav {
   flex-direction: column;
   color: $base-font-color;
 }
+.mat-icon {
+  display: none;
+}
 
 @media screen and (max-width: 849px) {
   .homepage-nav {
     display: none;
   }
-
-  .mobile-icon,
-  .close-menu {
+  .mat-icon {
     display: block;
-    transition: $animation;
-    opacity: 0;
-    animation: showMenu 3s forwards;
-  }
+    color: #FFF44F;
+    font-size: 4rem;
+    width: 50px;
+    height: 50px;
+  } 
 
   .user-menu {
     flex-direction: column;
@@ -120,11 +123,6 @@ nav {
     margin-top: 30px;
   }
   .mobile-menu {
-    top: 200px;
+    top: 160px;
   }
-}
-
-@keyframes showMenu {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
 }

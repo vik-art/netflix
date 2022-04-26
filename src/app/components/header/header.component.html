@@ -15,17 +15,36 @@
 
 <ng-template #homePage>
     <div class="homepage-nav">
-        <a class="btn" routerLink="/register">Sign Up</a>
-        <a class="btn" routerLink="/login">Log In</a>
+        <a 
+            class="btn" 
+            routerLink="/register">
+            Sign Up</a>
+        <a 
+            class="btn" 
+            routerLink="/login">
+            Log In</a>
     </div>
-    <div class="mobile-icon" *ngIf="!mobileMenu" (click)="toggleMenu()">
-        <img src="assets/menu.png" alt="menu">
-    </div>
-    <div class="mobile-icon close-menu" *ngIf="closeMenu" (click)="toggleMenu()">
-        <img src="assets/close.png" alt="close">
-    </div>
-    <div class="mobile-menu" *ngIf="mobileMenu" [ngClass]="{showMenu: mobileMenu, hideMenu: !mobileMenu}">
-        <a class="mobile-menu-item" (click)="onRegister()">Sign Up</a>
-        <a class="mobile-menu-item" (click)="onLogin()">Log In</a>
+        <mat-icon 
+            *ngIf="!mobileMenu" 
+            (click)="toggleMenu()">
+        menu</mat-icon>
+        <mat-icon 
+            *ngIf="closeMenu" 
+            (click)="toggleMenu()">
+        close</mat-icon>
+    <div class="mobile-menu" 
+            *ngIf="mobileMenu" 
+            [ngClass]="{
+                showMenu: mobileMenu, 
+                hideMenu: !mobileMenu
+            }">
+        <a 
+            class="mobile-menu-item" 
+            (click)="onRegister()">
+            Sign Up</a>
+        <a 
+            class="mobile-menu-item" 
+            (click)="onLogin()">
+            Log In</a>
     </div>
 </ng-template>
