@@ -1,20 +1,26 @@
 <header class="homepage-header">
-    <nav>
-        <div class="logo-container">
-            <a routerLink="/user" class="logo-link">
+    <nav class="homepage-nav">
+        <div class="homepage-logo">
+            <a routerLink="/user" class="homepage-logo-link">
                 <img src="assets/movie-logo.png" alt="logo" width="70" height="70" />
-                Your Shows
+               Your Shows
             </a>
         </div>
-        <div class="user-menu" *ngIf="auth.isAuthenticated() else homePage">
+        <div class="homepage-user-menu" *ngIf="auth.isAuthenticated() else homePage">
             <app-menu-list [menuList]="menuListItems"></app-menu-list>
-            <button class="btn logout-btn" (click)="logOut($event)">Log Out</button>
+            <button 
+                class="btn logout-btn" 
+                (click)="logOut($event)">
+                    <mat-icon>exit_to_app</mat-icon> 
+                        Log Out
+            </button>
+        
         </div>
     </nav>
 </header>
 
 <ng-template #homePage>
-    <div class="homepage-nav">
+    <div class="homepage-buttons">
         <a 
             class="btn" 
             routerLink="/register">
@@ -24,26 +30,22 @@
             routerLink="/login">
             Log In</a>
     </div>
-        <mat-icon 
+        <mat-icon class="menu-mat-icon"
             *ngIf="!mobileMenu" 
             (click)="toggleMenu()">
         menu</mat-icon>
-        <mat-icon 
+        <mat-icon class="menu-mat-icon"
             *ngIf="closeMenu" 
             (click)="toggleMenu()">
         close</mat-icon>
-    <div class="mobile-menu" 
-            *ngIf="mobileMenu" 
-            [ngClass]="{
-                showMenu: mobileMenu, 
-                hideMenu: !mobileMenu
-            }">
+    <div class="homepage-mobile-menu" 
+            *ngIf="mobileMenu">
         <a 
-            class="mobile-menu-item" 
+            class="homepage-mobile-menu-item" 
             (click)="onRegister()">
             Sign Up</a>
         <a 
-            class="mobile-menu-item" 
+        class="homepage-mobile-menu-item" 
             (click)="onLogin()">
             Log In</a>
     </div>
