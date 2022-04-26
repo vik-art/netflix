@@ -26,22 +26,18 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   get stateName() {
     return this.show ? "show" : "hide";
   }
   toggle() {
     this.show = !this.show;
   }
-
   logOut(event: Event) {
     event.preventDefault()
     this.auth.logout();
     this.alert.success('You have logged out!')
     this.route.navigate(['/'])
   }
-
-
   toggleMenu() {
     this.mobileMenu = !this.mobileMenu;
     this.closeMenu = !this.closeMenu;
