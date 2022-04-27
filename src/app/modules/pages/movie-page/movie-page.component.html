@@ -1,10 +1,10 @@
-<div class="movie-page-container">
-    <div class="movie-page-info" style="background-image:linear-gradient(
+<div class="page-container">
+    <div class="page-container-card" style="background-image:linear-gradient(
       to right,
       rgba(0, 0, 0, 0.6),
       rgba(0, 0, 0, 0.6)
     ), url(https://image.tmdb.org/t/p/original{{item.backdrop_path}})">
-        <div class="movie-title">
+        <div class="page-container-card-title">
             <h1>{{item.title}}</h1>
             <div class="adult-block" *ngIf="item.adult">
                 <img src="assets/adult-sign.svg" alt="adult" width="30" height="30">
@@ -13,9 +13,7 @@
             <button class="close-icon-container" (click)="onCloseInfo()">
                 <mat-icon>clear</mat-icon>
             </button>
-        </div>
-        <div class="movie-details-info">
-            <div>
+        <div class="page-container-card-info">
                 <p>
                     <strong>
                         Release Date: </strong>
@@ -69,7 +67,8 @@
                     <span>{{item.runtime | runtime}}</span>
                 </p>
             </div>
-            <div class="movie-overview">
+            </div>
+            <div class="page-container-card-overview">
                 <p>{{item.overview}}</p>
                 <div class="button-container">
                     <button 
@@ -93,6 +92,5 @@
                             {{deleteBtnText}}</button>
                 </div>
             </div>
-        </div>
-    </div>
+            </div>
 </div>
