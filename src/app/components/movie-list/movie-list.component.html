@@ -9,11 +9,11 @@
                 <p class="results-card-container-info-details"><b>Release Date:</b> {{movie.release_date | date}}</p>
                 <p class="results-card-container-info-details"><b>Vote Average:</b> {{movie.vote_average}}</p>
                 <p class="results-card-container-info-details"><b>Original Language:</b> {{movie.original_language | uppercase}}</p>
-            </div>
-            <div class="button-container">
-                <button class="btn movie-btn results-btn" (click)="openModal(movie.id)">
-                    <mat-icon>check_box</mat-icon>
-                    Show details</button>
+                <div class="button-container">
+                    <button class="btn movie-btn results-btn" (click)="openModal(movie.id)">
+                        <mat-icon>check_box</mat-icon>
+                        Show details</button>
+                </div>
             </div>
 </div>
 
