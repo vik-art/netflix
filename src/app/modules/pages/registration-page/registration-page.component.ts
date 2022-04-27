@@ -37,7 +37,7 @@ export class RegistrationPageComponent implements OnDestroy {
         email: event.email,
       }
       this.database.createUser(user).subscribe((res) => { 
-        localStorage.setItem('id', res.name)
+        localStorage.setItem('id', res.id)
       })
     }))
     }

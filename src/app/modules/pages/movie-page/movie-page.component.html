@@ -11,7 +11,7 @@
             </div>
             <small>{{item.tagline}}</small>
             <button class="close-icon-container" (click)="onCloseInfo()">
-                <img src="assets/close-icon.svg" alt="" width="60" height="60">
+                <mat-icon>clear</mat-icon>
             </button>
         </div>
         <div class="movie-details-info">
@@ -77,19 +77,19 @@
                         *ngIf="showFavouriteBtn"
                         (click)="addToFavourite(item)"
                         >
-                        <img src="assets/liked-icon.svg" alt="Like">
+                        <mat-icon>favorite</mat-icon>
                         {{favouriteBtnText}}</button>
                     <button 
                         class="btn page-btn" 
                         *ngIf="showSelectedBtn"
                         (click)="addToSelected(item)">
-                        <img src="assets/selected-icon.svg" alt="Selected">
+                        <mat-icon>stars</mat-icon>
                         {{selectedBtnText}}</button>
                     <button 
                         class="btn page-btn" 
                         *ngIf="showDeleteBtn"
                         (click)="deleteMovie(item)">
-                            <img src="assets/delete-icon.svg" alt="Deleted">
+                        <mat-icon>delete_sweep</mat-icon>
                             {{deleteBtnText}}</button>
                 </div>
             </div>
