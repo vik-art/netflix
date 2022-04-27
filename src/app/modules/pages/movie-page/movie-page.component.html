@@ -6,9 +6,6 @@
     ), url(https://image.tmdb.org/t/p/original{{item.backdrop_path}})">
         <div class="page-container-card-title">
             <h1>{{item.title}}</h1>
-            <div class="adult-block" *ngIf="item.adult">
-                <img src="assets/adult-sign.svg" alt="adult" width="30" height="30">
-            </div>
             <small>{{item.tagline}}</small>
             <button class="close-icon-container" (click)="onCloseInfo()">
                 <mat-icon>clear</mat-icon>

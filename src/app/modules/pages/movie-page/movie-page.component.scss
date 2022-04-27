@@ -17,11 +17,15 @@
     padding: 50px 20px;
     font-size: 1.3rem;
     line-height: 1.5;
+    box-shadow: 0px 5px 10px 2px rgba(168, 144, 9, 0.5) inset;
     &-overview>p {
       display: none;
     }
     &-title>h1 {
       color: $primary-button-color;
+    }
+    &-info strong {
+        color: $primary-button-color;
     }
   }
   }
@@ -35,6 +39,12 @@
     border: 1px solid $base-font-color;
     border-radius: 50%;
     color: $base-font-color;
+    cursor: pointer;
+    transition: $animation;
+    &:hover {
+      opacity: 0.5;
+      transition: $animation;
+    }
   }
   .button-container {
     margin-top: 20px;
@@ -66,7 +76,8 @@
 @media screen and(min-width: 1200px) {
   .page-container-card {
     width: 60%;
-    padding: 100px 40px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
   .button-container {
     display: flex;

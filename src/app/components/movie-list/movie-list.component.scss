@@ -16,8 +16,6 @@
       }
     }
   &-info {
-    padding: 20px;
-    height: 150px;
     &-title {
       color: $primary-button-color;
       font-size: 1.5rem;
@@ -29,11 +27,16 @@
   }
 }
 
-.button-container {
-  padding: 20px;
-}
-  &-btn {
+.button-container  {
     margin: 0 auto;
+    margin-top: 20px;
+    .results-btn {
+      width: 200px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
@@ -42,13 +45,38 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding-top: 50px;
     &-card-container {
-      flex-basis: 45%;
+      flex-basis: 48%;
     }
+    .results-card-container {
+      display: flex;
+      height: 300px;
+      &-image {
+        flex-basis: 50%;
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      &-info {
+        padding-left: 10px;
+        padding-right: 10px;
+        flex-basis: 50%;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    }
+  
+  .button-container {
+    margin: 0;
   }
+}
 }
 @media screen and(min-width: 1200px) {
   .results-card-container {
-    flex-basis: 22%;
+    flex-basis: 30%;
   }
 }
