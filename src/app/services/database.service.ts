@@ -14,16 +14,29 @@ export class DatabaseService {
     private http: HttpClient
   ) { }
 
-  createUser(user: DbUser): Observable<User> {
-    return this.http.post<User>(`${environment.firebaseConfig.DBurl}/users.json`, user)
+  createUser(user: DbUser): Observable<any> {
+    return this.http.post<any>(`${environment.firebaseConfig.DBurl}/users.json`, user)
+    .pipe(
+      map((res) => {
+      return {
+        ...user,
+        id: res.name
+      }
+    })
+    )
   }
   
-  getUser(): Observable<Array<any> | null> {
-    return this.http.get<Array<any>>(`${environment.firebaseConfig.DBurl}/users.json`)
+  getUser(): Observable<User[] | null> {
+    return this.http.get<User[]>(`${environment.firebaseConfig.DBurl}/users.json`)
       .pipe(
         map((response: { [key: string]: any }) => {
           if (response) {
-            return Object.entries(response)
+            return Object
+            .keys(response)
+            .map((key) => ({
+              id: key,
+              ...response[key]
+            }))
           } else {
             return null;
           }
