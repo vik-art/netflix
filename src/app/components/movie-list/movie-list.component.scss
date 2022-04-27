@@ -16,8 +16,6 @@
       }
     }
   &-info {
-    padding: 20px;
-    height: 200px;
     &-title {
       color: $primary-button-color;
       font-size: 1.5rem;
@@ -62,10 +60,20 @@
         }
       }
       &-info {
+        padding-left: 10px;
+        padding-right: 10px;
         flex-basis: 50%;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
       }
     }
+  
+  .button-container {
+    margin: 0;
   }
+}
 }
 @media screen and(min-width: 1200px) {
   .results-card-container {
