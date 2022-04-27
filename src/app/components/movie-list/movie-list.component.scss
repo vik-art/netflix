@@ -17,6 +17,7 @@
     }
   &-info {
     padding: 20px;
+    height: 150px;
     &-title {
       color: $primary-button-color;
       font-size: 1.5rem;
@@ -27,9 +28,12 @@
   }
   }
 }
+
+.button-container {
+  padding: 20px;
+}
   &-btn {
     margin: 0 auto;
-    margin-top: 20px;
   }
 }
 
@@ -37,8 +41,7 @@
   .results {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
     &-card-container {
       flex-basis: 45%;
     }
@@ -46,6 +49,6 @@
 }
 @media screen and(min-width: 1200px) {
   .results-card-container {
-    flex-basis: 23%;
+    flex-basis: 22%;
   }
 }

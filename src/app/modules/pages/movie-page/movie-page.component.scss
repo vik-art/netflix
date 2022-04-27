@@ -1,112 +1,74 @@
 @import "../../../../styles/components/mixins.scss";
 @import "../../../../styles/components/variables.scss";
 
-.movie-page-container {
+.page-container {
   @include center-element;
   @include container;
   @include fixed-element;
   background-color: rgba(0, 0, 0, 0.7);
   transition: $animation;
   z-index: 111;
-  .close-icon-container {
-    @include center-element;
-    width: 70px;
-    height: 70px;
-    border: 2px solid $base-font-color;
-    border-radius: 50%;
-    position: absolute;
-    color: #fff;
-    top: -35px;
-    right: -35px;
-    z-index: 10;
-    background-color: $secondary-font-color;
-    cursor: pointer;
-    transition: $animation;
-    &:hover {
-      transition: $animation;
-      opacity: 0.6;
-    }
-  }
-  
-  .movie-page-info {
-    transition: $animation;
-    background-size: cover;
+  &-card {
+    width: 100%;
+    position: relative;
     background-position: center;
     background-repeat: no-repeat;
-    font-size: 22px;
-    width: 60%;
-    border-radius: 5px;
-    height: auto;
-    position: relative;
-    box-shadow: 0px 5px 10px 2px rgba(168, 144, 9, 0.5) inset;
-    padding: 20px;
-    .movie-title {
-      text-align: center;
-      margin-bottom: 20px;
-      h1 {
-        margin-right: 10px;
-        font-size: 40px;
-      }
+    background-size: cover;
+    padding: 50px 20px;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    &-overview>p {
+      display: none;
     }
-    .movie-details-info {
-      display: flex;
-      font-size: 20px;
-      line-height: 1.2;
+    &-title>h1 {
       color: $primary-button-color;
-      p {
-        span {
-          font-size: 20px;
-          color: $base-font-color;
-        }
-        &:not(:last-child) {
-          margin-bottom: 10px;
-        }
-      }
-    }
-    .movie-overview {
-      flex-basis: 65%;
-      p {
-        @include scroll;
-        text-align: justify;
-        height: 200px;
-        padding: 10px;
-        color: $base-font-color;
-      }
     }
   }
-  @media screen and(min-width: 768px) {
-    .movie-page-info {
-      width: 75%;
-      padding: 50px;
-    }
   }
-}
-
-.page-btn {
-  padding: 10px;
-}
- 
-.button-container {
-  display: flex;
-  justify-content: space-around;
-  width: 90%;
-}
-@media screen and (max-width: 767px) {
-  .movie-details-info {
-    flex-direction: column;
-  }
-}
-@media screen and (max-width: 480px) {
-  .movie-overview p {
-    display: none;
+  .close-icon-container {
+    @include center-element;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid $base-font-color;
+    border-radius: 50%;
+    color: $base-font-color;
   }
   .button-container {
-    flex-direction: column;
     margin-top: 20px;
-    .page-btn:last-child {
-      margin-left: 0;
-      margin-top: 20px;
+  }
+  .page-btn {
+    width: 200px;
+    height: 60px;
+    margin: 0 auto;
+    &:first-child {
+      margin-bottom: 20px;
     }
   }
+@media screen and(min-width: 768px) {
+  .page-container-card {
+  display: flex;
+  &-overview {
+    padding-top: 20px;
+    flex-basis: 60%;
+    &>p {
+    display: block;
+    overflow-y: scroll;
+  }
 }
-
+  &-title {
+    flex-basis: 40%;
+  }
+  }
+}
+@media screen and(min-width: 1200px) {
+  .page-container-card {
+    width: 60%;
+    padding: 100px 40px;
+  }
+  .button-container {
+    display: flex;
+  }
+}
