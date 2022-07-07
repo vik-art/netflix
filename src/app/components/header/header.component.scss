@@ -8,16 +8,16 @@
     z-index: 10;
   }
   &-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   &-logo-link {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    font-family: 'Dancing Script', cursive;
+    font-family: "Dancing Script", cursive;
     font-size: 1.5rem;
     padding: 20px 0px 20px 20px;
   }
@@ -72,18 +72,18 @@
 @media screen and(min-width: 1200px) {
   .homepage {
     &-buttons {
-    flex-basis: 30%;
-  }
-  &-user-menu {
-    display: flex;
-    flex-basis: 60%;
-    justify-content: space-between;
-    padding-top: 0;
-    padding-right: 40px;
-  }
-  &-logo-link {
-    padding-left: 40px;
-  }
+      flex-basis: 30%;
+    }
+    &-user-menu {
+      display: flex;
+      flex-basis: 60%;
+      justify-content: space-between;
+      padding-top: 0;
+      padding-right: 40px;
+    }
+    &-logo-link {
+      padding-left: 40px;
+    }
   }
   .logout-btn {
     margin: 0;

@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  
   menuListItems: Array<ImenuItem> = HEADER_MENU_LIST;
   mobileMenu: boolean = false;
   closeMenu: boolean = false;
@@ -22,21 +21,20 @@ export class HeaderComponent implements OnInit {
     public auth: AuthService,
     private route: Router,
     private alert: AlertService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   get stateName() {
-    return this.show ? "show" : "hide";
+    return this.show ? 'show' : 'hide';
   }
   toggle() {
     this.show = !this.show;
   }
   logOut(event: Event) {
-    event.preventDefault()
+    event.preventDefault();
     this.auth.logout();
-    this.alert.success('You have logged out!')
-    this.route.navigate(['/'])
+    this.alert.success('You have logged out!');
+    this.route.navigate(['/']);
   }
   toggleMenu() {
     this.mobileMenu = !this.mobileMenu;
@@ -44,15 +42,13 @@ export class HeaderComponent implements OnInit {
     this.toggle();
   }
   onRegister() {
-    this.route.navigate(["/register"]);
+    this.route.navigate(['/register']);
     this.mobileMenu = false;
     this.closeMenu = false;
   }
   onLogin() {
-    this.route.navigate(["/login"]);
+    this.route.navigate(['/login']);
     this.mobileMenu = false;
     this.closeMenu = false;
   }
 }
-
-

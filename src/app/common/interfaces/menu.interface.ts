@@ -1,9 +1,9 @@
 export interface ImenuItem {
-    label:string,
-    link: string,
+  label: string;
+  link: string;
 }
 
 export interface MovieMenu {
-    label: string,
-    type: string,
+  label: string;
+  type: string;
 }

@@ -4,30 +4,28 @@ import { HomepageComponent } from './modules/pages/homepage/homepage.component';
 import { LoginPageComponent } from './modules/pages/login-page/login-page.component';
 import { RegistrationPageComponent } from './modules/pages/registration-page/registration-page.component';
 
-
-
-const routes: Routes = [ 
+const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: HomepageComponent,
-    pathMatch: "full"
+    pathMatch: 'full',
   },
   {
-    path: "register",
-    component: RegistrationPageComponent
+    path: 'register',
+    component: RegistrationPageComponent,
   },
   {
-    path: "login",
-    component: LoginPageComponent
+    path: 'login',
+    component: LoginPageComponent,
   },
   {
-    path: "user",
-    loadChildren: ()=> import("./user.module").then(m => m.UserModule)
-  }
+    path: 'user',
+    loadChildren: () => import('./user.module').then((m) => m.UserModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,24 +1,32 @@
 <div class="results">
-        <div class="results-card-container" *ngFor="let movie of movies">
-            <div class="results-card-container-image">
-                <img *ngIf="movie.poster_path; else defaultImage"
-                    src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}" alt="{{movie.title}}">
-                    </div>
-            <div class="results-card-container-info">
-                <div class="results-card-container-info-text">
-                <h2 class="results-card-container-info-title">{{movie.title}}</h2>
-                <p class="results-card-container-info-details"><b>Release Date:</b> {{movie.release_date | date}}</p>
-                <p class="results-card-container-info-details"><b>Vote Average:</b> {{movie.vote_average}}</p>
-                <p class="results-card-container-info-details"><b>Original Language:</b> {{movie.original_language | uppercase}}</p>
-                </div>
-                <div class="button-container">
-                    <button class="btn movie-btn results-btn" (click)="openModal(movie.id)">
-                        <mat-icon>check_box</mat-icon>
-                        Show details</button>
-                </div>
+    <div class="results-card-container" *ngFor="let movie of movies">
+        <div class="results-card-container-image">
+            <img *ngIf="movie.poster_path; else defaultImage"
+                src="https://image.tmdb.org/t/p/w342{{ movie.poster_path }}" alt="{{ movie.title }}" />
+        </div>
+        <div class="results-card-container-info">
+            <div class="results-card-container-info-text">
+                <h2 class="results-card-container-info-title">{{ movie.title }}</h2>
+                <p class="results-card-container-info-details">
+                    <b>Release Date:</b> {{ movie.release_date | date }}
+                </p>
+                <p class="results-card-container-info-details">
+                    <b>Vote Average:</b> {{ movie.vote_average }}
+                </p>
+                <p class="results-card-container-info-details">
+                    <b>Original Language:</b> {{ movie.original_language | uppercase }}
+                </p>
             </div>
-</div>
+            <div class="button-container">
+                <button class="btn movie-btn results-btn" (click)="openModal(movie.id)">
+                    <mat-icon>check_box</mat-icon>
+                    Show details
+                </button>
+            </div>
+        </div>
+    </div>
 
     <ng-template #defaultImage>
-        <img src="assets/default-movie.jpg" alt="" srcset="">
+        <img src="assets/default-movie.jpg" alt="" srcset="" />
     </ng-template>
+</div>

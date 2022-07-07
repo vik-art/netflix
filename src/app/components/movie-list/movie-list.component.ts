@@ -4,18 +4,16 @@ import { Movie } from 'src/app/common/interfaces/movie.interface';
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.scss']
+  styleUrls: ['./movie-list.component.scss'],
 })
 export class MovieListComponent implements OnInit {
-
   @Input() movies!: Movie[];
   @Output() openMoviePage = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   openModal(id: number) {
-  this.openMoviePage.emit(id)
-}
+    this.openMoviePage.emit(id);
+  }
 }

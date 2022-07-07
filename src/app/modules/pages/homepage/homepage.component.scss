@@ -3,8 +3,8 @@
 
 .homepage {
   &-container {
-  @include bg-image(url(../../../../assets/homepage-background.jpg));
-  @include container;
+    @include bg-image(url(../../../../assets/homepage-background.jpg));
+    @include container;
   }
   &-content-container {
     @include center-element;

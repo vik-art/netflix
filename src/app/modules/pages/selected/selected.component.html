@@ -1,21 +1,15 @@
 <div class="container">
     <app-movie-list [movies]="movies" (openMoviePage)="openModalWindow($event)"></app-movie-list>
     <div class="no-results-container" *ngIf="noResults">
-        <p>You haven't added movies here yet.<br> You can find intresting movies in <a routerLink="/movies">Movies
-                page</a>.</p>
-                <img src="assets/no-results.jpeg" alt="No results">
+        <p>
+            You haven't added movies here yet.<br />
+            You can find intresting movies in <a routerLink="/movies">Movies page</a>.
+        </p>
+        <img src="assets/no-results.jpeg" alt="No results" />
     </div>
 </div>
-<app-movie-page 
-    *ngIf="showModal"
-    [item]="movie" 
-    [favouriteBtnText] = "favouriteBtnText"
-    [deleteBtnText] = "deleteBtnText"
-    [showDeleteBtn] = "true"
-    [showSelectedBtn] = "false"
-    [showFavouriteBtn] = "true"
-    (deleteItem)="onDelete($event)"
+<app-movie-page *ngIf="showModal" [item]="movie" [favouriteBtnText]="favouriteBtnText" [deleteBtnText]="deleteBtnText"
+    [showDeleteBtn]="true" [showSelectedBtn]="false" [showFavouriteBtn]="true" (deleteItem)="onDelete($event)"
     (closeWindow)="onClose()"></app-movie-page>
 
-<ngx-loading-x [show]="load">
-</ngx-loading-x>
+<ngx-loading-x [show]="load"> </ngx-loading-x>

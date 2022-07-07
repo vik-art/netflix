@@ -1,4 +1,4 @@
-import { Component, OnDestroy} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/common/interfaces/user.interface';
@@ -6,16 +6,15 @@ import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
-
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnDestroy {
   submitted: boolean = false;
   unSubscriber = new Subscription();
-  title: string = "Please, log in to enter the system!";
+  title: string = 'Please, log in to enter the system!';
 
   constructor(
     public auth: AuthService,
@@ -23,10 +22,9 @@ export class LoginPageComponent implements OnDestroy {
     private alert: AlertService,
     private database: DatabaseService
   ) {}
-  
-  
+
   ngOnDestroy(): void {
-      this.unSubscriber.unsubscribe()
+    this.unSubscriber.unsubscribe();
   }
 
   onLoginUser(event: User) {
@@ -34,18 +32,17 @@ export class LoginPageComponent implements OnDestroy {
     this.unSubscriber.add(
       this.auth.login(event).subscribe(() => {
         this.database.getUser().subscribe((res) => {
-          res?.map(user => {
-            if(user.email === event.email) {
-              localStorage.setItem('id', user.id!)
+          res?.map((user) => {
+            if (user.email === event.email) {
+              localStorage.setItem('id', user.id!);
             }
-          })
-          }
-        )
-       
-      this.alert.success("You have logged in!")
-      this.submitted = false;
-      this.route.navigate(["/user"]);
-    }))
+          });
+        });
+
+        this.alert.success('You have logged in!');
+        this.submitted = false;
+        this.route.navigate(['/user']);
+      })
+    );
   }
-  
 }
