@@ -3,19 +3,18 @@ import { Subject } from 'rxjs';
 import { Alert } from '../common/interfaces/alert.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertService {
-  public alert$ = new Subject<Alert>()
-  //різниця між Observable і Subject і Behavior Subject
-  constructor() { }
+  public alert$ = new Subject<Alert>();
+  constructor() {}
   success(text: string) {
-    this.alert$.next({type: 'success', text})
+    this.alert$.next({ type: 'success', text });
   }
   warning(text: string) {
-    this.alert$.next({type: 'warning', text})
+    this.alert$.next({ type: 'warning', text });
   }
   danger(text: string) {
-    this.alert$.next({type: 'danger', text})
+    this.alert$.next({ type: 'danger', text });
   }
 }

@@ -5,89 +5,72 @@
       rgba(0, 0, 0, 0.6)
     ), url(https://image.tmdb.org/t/p/original{{item.backdrop_path}})">
         <div class="page-container-card-title">
-            <h1>{{item.title}}</h1>
-            <small>{{item.tagline}}</small>
+            <h1>{{ item.title }}</h1>
+            <small>{{ item.tagline }}</small>
             <button class="close-icon-container" (click)="onCloseInfo()">
                 <mat-icon>clear</mat-icon>
             </button>
-        <div class="page-container-card-info">
+            <div class="page-container-card-info">
                 <p>
-                    <strong>
-                        Release Date: </strong>
-                    <span>{{item.release_date | date}}</span>
+                    <strong> Release Date: </strong>
+                    <span>{{ item.release_date | date }}</span>
                 </p>
                 <p>
-                    <strong>
-                        Vote Average: </strong>
-                    <span>{{item.vote_average}}</span>
+                    <strong> Vote Average: </strong>
+                    <span>{{ item.vote_average }}</span>
                 </p>
                 <p>
-                    <strong>
-                        Vote Count: </strong>
-                    <span>{{item.vote_count}}</span>
+                    <strong> Vote Count: </strong>
+                    <span>{{ item.vote_count }}</span>
                 </p>
                 <p>
-                    <strong>
-                        Genre:
-                    </strong>
+                    <strong> Genre: </strong>
                     <span *ngFor="let genre of item.genres">
-                        &#10003; {{genre.name}}&nbsp;
+                        &#10003; {{ genre.name }}&nbsp;
                     </span>
                 </p>
                 <p>
-                    <strong>
-                        Spoken languages: </strong>
+                    <strong> Spoken languages: </strong>
                     <span *ngFor="let language of item.spoken_languages">
-                        &#10003; {{language.name}}&nbsp;
+                        &#10003; {{ language.name }}&nbsp;
                     </span>
                 </p>
                 <p>
-                    <strong>
-                        Production Countries: </strong>
+                    <strong> Production Countries: </strong>
                     <span *ngFor="let country of item.production_countries">
-                        {{country.name}}&nbsp;
+                        {{ country.name }}&nbsp;
                     </span>
                 </p>
                 <p *ngIf="item.budget">
-                    <strong>
-                        Budget: </strong>
-                    <span>{{item.budget | movieBudget}}</span>
+                    <strong> Budget: </strong>
+                    <span>{{ item.budget | movieBudget }}</span>
                 </p>
                 <p>
-                    <strong>
-                        Status: </strong>
-                    <span>{{item.status}}</span>
+                    <strong> Status: </strong>
+                    <span>{{ item.status }}</span>
                 </p>
                 <p>
-                    <strong>
-                        Runtime: </strong>
-                    <span>{{item.runtime | runtime}}</span>
+                    <strong> Runtime: </strong>
+                    <span>{{ item.runtime | runtime }}</span>
                 </p>
             </div>
+        </div>
+        <div class="page-container-card-overview">
+            <p>{{ item.overview }}</p>
+            <div class="button-container">
+                <button class="btn page-btn" *ngIf="showFavouriteBtn" (click)="addToFavourite(item)">
+                    <mat-icon>favorite</mat-icon>
+                    {{ favouriteBtnText }}
+                </button>
+                <button class="btn page-btn" *ngIf="showSelectedBtn" (click)="addToSelected(item)">
+                    <mat-icon>stars</mat-icon>
+                    {{ selectedBtnText }}
+                </button>
+                <button class="btn page-btn" *ngIf="showDeleteBtn" (click)="deleteMovie(item)">
+                    <mat-icon>delete_sweep</mat-icon>
+                    {{ deleteBtnText }}
+                </button>
             </div>
-            <div class="page-container-card-overview">
-                <p>{{item.overview}}</p>
-                <div class="button-container">
-                    <button 
-                        class="btn page-btn" 
-                        *ngIf="showFavouriteBtn"
-                        (click)="addToFavourite(item)"
-                        >
-                        <mat-icon>favorite</mat-icon>
-                        {{favouriteBtnText}}</button>
-                    <button 
-                        class="btn page-btn" 
-                        *ngIf="showSelectedBtn"
-                        (click)="addToSelected(item)">
-                        <mat-icon>stars</mat-icon>
-                        {{selectedBtnText}}</button>
-                    <button 
-                        class="btn page-btn" 
-                        *ngIf="showDeleteBtn"
-                        (click)="deleteMovie(item)">
-                        <mat-icon>delete_sweep</mat-icon>
-                            {{deleteBtnText}}</button>
-                </div>
-            </div>
-            </div>
+        </div>
+    </div>
 </div>

@@ -4,14 +4,12 @@ import { ImenuItem } from 'src/app/common/interfaces/menu.interface';
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
-  styleUrls: ['./menu-list.component.scss']
+  styleUrls: ['./menu-list.component.scss'],
 })
 export class MenuListComponent implements OnInit {
-  @Input() menuList!:Array<ImenuItem>;
+  @Input() menuList!: Array<ImenuItem>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

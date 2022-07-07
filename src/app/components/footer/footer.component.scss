@@ -1,16 +1,16 @@
 footer {
-    width: 100%;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background: rgba(0, 0, 0, 0.4);
-    position: fixed;
-    bottom: 0;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  bottom: 0;
 }
 .footer-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .mat-icon {
-        margin-right: 10px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .mat-icon {
+    margin-right: 10px;
+  }
 }

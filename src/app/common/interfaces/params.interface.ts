@@ -1,4 +1,4 @@
 export interface Params {
-    searchQuery: string,
-    page: number
+  searchQuery: string;
+  page: number;
 }

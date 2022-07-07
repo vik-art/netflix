@@ -9,7 +9,7 @@ import { MovieService } from 'src/app/services/movie.service';
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.scss']
+  styleUrls: ['./user-page.component.scss'],
 })
 export class UserPageComponent implements OnInit, OnDestroy {
   form!: FormGroup;
@@ -18,8 +18,8 @@ export class UserPageComponent implements OnInit, OnDestroy {
   movies: Array<Movie> = [];
   movie!: Movie;
   openPage: boolean = false;
-  favouriteBtnText = "Add to favourite";
-  selectedBtnText = "Mark as selected";
+  favouriteBtnText = 'Add to favourite';
+  selectedBtnText = 'Mark as selected';
   resultsNotification: boolean = false;
 
   public load: boolean = false;
@@ -31,88 +31,99 @@ export class UserPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.router.navigate(['/user'])
+    this.router.navigate(['/user']);
   }
 
   ngOnDestroy(): void {
-    this.unSubscriber.unsubscribe()
+    this.unSubscriber.unsubscribe();
   }
 
   initForm() {
     this.form = new FormGroup({
-      query: new FormControl('', Validators.required)
-    })
+      query: new FormControl('', Validators.required),
+    });
     this.form.valueChanges.subscribe(() => {
       if (this.searchQuery !== this.form.value.query) {
-      this.movies = [];
+        this.movies = [];
         this.page = 1;
-    }
+      }
       this.searchQuery = this.form.value.query;
-    })
+    });
   }
   submit() {
     const queryParams = {
-     searchQuery: this.searchQuery,
+      searchQuery: this.searchQuery,
       page: this.page,
-    }
-    this.unSubscriber.add(this.movieService.getMovie(queryParams)
-      .subscribe((movies) => {
+    };
+    this.unSubscriber.add(
+      this.movieService.getMovie(queryParams).subscribe((movies) => {
         if (movies.results?.length) {
           this.showLoading();
           this.resultsNotification = true;
           this.movies = movies.results as Array<Movie>;
-          this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } });
+          this.router.navigate(['/user'], {
+            queryParams: { query: this.searchQuery },
+          });
           this.page++;
         } else {
-          this.alertService.danger("There are no results on your search query");
+          this.alertService.danger('There are no results on your search query');
           this.form.reset();
         }
-      }))
+      })
+    );
   }
   loadMoreMovies() {
     this.route.queryParams.subscribe((params) => {
       this.searchQuery = params['query'];
-    })
+    });
     const queryParams = {
-     searchQuery: this.searchQuery,
-     page: this.page
-    }
-    this.unSubscriber.add(this.movieService.getMovie(queryParams)
-      .subscribe((movies) => {
-       this.showLoading();
-        this.movies = [...this.movies, ...movies.results as Array<Movie>];
-       this.page++;
-     }))
+      searchQuery: this.searchQuery,
+      page: this.page,
+    };
+    this.unSubscriber.add(
+      this.movieService.getMovie(queryParams).subscribe((movies) => {
+        this.showLoading();
+        this.movies = [...this.movies, ...(movies.results as Array<Movie>)];
+        this.page++;
+      })
+    );
   }
 
   openMoviePage(event: number) {
-    this.unSubscriber.add(this.movieService.getById(event)
-      .subscribe((movie: Movie) => {
+    this.unSubscriber.add(
+      this.movieService.getById(event).subscribe((movie: Movie) => {
         this.showLoading();
-         this.movie = movie;
-         this.router.navigate(['/user'], {queryParams: {query: this.searchQuery, movie: event}})
-         this.openPage = true;
-       }))    
+        this.movie = movie;
+        this.router.navigate(['/user'], {
+          queryParams: { query: this.searchQuery, movie: event },
+        });
+        this.openPage = true;
+      })
+    );
   }
 
   onClose() {
     this.openPage = false;
-    this.router.navigate(['/user'], { queryParams: { query: this.searchQuery } })
+    this.router.navigate(['/user'], {
+      queryParams: { query: this.searchQuery },
+    });
   }
 
   showLoading() {
     this.load = true;
 
     setTimeout(() => {
-      this.load = false
-    }, 3000)
-  } 
+      this.load = false;
+    }, 3000);
+  }
 
   onScroll(el: string) {
-    document.querySelector(el)?.scrollIntoView({behavior: 'smooth', block: 'start'})
+    document
+      .querySelector(el)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

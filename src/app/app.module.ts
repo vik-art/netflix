@@ -25,8 +25,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
-  useClass: AuthInterceptor
-}
+  useClass: AuthInterceptor,
+};
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     RegistrationPageComponent,
     AlertComponent,
     NotFoundPageComponent,
-    FormComponent
+    FormComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,10 +48,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     UserModule,
     BrowserAnimationsModule,
   ],
-  providers: [
-    AuthService,
-    INTERCEPTOR_PROVIDER
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService, INTERCEPTOR_PROVIDER],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

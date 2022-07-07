@@ -1,7 +1,6 @@
 @import "../../../../styles/components/mixins.scss";
 @import "../../../../styles/components/variables.scss";
 
-
 .user-container {
   @include bg-image(url(../../../../assets/user-background.jpg));
   @include center-element;
@@ -30,9 +29,10 @@
       .mat-icon {
         font-size: 2.5rem;
         transition: $animation;
-        &:hover, &:focus {
-        transform: scale(1.2);
-        transition: $animation;
+        &:hover,
+        &:focus {
+          transform: scale(1.2);
+          transition: $animation;
         }
       }
     }
@@ -58,10 +58,10 @@
   margin-top: 20px;
   transition: $animation;
   cursor: pointer;
-    :hover {
-      opacity: 0.5;
-      transition: $animation;
-    }
+  :hover {
+    opacity: 0.5;
+    transition: $animation;
+  }
 }
 .arrow-up {
   position: sticky;

@@ -9,17 +9,16 @@ import { MovieService } from 'src/app/services/movie.service';
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
-  styleUrls: ['./popular.component.scss']
+  styleUrls: ['./popular.component.scss'],
 })
 export class PopularComponent implements OnInit, OnDestroy {
-
   page: number = 1;
   movies!: Movie[];
   showModal: boolean = false;
   movie!: Movie;
   showMovie: boolean = false;
-  favouriteBtnText = "Add to favourite";
-  selectedBtnText = "Mark as selected"
+  favouriteBtnText = 'Add to favourite';
+  selectedBtnText = 'Mark as selected';
 
   public activeItem!: string;
   public load: boolean = false;
@@ -28,50 +27,51 @@ export class PopularComponent implements OnInit, OnDestroy {
 
   unSubscriber = new Subscription();
 
-  constructor(
-    private movieService: MovieService,
-    private router: Router
-  ) { }
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit(): void {
-    this.openMovies("/popular", "Popular")
+    this.openMovies('/popular', 'Popular');
   }
 
-   ngOnDestroy(): void {
-     this.unSubscriber.unsubscribe();
+  ngOnDestroy(): void {
+    this.unSubscriber.unsubscribe();
   }
 
   openMovies(type: string, item: string) {
-   this.unSubscriber.add(this.movieService.getPopularMovies(type).subscribe((movies) => {
-      this.movies = movies.results as Array<Movie>;
-      this.showMovie = true;
-      this.onSelectItem(item);
-  }))
+    this.unSubscriber.add(
+      this.movieService.getPopularMovies(type).subscribe((movies) => {
+        this.movies = movies.results as Array<Movie>;
+        this.showMovie = true;
+        this.onSelectItem(item);
+      })
+    );
   }
 
- public onSelectItem(item: string): void {
+  public onSelectItem(item: string): void {
     this.activeItem = item;
   }
-  
+
   openMoviePage(event: number) {
-  this.unSubscriber.add(this.movieService.getById(event).subscribe((movie: Movie) => {
-      this.showLoading();
-      this.showModal = true;
-      this.movie = movie;
-      this.router.navigate(["/movies"], {queryParams: {movie: event}})
-   }))
+    this.unSubscriber.add(
+      this.movieService.getById(event).subscribe((movie: Movie) => {
+        this.showLoading();
+        this.showModal = true;
+        this.movie = movie;
+        this.router.navigate(['/movies'], { queryParams: { movie: event } });
+      })
+    );
   }
 
   onClose() {
     this.showModal = false;
-    this.router.navigate(["/movies"])
+    this.router.navigate(['/movies']);
   }
 
-   showLoading() {
+  showLoading() {
     this.load = true;
 
     setTimeout(() => {
-      this.load = false
-    }, 3000)
+      this.load = false;
+    }, 3000);
   }
 }

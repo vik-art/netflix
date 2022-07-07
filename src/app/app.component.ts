@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
-      this.name = "New name"
-    }, 3000)
+      this.name = 'New name';
+    }, 3000);
   }
 
-  name = "Some Name"
+  name = 'Some Name';
   title = 'netflix-clone';
 }

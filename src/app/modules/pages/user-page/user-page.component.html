@@ -1,56 +1,39 @@
 <div id="form"></div>
 <div class="user-container">
-    <form
-        [formGroup]="form" 
-        (ngSubmit)="submit()" 
-        class="user-container-form">
-            <input 
-                type="text" 
-                formControlName="query" 
-                placeholder="Find your favourite TV-show"
-                class="user-container-form-input">
-                    <button 
-                    type="submit" 
-                    class="user-container-form-button">
-                    <mat-icon>search</mat-icon>
-                    </button>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="user-container-form">
+        <input type="text" formControlName="query" placeholder="Find your favourite TV-show"
+            class="user-container-form-input" />
+        <button type="submit" class="user-container-form-button">
+            <mat-icon>search</mat-icon>
+        </button>
     </form>
-    <div 
-        class="results-notification" 
-        *ngIf="resultsNotification" 
-        (click)="onScroll('#movies')">
-            <div class="notification-item">There are some results on your search query "{{searchQuery | uppercase}}"</div>
-             <div class="notification-item icon"><mat-icon>keyboard_arrow_down</mat-icon></div>
+    <div class="results-notification" *ngIf="resultsNotification" (click)="onScroll('#movies')">
+        <div class="notification-item">
+            There are some results on your search query "{{
+            searchQuery | uppercase
+            }}"
+        </div>
+        <div class="notification-item icon">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
     </div>
 </div>
 <div class="results-container" *ngIf="movies.length">
-    <app-movie-list 
-        id="movies"  
-        [movies]="movies" 
-        (openMoviePage)="openMoviePage($event)">
+    <app-movie-list id="movies" [movies]="movies" (openMoviePage)="openMoviePage($event)">
     </app-movie-list>
-    <div 
-        class="arrow-up"
-        (click)="onScroll('#form')">
-        <div><mat-icon>keyboard_arrow_up</mat-icon></div>
+    <div class="arrow-up" (click)="onScroll('#form')">
+        <div>
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        </div>
     </div>
-    <button 
-        class="btn load-more-btn" 
-        (click)="loadMoreMovies()">
+    <button class="btn load-more-btn" (click)="loadMoreMovies()">
         Load More
     </button>
 </div>
 
-<app-movie-page 
-    *ngIf="openPage" 
-    [item]="movie" 
-    [favouriteBtnText] = "favouriteBtnText"
-    [selectedBtnText] = "selectedBtnText"
-    [showDeleteBtn] = "false"
-    [showSelectedBtn] = "true"
-    [showFavouriteBtn] = "true"
-    (closeWindow)="onClose()" >
+<app-movie-page *ngIf="openPage" [item]="movie" [favouriteBtnText]="favouriteBtnText"
+    [selectedBtnText]="selectedBtnText" [showDeleteBtn]="false" [showSelectedBtn]="true" [showFavouriteBtn]="true"
+    (closeWindow)="onClose()">
 </app-movie-page>
 
-<ngx-loading-x [show]="load">
-</ngx-loading-x>
+<ngx-loading-x [show]="load"> </ngx-loading-x>

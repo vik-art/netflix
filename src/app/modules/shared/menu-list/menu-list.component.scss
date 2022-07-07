@@ -1,25 +1,23 @@
 .user-nav {
-font-size: 22px;
-display: flex;
-height: 70px;
-flex-wrap: wrap;
-align-items: center;
-justify-content: space-around;
-li:not(:last-child) {
-  margin-right: 20px;
-}
-}
-
-
-@media screen and (min-width: 680px) {
-.user-nav {
+  font-size: 22px;
+  display: flex;
+  height: 70px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
   li:not(:last-child) {
-    margin-right: 40px;
+    margin-right: 20px;
   }
 }
+
+@media screen and (min-width: 680px) {
+  .user-nav {
+    li:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
 }
 .active a {
   font-weight: 700;
   color: #fff44f;
 }
-
